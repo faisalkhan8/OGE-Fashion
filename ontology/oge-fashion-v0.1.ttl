@@ -73,8 +73,8 @@ oge:Attribute a owl:Class ;
     rdfs:label "Attribute"@en .
 
 oge:Category a owl:Class ;
-    rdfs:subClassOf oge:Attribute ;
-    rdfs:label "Category"@en .
+    rdfs:label "Category"@en ;
+    rdfs:comment "A product or apparel category is kept distinct from descriptive attributes, following the category/attribute distinction in Fashionpedia."@en .
 
 oge:Colour a owl:Class ;
     rdfs:subClassOf oge:Attribute ;
@@ -117,6 +117,10 @@ oge:Preference a owl:Class ;
     rdfs:label "Preference"@en ;
     rdfs:comment "An explicitly selected positive, negative, or neutral preference."@en .
 
+oge:ProfileAssertion a owl:Class ;
+    rdfs:label "Profile assertion"@en ;
+    rdfs:comment "A user-specific attribute statement with confirmation status and optional evidence. Do not attach user-confirmation flags to a shared attribute concept."@en .
+
 oge:Context a owl:Class ;
     rdfs:label "Recommendation context"@en .
 
@@ -148,7 +152,12 @@ oge:SquareFaceShape a owl:NamedIndividual, oge:FaceShape ;
 
 ### Recommendation and provenance
 oge:Recommendation a owl:Class ;
-    rdfs:label "Recommendation"@en .
+    rdfs:label "Recommendation"@en ;
+    rdfs:comment "A recommendation request/result set for a particular profile and context."@en .
+
+oge:RecommendationResult a owl:Class ;
+    rdfs:label "Recommendation result"@en ;
+    rdfs:comment "A single ranked item within a recommendation, allowing rank and explanation to be attached to the correct item."@en .
 
 oge:Explanation a owl:Class ;
     rdfs:label "Explanation"@en ;
@@ -169,7 +178,6 @@ oge:hasAttribute a owl:ObjectProperty ;
     rdfs:label "has attribute"@en .
 
 oge:hasCategory a owl:ObjectProperty ;
-    rdfs:subPropertyOf oge:hasAttribute ;
     rdfs:domain oge:RecommendationEntity ;
     rdfs:range oge:Category ;
     rdfs:label "has category"@en .
@@ -230,6 +238,31 @@ oge:hasPreference a owl:ObjectProperty ;
     rdfs:domain oge:UserProfile ;
     rdfs:range oge:Preference ;
     rdfs:label "has preference"@en .
+
+oge:hasProfileAssertion a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:ProfileAssertion ;
+    rdfs:label "has profile assertion"@en .
+
+oge:assertedByProfile a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:UserProfile ;
+    rdfs:label "asserted by profile"@en .
+
+oge:assertionAbout a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "assertion about"@en .
+
+oge:assertionValue a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "assertion value"@en .
+
+oge:assertionEvidence a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "assertion evidence"@en .
 
 oge:preferenceAbout a owl:ObjectProperty ;
     rdfs:domain oge:Preference ;
@@ -294,6 +327,21 @@ oge:assessmentEvidence a owl:ObjectProperty ;
     rdfs:range oge:Evidence ;
     rdfs:label "assessment evidence"@en .
 
+oge:hasResult a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:RecommendationResult ;
+    rdfs:label "has result"@en .
+
+oge:resultItem a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "result item"@en .
+
+oge:hasResultExplanation a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range oge:Explanation ;
+    rdfs:label "has result explanation"@en .
+
 oge:forProfile a owl:ObjectProperty ;
     rdfs:domain oge:Recommendation ;
     rdfs:range oge:UserProfile ;
@@ -311,7 +359,7 @@ oge:recommendsItem a owl:ObjectProperty ;
 
 oge:explains a owl:ObjectProperty ;
     rdfs:domain oge:Explanation ;
-    rdfs:range oge:Recommendation ;
+    rdfs:range oge:RecommendationResult ;
     rdfs:label "explains"@en .
 
 oge:supportedBy a owl:ObjectProperty ;
@@ -345,6 +393,16 @@ oge:currencyCode a owl:DatatypeProperty ;
     rdfs:range xsd:string ;
     rdfs:comment "Use a three-letter currency code where known; keep currency separate from amount."@en .
 
+oge:maxBudgetAmount a owl:DatatypeProperty ;
+    rdfs:domain oge:BudgetConstraint ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum budget amount"@en .
+
+oge:budgetCurrencyCode a owl:DatatypeProperty ;
+    rdfs:domain oge:BudgetConstraint ;
+    rdfs:range xsd:string ;
+    rdfs:label "budget currency code"@en .
+
 oge:preferencePolarity a owl:DatatypeProperty ;
     rdfs:domain oge:Preference ;
     rdfs:range xsd:string ;
@@ -377,7 +435,7 @@ oge:sourceURL a owl:DatatypeProperty ;
     rdfs:label "source URL"@en .
 
 oge:isUserConfirmed a owl:DatatypeProperty ;
-    rdfs:domain oge:Attribute ;
+    rdfs:domain oge:ProfileAssertion ;
     rdfs:range xsd:boolean ;
     rdfs:label "is user confirmed"@en .
 
@@ -392,7 +450,7 @@ oge:methodVersion a owl:DatatypeProperty ;
     rdfs:label "method version"@en .
 
 oge:rankPosition a owl:DatatypeProperty ;
-    rdfs:domain oge:Recommendation ;
+    rdfs:domain oge:RecommendationResult ;
     rdfs:range xsd:positiveInteger ;
     rdfs:label "rank position"@en .
 
