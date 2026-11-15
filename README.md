@@ -34,6 +34,7 @@ Candidate ranking metrics include Precision@K, Recall@K, NDCG@K, and MAP@K. Cove
 ## Repository structure
 - `research/literature/`: preliminary literature evidence matrix and review-search method.
 - `research/makeup-data-review.md`: makeup dataset candidates, rights, limitations, and initial data plan.
+- `research/data-profiling.md`: source-level profile results and data-quality observations.
 - `research/`: protocol, questions, dataset register.
 - `ontology/`: ontology specification and competency questions.
 - `docs/`: roadmap and cloud-first workflow.
