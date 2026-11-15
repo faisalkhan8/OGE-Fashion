@@ -20,6 +20,15 @@
 - "context-aware recommender systems systematic literature review"
 - "explainable recommendation large language models review"
 
+## Additional targeted searches
+- fashion ontology garment recommendation OWL user model occasion
+- Expert and community based style advice Vogiatzis ontology
+- Magic Closet Beauty E-Expert fashion makeup recommendation
+- Fashionpedia ontology attribute localization dataset
+
+## Additional grey-literature search
+A 2026 HSE university-thesis record on context-oriented style selection using a fashion ontology and image analysis was identified. Track it as grey literature, not peer-reviewed evidence: https://www.hse.ru/en/edu/vkr/1158669516. Its mention of DeepFashion does not provide separate permission to access or reuse that dataset.
+
 ## Sources/portals consulted in initial scoping
 Publisher and official research pages from ACM-related records, CVF Open Access, AAAI, Frontiers, SpringerLink, institutional research portals, PubMed, and W3C. Search-engine results were used as discovery aids; citation facts were retained only where an identifiable publisher, venue, institutional or standards record was available.
 
