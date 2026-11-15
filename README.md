@@ -12,6 +12,9 @@ OGE-Fashion investigates how a shared fashion-and-beauty ontology can be combine
 
 Facial-image analysis is optional future work, not a dependency for the first experiments. Explicit user-entered or user-confirmed attributes are preferred.
 
+## Research positioning
+Prior work already includes OWL-based personalised fashion recommendation, explainable fashion compatibility, makeup recommendation, and separate systems for occasion-based clothing and facial makeup advice. OGE-Fashion therefore does not claim to invent ontology-guided fashion or makeup recommendation. Its tentative direction is to evaluate alignment of existing fashion vocabularies with makeup concepts and shared user/context preferences, then test evidence-grounded explanations. See the [literature evidence matrix](research/literature/evidence-matrix.md); novelty is not yet established.
+
 ## Research questions
 1. How can a shared ontology represent fashion, makeup, user preferences, attributes, and compatibility relationships in a machine-readable way?
 2. Does combining ontology-based reasoning with a recommendation model improve recommendation relevance compared with suitable non-ontology baselines?
