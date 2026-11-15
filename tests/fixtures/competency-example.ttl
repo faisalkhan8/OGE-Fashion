@@ -1,0 +1,183 @@
+@prefix oge: <https://w3id.org/oge-fashion/ontology#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# Synthetic fixture only. These values are invented for software tests and are not real user data,
+# real expert judgements, or evidence of recommendation quality.
+
+### Shared attribute values
+oge:CasualStyle a oge:Style ; rdfs:label "Casual"@en .
+oge:BlueColour a oge:Colour ; rdfs:label "Blue"@en .
+oge:RoseColour a oge:Colour ; rdfs:label "Rose"@en .
+oge:BlackColour a oge:Colour ; rdfs:label "Black"@en .
+oge:MatteFinish a oge:MakeupFinish ; rdfs:label "Matte"@en .
+oge:CottonMaterial a oge:Material ; rdfs:label "Cotton"@en .
+oge:StyleConceptField a oge:Attribute ; rdfs:label "Style preference field"@en .
+oge:ColourConceptField a oge:Attribute ; rdfs:label "Colour preference field"@en .
+oge:FaceShapeConceptField a oge:Attribute ; rdfs:label "Face shape profile field"@en .
+
+### Profile, preferences, context and constraints
+oge:profileA a oge:UserProfile ;
+    oge:hasPreference oge:fashionStylePreference, oge:makeupColourPreference, oge:excludeBlackPreference ;
+    oge:hasContext oge:officeOccasion ;
+    oge:hasBudgetConstraint oge:budgetA ;
+    oge:hasProfileAssertion oge:confirmedFaceShapeAssertion, oge:inferredStyleAssertion .
+
+oge:fashionStylePreference a oge:Preference ;
+    oge:preferenceDomain "fashion" ;
+    oge:preferenceAbout oge:StyleConceptField ;
+    oge:preferenceValue oge:CasualStyle ;
+    oge:preferencePolarity "positive" ;
+    oge:isHardConstraint false ;
+    oge:preferenceWeight "0.9"^^xsd:decimal .
+
+oge:makeupColourPreference a oge:Preference ;
+    oge:preferenceDomain "makeup" ;
+    oge:preferenceAbout oge:ColourConceptField ;
+    oge:preferenceValue oge:RoseColour ;
+    oge:preferencePolarity "positive" ;
+    oge:isHardConstraint false ;
+    oge:preferenceWeight "0.8"^^xsd:decimal .
+
+oge:excludeBlackPreference a oge:Preference ;
+    oge:preferenceDomain "shared" ;
+    oge:preferenceAbout oge:ColourConceptField ;
+    oge:preferenceValue oge:BlackColour ;
+    oge:preferencePolarity "negative" ;
+    oge:isHardConstraint true .
+
+oge:officeOccasion a oge:Occasion ; rdfs:label "Office"@en .
+
+oge:budgetA a oge:BudgetConstraint ;
+    oge:maxBudgetAmount "80.00"^^xsd:decimal ;
+    oge:budgetCurrencyCode "EUR" .
+
+oge:confirmedFaceShapeAssertion a oge:ProfileAssertion ;
+    oge:assertionAbout oge:FaceShapeConceptField ;
+    oge:assertionValue oge:OvalFaceShape ;
+    oge:isUserConfirmed true ;
+    oge:assertionOrigin "user-confirmed" .
+
+oge:inferredStyleAssertion a oge:ProfileAssertion ;
+    oge:assertionAbout oge:StyleConceptField ;
+    oge:assertionValue oge:CasualStyle ;
+    oge:isUserConfirmed false ;
+    oge:assertionOrigin "model-inferred" .
+
+### Candidate fashion and makeup items
+oge:shirtA a oge:RecommendationEntity, oge:FashionItem, oge:Garment ;
+    rdfs:label "Synthetic casual shirt"@en ;
+    oge:hasFashionpediaCategory oge:fp-category-combo000000 ;
+    oge:hasFashionpediaAttribute oge:fp-attribute-att000002_00 ;
+    oge:hasColour oge:BlueColour ;
+    oge:hasStyle oge:CasualStyle ;
+    oge:hasMaterial oge:CottonMaterial ;
+    oge:hasAttribute oge:BlueColour, oge:CasualStyle, oge:CottonMaterial ;
+    oge:priceAmount "55.00"^^xsd:decimal ;
+    oge:currencyCode "EUR" .
+
+oge:blackDressA a oge:RecommendationEntity, oge:FashionItem, oge:Garment ;
+    rdfs:label "Synthetic black dress"@en ;
+    oge:hasFashionpediaCategory oge:fp-category-obj000018_00 ;
+    oge:hasColour oge:BlackColour ;
+    oge:hasAttribute oge:BlackColour ;
+    oge:priceAmount "60.00"^^xsd:decimal ;
+    oge:currencyCode "EUR" .
+
+oge:unknownMaterialJacket a oge:RecommendationEntity, oge:FashionItem, oge:Garment ;
+    rdfs:label "Synthetic jacket with unknown material"@en ;
+    oge:hasFashionpediaCategory oge:fp-category-obj000010_00 ;
+    oge:hasStyle oge:CasualStyle ;
+    oge:hasAttribute oge:CasualStyle ;
+    oge:priceAmount "72.00"^^xsd:decimal ;
+    oge:currencyCode "EUR" .
+
+oge:lipstickA a oge:RecommendationEntity, oge:MakeupItem, oge:MakeupProduct, oge:LipMakeup ;
+    rdfs:label "Synthetic rose lipstick"@en ;
+    oge:hasColour oge:RoseColour ;
+    oge:hasStyle oge:CasualStyle ;
+    oge:hasFinish oge:MatteFinish ;
+    oge:hasAttribute oge:RoseColour, oge:CasualStyle, oge:MatteFinish ;
+    oge:priceAmount "22.00"^^xsd:decimal ;
+    oge:currencyCode "EUR" .
+
+oge:eyePaletteA a oge:RecommendationEntity, oge:MakeupItem, oge:MakeupProduct, oge:EyeMakeup ;
+    rdfs:label "Synthetic eye palette"@en ;
+    oge:hasColour oge:RoseColour ;
+    oge:hasFinish oge:MatteFinish ;
+    oge:hasAttribute oge:RoseColour, oge:MatteFinish ;
+    oge:priceAmount "95.00"^^xsd:decimal ;
+    oge:currencyCode "EUR" .
+
+### Compatibility and evidence
+oge:syntheticColourEvidence a oge:Evidence ;
+    oge:sourceIdentifier "synthetic-fixture-evidence" ;
+    oge:description "Test-only evidence record; not an actual expert source or verified style rule." .
+
+oge:shirtLipstickAssessment a oge:CompatibilityAssessment ;
+    oge:assessesItemA oge:shirtA ;
+    oge:assessesItemB oge:lipstickA ;
+    oge:assessmentContext oge:officeOccasion ;
+    oge:assessmentEvidence oge:syntheticColourEvidence ;
+    oge:compatibilityScore "0.82"^^xsd:decimal ;
+    oge:methodName "synthetic-test-rule" ;
+    oge:methodVersion "0.1-test" .
+
+oge:shirtA oge:hasCompatibilityAssessment oge:shirtLipstickAssessment .
+
+oge:unverifiedAssessment a oge:CompatibilityAssessment ;
+    oge:assessesItemA oge:blackDressA ;
+    oge:assessesItemB oge:eyePaletteA ;
+    oge:assessmentContext oge:officeOccasion ;
+    oge:methodName "not-evaluated" ;
+    oge:methodVersion "0.1-test" .
+
+### Recommendation results and explanations
+oge:officeRecommendation a oge:Recommendation ;
+    oge:forProfile oge:profileA ;
+    oge:forContext oge:officeOccasion ;
+    oge:hasRequiredAttribute oge:CottonMaterial ;
+    oge:hasResult oge:shirtResult, oge:lipstickResult, oge:unverifiedResult .
+
+oge:shirtResult a oge:RecommendationResult ;
+    oge:resultItem oge:shirtA ;
+    oge:rankPosition "1"^^xsd:positiveInteger ;
+    oge:resultScore "0.94"^^xsd:decimal ;
+    oge:hasResultExplanation oge:shirtExplanation .
+
+oge:lipstickResult a oge:RecommendationResult ;
+    oge:resultItem oge:lipstickA ;
+    oge:rankPosition "2"^^xsd:positiveInteger ;
+    oge:resultScore "0.89"^^xsd:decimal .
+
+oge:unverifiedResult a oge:RecommendationResult ;
+    oge:resultItem oge:eyePaletteA ;
+    oge:rankPosition "3"^^xsd:positiveInteger ;
+    oge:resultScore "0.41"^^xsd:decimal ;
+    oge:hasResultExplanation oge:insufficientEvidenceExplanation .
+
+oge:learnedSignalA a oge:LearnedModelComponent ;
+    oge:componentName "synthetic-learned-ranker" ;
+    oge:componentVersion "test-only" ;
+    oge:scoreValue "0.74"^^xsd:decimal .
+
+oge:ontologySignalA a oge:OntologyReasoningComponent ;
+    oge:componentName "synthetic-ontology-match" ;
+    oge:componentVersion "test-only" ;
+    oge:scoreValue "0.82"^^xsd:decimal .
+
+oge:shirtExplanation a oge:Explanation ;
+    oge:explains oge:shirtResult ;
+    oge:supportedBy oge:syntheticColourEvidence ;
+    oge:explanationPreference oge:fashionStylePreference ;
+    oge:explanationAttribute oge:CasualStyle, oge:BlueColour ;
+    oge:explanationCompatibilityAssessment oge:shirtLipstickAssessment ;
+    oge:explanationScoringComponent oge:learnedSignalA, oge:ontologySignalA ;
+    oge:explanationStatus "supported" ;
+    oge:explanationMessage "Synthetic test explanation; not a user-facing recommendation claim." .
+
+oge:insufficientEvidenceExplanation a oge:Explanation ;
+    oge:explains oge:unverifiedResult ;
+    oge:explanationCompatibilityAssessment oge:unverifiedAssessment ;
+    oge:explanationStatus "insufficient_evidence" ;
+    oge:explanationMessage "No evidence record supports this compatibility assessment in the synthetic fixture." .
