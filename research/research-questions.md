@@ -2,14 +2,14 @@
 **Version:** 0.1 — proposed, pending literature and dataset review.
 
 ## RQ1 — Ontology representation
-How can a shared ontology represent fashion, makeup, user preferences, attributes, and compatibility relationships in a machine-readable way?
+How can existing fashion vocabularies be aligned with makeup concepts and shared user-preference/context concepts in an extensible, machine-readable semantic model?
 
 **Evidence:** competency-question coverage; ontology consistency/reasoner checks; class/property coverage against catalogue metadata; documentation of unsupported concepts.
 
 **Candidate indicators:** fraction of competency questions answerable; unsatisfiable classes/consistency errors; completeness of required catalogue attributes.
 
 ## RQ2 — Hybrid recommendation quality
-Does combining ontology-based reasoning with a recommendation model improve recommendation relevance compared with suitable non-ontology baselines?
+What measurable effect does adding ontology-derived features and constraints have on recommendation relevance compared with matched non-ontology baselines, evaluated separately for fashion and makeup?
 
 **Comparisons:** content-based, ontology-only, ML-only, and hybrid.
 
@@ -18,7 +18,7 @@ Does combining ontology-based reasoning with a recommendation model improve reco
 A fair comparison needs comparable candidate sets, queries, splits, tuning budgets, and metric definitions. Improvement is not presumed.
 
 ## RQ3 — Explanation usefulness
-Do ontology-grounded explanations help users understand why an item or combination was recommended?
+How accurately and usefully can recommendations be explained through traceable user preferences, item attributes, ontology relations, and model-score components?
 
 **Evidence:** structured participant evaluation after applicable ethics review.
 
@@ -27,7 +27,7 @@ Do ontology-grounded explanations help users understand why an item or combinati
 **Grounding:** every explanation claim should link to an identifiable user preference, item attribute, score component, or ontology path.
 
 ## RQ4 — Preference constraints and coverage
-How do explicit user constraints and preferences affect relevance, diversity, and recommendation coverage across fashion and makeup?
+How do explicit user preferences and hard constraints affect relevance, diversity, coverage, and constraint violations in each domain, and where are cross-domain use cases supported by defensible data?
 
 **Comparisons:** ranking with/without preference features; hard constraints and soft preferences varied separately.
 
@@ -55,6 +55,7 @@ Finalise definitions before evaluation. Subjective constructs need annotation or
 | Decision | Status | Rationale / next action |
 |---|---|---|
 | Fashion and makeup in initial scope | Decided | User-selected scope |
+| Existing fashion ontologies as prior art | Required baseline | Compare Fashionpedia and SERVIVE/style-advice work before defining new fashion classes |
 | Face-image analysis in initial baseline | Excluded | Optional later work; privacy and validation concerns |
 | Ranking metrics | Proposed | Confirm after data/labels selected |
 | Human study | Conditional | Requires protocol and applicable ethics approval |
