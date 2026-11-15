@@ -6,6 +6,9 @@ on:
     paths:
       - "ontology/**"
       - "scripts/validate_ontology.py"
+      - "scripts/reason_ontology.py"
+      - "scripts/test_competency_queries.py"
+      - "tests/fixtures/**"
       - ".github/workflows/ontology-validation.yml"
   pull_request:
     paths:
