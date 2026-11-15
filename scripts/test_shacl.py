@@ -46,7 +46,7 @@ class SHACLValidationTests(unittest.TestCase):
         conforms, report, text = validate_graph(graph)
         self.assertFalse(conforms, "A Preference without preferenceValue should fail SHACL.")
         self.assertTrue(
-            any(str(v) == "invalidPreferenceMissingValue" for v in report.objects(None, SH.focusNode)),
+            any(str(v).endswith("invalidPreferenceMissingValue") for v in report.objects(None, SH.focusNode)),
             text,
         )
 
@@ -60,7 +60,7 @@ class SHACLValidationTests(unittest.TestCase):
         conforms, report, text = validate_graph(graph)
         self.assertFalse(conforms, "A supported explanation without evidence should fail SHACL.")
         self.assertTrue(
-            any(str(v) == "invalidSupportedExplanation" for v in report.objects(None, SH.focusNode)),
+            any(str(v).endswith("invalidSupportedExplanation") for v in report.objects(None, SH.focusNode)),
             text,
         )
 
