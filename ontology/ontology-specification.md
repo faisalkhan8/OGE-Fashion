@@ -173,7 +173,27 @@ The 20 competency questions are listed in [competency-questions.md](competency-q
 
 RDF/Turtle parsing, deterministic structure checks, OWL reasoning, and query-level competency tests are separate validation layers. On 2026-11-15, GitHub Actions parsed 3,237 RDF triples; verified the 46 category and 294 attribute source records with provenance; ran Owlready2 0.51 using HermiT against 59 OWL classes with no ontology inconsistency and no named class equivalent to owl:Nothing; and passed 12/12 synthetic SPARQL tests. The HermiT runner is [scripts/reason_ontology.py](../scripts/reason_ontology.py). Its CI setup uses Java 17 and Owlready2 0.51. These checks establish logical consistency for the current asserted model and query behaviour on the supplied synthetic fixtures. They do not establish that the source mappings are semantically perfect, that compatibility judgements are factually correct, or that recommendations are relevant. No recommendation-quality or human-evaluation result is claimed.
 
-## 11. Open decisions
+## 11. Data validation with SHACL
+
+OWL axioms describe concepts and logical relationships; they are not a substitute for validating incoming application records. The project therefore also uses SHACL shapes to check data structure and controlled values before a record is accepted by the application pipeline.
+
+The current shapes are in [oge-fashion-shapes.ttl](shapes/oge-fashion-shapes.ttl) and cover:
+- **Preference:** exactly one target attribute and value; controlled domain and polarity; optional weight between 0 and 1; optional hard-constraint boolean.
+- **Profile assertion:** one attribute field and value, one confirmation flag, and a controlled assertion-origin value.
+- **Budget constraint:** one positive decimal amount and a three-letter uppercase currency code.
+- **Compatibility assessment:** exactly one pair of assessed items and one method name/version; optional context, evidence and decimal score.
+- **Recommendation:** exactly one profile and context, plus at least one result.
+- **Recommendation result:** exactly one recommended item and positive integer rank; optional decimal score and explanation.
+- **Explanation:** exactly one result and a controlled status. Supported or partially-supported explanations require an evidence record; insufficient-evidence explanations must not assert supporting evidence.
+- **Source taxonomy provenance:** every imported source term must retain its source-local ID, taxonomy ID, source group, source level and source URL.
+
+The validator uses [PySHACL](https://github.com/RDFLib/pySHACL) 0.40.2 against the ontology and synthetic fixture:
+- [SHACL validator](../scripts/validate_shacl.py)
+- [Positive and negative SHACL tests](../scripts/test_shacl.py)
+
+The 2026-11-15 GitHub Actions run validated 3,417 data triples against 243 shape triples. The synthetic data graph conformed, and all four SHACL tests passed, including two intentionally invalid records that were correctly rejected. These tests validate data shape only; they do not establish the factual correctness of compatibility judgements or recommendation quality.
+
+## 12. Open decisions
 
 - Which authoritative vocabulary should supply makeup product categories, finishes, colours and application concepts?
 - Which OGE-Fashion properties should be object properties versus datatype properties for real catalogue data?
