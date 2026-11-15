@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import re
 import unittest
+from decimal import Decimal
 from pathlib import Path
 
 from rdflib import Graph, Namespace
@@ -51,7 +52,8 @@ class CompetencyQueryTests(unittest.TestCase):
         rows = self.rows("CQ04_BUDGET_AND_OCCASION")
         self.assertEqual(len(rows), 1)
         self.assertIn("officeOccasion", rows[0][0])
-        self.assertEqual(rows[0][1:], ("80.0", "EUR"))
+        self.assertEqual(Decimal(rows[0][1]), Decimal("80.00"))
+        self.assertEqual(rows[0][2], "EUR")
 
     def test_cq05_profile_assertion_origin(self) -> None:
         rows = self.rows("CQ05_PROFILE_ASSERTION_ORIGIN")
