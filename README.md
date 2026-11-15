@@ -36,11 +36,11 @@ Candidate ranking metrics include Precision@K, Recall@K, NDCG@K, and MAP@K. Cove
 - `research/makeup-data-review.md`: makeup dataset candidates, rights, limitations, and initial data plan.
 - `research/data-profiling.md`: source-level profile results and data-quality observations.
 - `research/`: protocol, questions, dataset register, data profiling, and a historical FYP timeline that separates the 2023–2024 degree project from the later research extension.
-- `ontology/`: ontology specification, competency questions, preliminary vocabulary alignment, Fashionpedia source mappings (46 categories and 294 attributes), and the OWL 2/Turtle structural draft.
+- `ontology/`: ontology specification, competency questions, preliminary vocabulary alignment, Fashionpedia source mappings (46 categories and 294 attributes), SPARQL query templates, and the OWL 2/Turtle structural draft.
 - `docs/`: roadmap, cloud-first workflow, and foundation shade baseline.
 - `oge_fashion/`: colour conversion, pinned shade-source loader, and ranking CLI.
-- `tests/`: standard-library unit tests.
-- `scripts/`: metadata-only external catalogue profiling tools.
+- `tests/`: standard-library unit tests plus synthetic RDF/SPARQL competency-query tests.
+- `scripts/`: metadata-only external catalogue profiling tools and RDF/source-integrity validation.
 
 ## Cloud-first development
 Use GitHub as the source of truth and a browser-based environment such as GitHub Codespaces or a hosted notebook for implementation. Do not download large datasets to the laptop. Keep raw/restricted assets and model checkpoints outside Git; commit only permitted code, documentation, manifests, and small synthetic fixtures. Check cloud quotas and billing before starting compute.
@@ -59,7 +59,7 @@ The first foundation-shade attribute baseline is implemented under `oge_fashion/
 The baseline compares displayed product swatches only. It does not predict skin tone, foundation suitability, or personal preference.
 
 ## Current status
-**Sprint 1 (research extension, 2026-11-15):** research protocol, questions, initial dataset due diligence and metadata profiling, concept-level prior-art alignment, and an OWL 2/Turtle structural draft. The ontology draft now represents the 46 extracted Fashionpedia category entries and 294 attribute entries as provenance-bearing named individuals. Automated RDF/Turtle and source-manifest consistency checks are being added; OWL reasoner validation and competency-query testing remain pending. Exact source-term alignment, reasoner checks, SPARQL fixtures, model comparisons, user evaluation, deployment, and publication remain outstanding. The original university FYP period is recorded separately as semesters 7 and 8 (November 2023–May 2024). No deployed product, evaluated model, publication, or empirical recommendation-quality finding is claimed.
+**Sprint 1 (research extension, 2026-11-15):** research protocol, questions, initial dataset due diligence and metadata profiling, concept-level prior-art alignment, and an OWL 2/Turtle structural draft. The ontology draft now represents the 46 extracted Fashionpedia category entries and 294 attribute entries as provenance-bearing named individuals. Twelve SPARQL competency-query templates, a synthetic fixture, a Python test runner, and a GitHub Actions workflow have been added. Execution of the workflow has not yet been confirmed; OWL reasoner validation remains pending. Exact source-term alignment, reasoner checks, SPARQL fixtures, model comparisons, user evaluation, deployment, and publication remain outstanding. The original university FYP period is recorded separately as semesters 7 and 8 (November 2023–May 2024). No deployed product, evaluated model, publication, or empirical recommendation-quality finding is claimed.
 
 ## Contribution
 Use GitHub Issues for research decisions and implementation tasks. Ontology changes should state the competency question, class/property change, expected reasoning behaviour, evidence/rationale, and compatibility impact.
