@@ -57,7 +57,7 @@ class OpenBeautyFactsProfileTests(unittest.TestCase):
         self.assertEqual(result["duplicate_barcode_rows_in_sample"], 1)
         self.assertEqual(result["field_present_counts"]["product_name"], 3)
         self.assertEqual(result["field_present_counts"]["ingredients_text"], 2)
-        self.assertEqual(result["field_coverage_pct"]["categories_tags"], 75.0)
+        self.assertEqual(result["field_coverage_pct"]["category_tags"], 75.0)
         self.assertNotIn("products", result)
         self.assertNotIn("product_name", result)
 
