@@ -84,10 +84,18 @@ def profile_products(products: list[dict]) -> dict:
         field: sum(1 for product in products if predicate(product))
         for field, predicate in checks.items()
     }
-    missing_codes = sum(1 for product in products if not product.get("code"))
+    barcodes = [
+        str(product.get("code") or "").strip()
+        for product in products
+        if str(product.get("code") or "").strip()
+    ]
+    missing_codes = len(products) - len(barcodes)
+    duplicate_barcode_rows = len(barcodes) - len(set(barcodes))
     return {
         "sample_records_returned": len(products),
         "records_without_barcode": missing_codes,
+        "unique_barcodes_in_sample": len(set(barcodes)),
+        "duplicate_barcode_rows_in_sample": duplicate_barcode_rows,
         "field_present_counts": counts,
         "field_coverage_pct": {
             field: round(100.0 * count / len(products), 1) if products else None
