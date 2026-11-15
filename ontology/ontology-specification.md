@@ -1,6 +1,6 @@
 # OGE-Fashion Ontology Specification
 **Proposed ontology identifier:** https://w3id.org/oge-fashion/ontology  
-**Version:** 0.1 — conceptual proposal, not yet validated  
+**Version:** 0.2 — conceptual proposal, not yet validated  
 **Target representation:** OWL 2 DL, serialised as Turtle or RDF/XML.
 
 ## 1. Intent
