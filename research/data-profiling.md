@@ -118,3 +118,33 @@ Open Beauty Facts v2 documentation states the endpoint supports `fields`, `page`
 - Keep Open Beauty Facts at **pending profiling** until the actual makeup-category coverage and required field completeness are measured.
 - Do not claim a makeup recommender has been evaluated until real preference/relevance labels and a defensible evaluation protocol exist.
 - Keep all source datasets and any future derived data outside this public repository unless their terms explicitly permit distribution.
+
+## 5. Foundation shade baseline — GitHub Actions smoke run
+
+**Workflow run:** https://github.com/faisalkhan8/OGE-Fashion/actions/runs/43722252920  
+**Commit tested:** `638205d9f7459c77b2a714ba7bab930eccf218bd`  
+**Runtime:** GitHub-hosted Ubuntu runner, Python 3.12.16  
+**Result:** successful.
+
+### Test results
+- 14 unit tests passed.
+- Eight published CIEDE2000 reference pairs passed within 0.0001 of their rounded expected values.
+- sRGB-to-CIELAB tests for black, white, and red passed.
+- Parser tests for duplicate handling, missing H/S/V, disputed L-column exclusion, and invalid source fields passed.
+- Sample ranking completed after fetching the pinned CSV from upstream at runtime.
+
+### Example ranking
+Reference swatch: `F3CFB3`  
+Metric: CIEDE2000 (lower means closer displayed swatch colour).
+
+| Rank | Brand / product | Source HEX | Delta E00 |
+|---:|---|---|---:|
+| 1 | Maybelline / Fit Me | F3CFB3 | 0.0000 |
+| 2 | Fenty / PRO FILT'R | FAD5B8 | 1.4504 |
+| 3 | Kate / Secret Skin Maker Zero | F7D5BB | 1.5172 |
+| 4 | Make Up For Ever / Ultra HD | EBCAB0 | 1.5905 |
+| 5 | Maybelline / Fit Me Matte | F9D0B0 | 1.6160 |
+
+The first result is an exact swatch already present in the source catalogue, so the zero distance is expected. This run validates fetching, parsing, duplicate handling, colour conversion, distance calculation, deterministic ranking, and command-line execution. It does **not** validate recommendation relevance, foundation suitability, real-world skin matching, or consumer preference.
+
+The workflow uses the Python standard library; it does not store the source CSV, product images, model files, or participant information in the repository.
