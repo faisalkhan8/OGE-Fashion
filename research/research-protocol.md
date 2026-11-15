@@ -10,7 +10,7 @@ An Ontology-Guided Explainable Recommendation Framework for Personalised Fashion
 ## 2. Background and motivation
 Fashion and beauty recommendation involves interacting attributes: category, colour, style, occasion, material or finish, budget, and individual preferences. Recommendation models can rank items using observed features or learned representations. An ontology can represent explicit concepts and relationships and support semantic consistency and traceable reasoning.
 
-This study will investigate whether and how a structured ontology can contribute to a hybrid recommendation pipeline for fashion and makeup. The combination itself is not asserted to be novel. Novelty must be established through a systematic literature review and a clearly delimited contribution.
+This study will investigate whether and how a structured ontology can contribute to a hybrid recommendation pipeline for fashion and makeup. The combination itself is not asserted to be novel. Prior work has used OWL fashion ontologies for personalised garment advice and integrated expert knowledge with user interaction data; related work has also described separate clothing and makeup recommendation systems. Fashionpedia supplies a detailed expert-built fashion ontology. OGE-Fashion must evaluate alignment and extension of existing domain knowledge rather than claim to invent fashion ontology or ontology-guided recommendation. Novelty remains unestablished until a broader systematic literature review.
 
 ## 3. Aim
 Design and evaluate an ontology-guided recommendation framework for fashion and makeup that produces explanations grounded in user preferences, item attributes, ontology relationships, and model scores.
@@ -18,17 +18,17 @@ Design and evaluate an ontology-guided recommendation framework for fashion and 
 ## 4. Objectives
 1. Review fashion, beauty, explainable recommender, knowledge-graph, and ontology-based recommendation literature.
 2. Identify lawful, documented data sources for clothing and makeup attributes.
-3. Define a shared ontology with separate fashion and makeup subdomains.
+3. Evaluate and align existing fashion vocabularies (including Fashionpedia where permitted) with makeup concepts and shared user-preference/context concepts, then specify a modular cross-domain ontology.
 4. Implement reproducible non-ontology baselines and an ontology-only matcher.
 5. Implement a hybrid ranking method with interpretable score components.
 6. Evaluate ranking quality, coverage, diversity, latency, and explanation usefulness.
 7. Build a demonstrator after the research pipeline and data rights are sufficiently understood.
 
 ## 5. Research questions
-- **RQ1:** How can a shared ontology represent fashion, makeup, user preferences, attributes, and compatibility relationships in a machine-readable way?
-- **RQ2:** Does combining ontology-based reasoning with a recommendation model improve recommendation relevance compared with suitable non-ontology baselines?
-- **RQ3:** Do ontology-grounded explanations help users understand why an item or combination was recommended?
-- **RQ4:** How do explicit user constraints and preferences affect relevance, diversity, and recommendation coverage across fashion and makeup?
+- **RQ1:** How can existing fashion vocabularies be aligned with makeup concepts and shared user-preference/context concepts in an extensible, machine-readable semantic model?
+- **RQ2:** What measurable effect does adding ontology-derived features and constraints have on recommendation relevance compared with matched non-ontology baselines, evaluated separately for fashion and makeup?
+- **RQ3:** How accurately and usefully can recommendations be explained through traceable user preferences, item attributes, ontology relations, and model-score components?
+- **RQ4:** How do explicit user preferences and hard constraints affect relevance, diversity, coverage, and constraint violations in each domain, and where are cross-domain use cases supported by defensible data?
 
 ## 6. Hypotheses (to be tested)
 - **H1:** A hybrid ontology-guided model will produce higher ranking quality than selected non-ontology baselines on the same eligible evaluation data.
@@ -39,9 +39,9 @@ Null results are valid. Refine hypotheses after literature review and data feasi
 
 ## 7. Scope and boundaries
 ### Included
-- Fashion items and outfit components.
+- Fashion items and outfit components, represented by aligning with relevant existing vocabularies rather than re-creating a taxonomy without justification.
 - Makeup categories: face, eye, and lip products/looks.
-- Shared attributes: colour, style, occasion, budget, and preference.
+- Shared attributes: colour, style, occasion, budget, explicit preference, and constraints.
 - User-provided constraints and optional user-confirmed attributes.
 - Item ranking and evidence-grounded explanation.
 
@@ -55,6 +55,8 @@ Null results are valid. Refine hypotheses after literature review and data feasi
 Face-image analysis is optional later work, not a requirement for the initial recommender.
 
 ## 8. Conceptual framework
+The fashion branch must first be compared with existing resources, especially Fashionpedia's expert-built vocabulary and the earlier SERVIVE Fashion Ontology/style-advice work. Map, reuse, or extend terms only where licensing permits and where competency questions require it. The makeup branch should be built from validated, appropriately sourced makeup terminology. Shared user/context concepts must be separated from item taxonomies. Do not recreate a complete fashion ontology without documenting why existing resources are insufficient.
+
 The system will combine:
 1. **Catalogue representation:** items and documented attributes.
 2. **User preference representation:** explicit preferences, exclusions, context, and constraints.
