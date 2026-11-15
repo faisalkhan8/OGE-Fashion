@@ -93,5 +93,6 @@ This gap is **provisional**. The current search does not establish that no compa
 7. Mateos, P., & Bellogín, A. (2025). A systematic literature review of recent advances on context-aware recommender systems. *Artificial Intelligence Review, 58*, 20. https://doi.org/10.1007/s10462-024-10939-4
 8. Said, A. (2025). On explaining recommendations with Large Language Models: a review. *Frontiers in Big Data, 7*. https://doi.org/10.3389/fdata.2024.1505284
 9. W3C. (2012). OWL 2 Web Ontology Language Document Overview (Second Edition). https://www.w3.org/TR/owl2-overview/
+10. Jia, M., Shi, M., Sirotenko, M., Cui, Y., Cardie, C., Hariharan, B., Adam, H., & Belongie, S. (2020). Fashionpedia: Ontology, Segmentation, and an Attribute Localization Dataset. arXiv:2004.12276. https://arxiv.org/abs/2004.12276
 
 **Evidence boundary:** the summaries above are based on the cited publisher/venue/standards landing pages and available abstracts/metadata in this preliminary pass. Before manuscript writing, verify each citation against full text and confirm the exact claims, pages, and version.
