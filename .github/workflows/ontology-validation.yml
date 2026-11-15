@@ -6,18 +6,21 @@ on:
     paths:
       - "ontology/**"
       - "scripts/validate_ontology.py"
-      - "scripts/validate_shacl.py"
-      - "scripts/test_shacl.py"
-      - "scripts/validate_shacl.py"
-      - "scripts/test_shacl.py"
       - "scripts/reason_ontology.py"
       - "scripts/test_competency_queries.py"
+      - "scripts/validate_shacl.py"
+      - "scripts/test_shacl.py"
       - "tests/fixtures/**"
       - ".github/workflows/ontology-validation.yml"
   pull_request:
     paths:
       - "ontology/**"
       - "scripts/validate_ontology.py"
+      - "scripts/reason_ontology.py"
+      - "scripts/test_competency_queries.py"
+      - "scripts/validate_shacl.py"
+      - "scripts/test_shacl.py"
+      - "tests/fixtures/**"
       - ".github/workflows/ontology-validation.yml"
   workflow_dispatch:
 
