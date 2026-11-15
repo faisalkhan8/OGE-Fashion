@@ -54,7 +54,7 @@ Use GitHub as the source of truth and a browser-based environment such as GitHub
 - Report negative and null results, limitations, and methodology.
 
 ## Initial implementation
-The first foundation-shade attribute baseline is implemented under `oge_fashion/`, with unit tests in `tests/` and a GitHub Actions workflow. It fetches a pinned shade CSV at runtime, converts sRGB HEX values to CIELAB, and ranks swatches using CIEDE2000. See [foundation shade baseline](docs/foundation-shade-baseline.md) and [data profiling](research/data-profiling.md). The first hosted CI run passed 14 unit tests and the sample ranking.
+The first foundation-shade attribute baseline is implemented under `oge_fashion/`, with unit tests in `tests/` and a GitHub Actions workflow. It fetches a pinned shade CSV at runtime, converts sRGB HEX values to CIELAB, and ranks swatches using CIEDE2000. See [foundation shade baseline](docs/foundation-shade-baseline.md) and [data profiling](research/data-profiling.md). The metadata-only Open Beauty Facts profiler is in scripts/profile_open_beauty_facts.py, with a rate-limited GitHub Actions workflow. The first hosted CI run passed 15 unit tests and the sample ranking.
 
 The baseline compares displayed product swatches only. It does not predict skin tone, foundation suitability, or personal preference.
 
