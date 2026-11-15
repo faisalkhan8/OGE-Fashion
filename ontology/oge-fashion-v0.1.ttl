@@ -175,6 +175,27 @@ oge:CompatibilityAssessment a owl:Class ;
     rdfs:comment "A reified assessment connecting two items with method, context, score, and evidence. It supports context-sensitive and traceable compatibility."@en .
 
 
+oge:ScoringComponent a owl:Class ;
+    rdfs:label "Recommendation scoring component"@en ;
+    rdfs:comment "A traceable contribution to a recommendation score, such as learned model, ontology reasoning, preference alignment, or context fit."@en .
+
+oge:LearnedModelComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Learned model component"@en .
+
+oge:OntologyReasoningComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Ontology reasoning component"@en .
+
+oge:PreferenceAlignmentComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Preference alignment component"@en .
+
+oge:ContextFitComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Context fit component"@en .
+
+
 ### Fashionpedia-aligned classes
 oge:FashionCategory a owl:Class ; rdfs:subClassOf oge:Category ; rdfs:label "Fashion category"@en .
 oge:MainApparelCategory a owl:Class ; rdfs:subClassOf oge:FashionCategory ; rdfs:label "Main apparel category"@en .
@@ -366,6 +387,33 @@ oge:hasResultExplanation a owl:ObjectProperty ;
     rdfs:range oge:Explanation ;
     rdfs:label "has result explanation"@en .
 
+
+oge:hasRequiredAttribute a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "has required attribute"@en ;
+    rdfs:comment "An attribute value or feature required by a recommendation request. A missing item assertion is treated as unknown, not incompatible."@en .
+
+oge:explanationPreference a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Preference ;
+    rdfs:label "explanation preference"@en .
+
+oge:explanationAttribute a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "explanation attribute"@en .
+
+oge:explanationCompatibilityAssessment a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:CompatibilityAssessment ;
+    rdfs:label "explanation compatibility assessment"@en .
+
+oge:explanationScoringComponent a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:ScoringComponent ;
+    rdfs:label "explanation scoring component"@en .
+
 oge:forProfile a owl:ObjectProperty ;
     rdfs:domain oge:Recommendation ;
     rdfs:range oge:UserProfile ;
@@ -476,6 +524,57 @@ oge:methodVersion a owl:DatatypeProperty ;
     rdfs:domain oge:CompatibilityAssessment ;
     rdfs:range xsd:string ;
     rdfs:label "method version"@en .
+
+
+oge:resultScore a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "result score"@en ;
+    rdfs:comment "Overall ranking score produced by a documented ranking method."@en .
+
+oge:scoreValue a owl:DatatypeProperty ;
+    rdfs:domain oge:ScoringComponent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "scoring component value"@en .
+
+oge:componentName a owl:DatatypeProperty ;
+    rdfs:domain oge:ScoringComponent ;
+    rdfs:range xsd:string ;
+    rdfs:label "scoring component name"@en .
+
+oge:componentVersion a owl:DatatypeProperty ;
+    rdfs:domain oge:ScoringComponent ;
+    rdfs:range xsd:string ;
+    rdfs:label "scoring component version"@en .
+
+oge:preferenceDomain a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:string ;
+    rdfs:label "preference domain"@en ;
+    rdfs:comment "Controlled values: fashion, makeup, shared. The value identifies the recommendation domain the preference applies to."@en .
+
+oge:isHardConstraint a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is hard constraint"@en ;
+    rdfs:comment "True when a negative preference must exclude matching candidates; validate in application logic."@en .
+
+oge:assertionOrigin a owl:DatatypeProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range xsd:string ;
+    rdfs:label "assertion origin"@en ;
+    rdfs:comment "Controlled values should distinguish user-confirmed, model-inferred, and other declared sources."@en .
+
+oge:explanationStatus a owl:DatatypeProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range xsd:string ;
+    rdfs:label "explanation status"@en ;
+    rdfs:comment "Controlled values: supported, partially-supported, insufficient_evidence."@en .
+
+oge:explanationMessage a owl:DatatypeProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range xsd:string ;
+    rdfs:label "explanation message"@en .
 
 oge:rankPosition a owl:DatatypeProperty ;
     rdfs:domain oge:RecommendationResult ;
