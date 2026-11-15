@@ -168,7 +168,7 @@ The 20 competency questions are listed in [competency-questions.md](competency-q
 
 - [SPARQL query templates](queries/competency-questions.rq)
 - [Synthetic competency fixture](../tests/fixtures/competency-example.ttl)
-- [SPARQL test runner](../tests/test_competency_queries.py)
+- [SPARQL test runner](../scripts/test_competency_queries.py)
 - [RDF/source-integrity validator](../scripts/validate_ontology.py)
 
 RDF/Turtle parsing and deterministic structure checks are separate from OWL 2 DL consistency/classification. The latter still requires a reasoner such as HermiT or another verified OWL 2 DL reasoner. No recommendation-quality or human-evaluation result is claimed.
