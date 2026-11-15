@@ -4,7 +4,7 @@
 **Target representation:** OWL 2 DL, serialised as Turtle or RDF/XML.
 
 ## 1. Intent
-Represent fashion and makeup catalogue entities, descriptive attributes, user preferences, contexts, constraints, explicit compatibility relations, and traceable explanations.
+Represent fashion and makeup catalogue entities, descriptive attributes, user preferences, contexts, constraints, explicit compatibility relations, and traceable explanations. Treat existing fashion ontologies (notably Fashionpedia and SERVIVE Fashion Ontology) as prior art and alignment candidates; do not duplicate their taxonomies without a documented need.
 
 The ontology must not encode universal beauty rules. Compatibility relations must be traceable to a declared source, annotation protocol, or user preference signal, with provenance and confidence where applicable.
 
@@ -18,7 +18,12 @@ The ontology must not encode universal beauty rules. Compatibility relations mus
 
 The w3id URI is proposed; it is not claimed to be registered or resolvable.
 
-## 3. Upper-level classes
+## 3. Reuse and alignment strategy
+Before adding fashion classes, compare terms, hierarchy, labels, relationships, and competency coverage in Fashionpedia and the published SERVIVE/style-advice work. Keep an explicit mapping table containing source term, source URI/identifier, proposed OGE term, mapping relation, rationale, and licence/attribution note. Reuse or adapt only material whose terms allow it. Document non-equivalences; do not assert exact equivalence merely because labels look similar. The makeup vocabulary should likewise be aligned to identified authoritative or otherwise appropriate terminology sources once selected.
+
+The project-specific contribution, if supported by evidence, should be in the cross-domain integration, user/context semantics, traceable evidence representation, or evaluation—not in claiming to originate a fashion taxonomy.
+
+## 4. Upper-level classes
 | Class | Description |
 |---|---|
 | `RecommendationEntity` | Entity eligible for recommendation |
@@ -42,7 +47,7 @@ The w3id URI is proposed; it is not claimed to be registered or resolvable.
 ### Shared concepts
 `Colour`, `ColourFamily`, `Style`, `Occasion`, `BudgetRange`, `Brand` (only where data rights support its use), and optional `FaceAttribute` (user-confirmed or consent-derived; not required for the core ontology).
 
-## 4. Candidate object properties
+## 5. Candidate object properties
 | Property | Domain → Range | Meaning |
 |---|---|---|
 | `hasAttribute` | RecommendationEntity → Attribute | Documented attribute |
@@ -62,7 +67,7 @@ The w3id URI is proposed; it is not claimed to be registered or resolvable.
 
 Review domain/range axioms to avoid unintended type inferences. Do not make `compatibleWith` symmetric or transitive unless its semantics and evidence justify that choice.
 
-## 5. Candidate data properties
+## 6. Candidate data properties
 | Property | Datatype | Notes |
 |---|---|---|
 | `label` | xsd:string | Human-readable name |
@@ -78,7 +83,7 @@ Review domain/range axioms to avoid unintended type inferences. Do not make `com
 
 Associate scores with scoring method/version and context. They are not timeless facts about a person's appearance.
 
-## 6. Modelling constraints
+## 7. Modelling constraints
 1. Separate catalogue facts from preferences and predictions.
 2. Use explicit classes/controlled vocabularies for important categorical fields.
 3. Missing values are unknown, not negative preferences.
@@ -90,10 +95,10 @@ Associate scores with scoring method/version and context. They are not timeless 
 9. Sensitive attributes are outside initial scope.
 10. Keep transactional user data in an application database; the ontology models semantic concepts/relations, not the full transactional store.
 
-## 7. Competency questions
+## 8. Competency questions
 See [competency-questions.md](competency-questions.md). Test the ontology with synthetic individuals and reproducible queries.
 
-## 8. Reasoning and validation
+## 9. Reasoning and validation
 - Author and inspect with Protégé.
 - Parse RDF with RDFLib.
 - Use a compatible OWL 2 reasoner (e.g., HermiT in a supported runtime) for consistency/classification.
@@ -101,14 +106,14 @@ See [competency-questions.md](competency-questions.md). Test the ontology with s
 - Add positive, negative, and unknown cases for domain/range and compatibility assumptions.
 - Record reasoner version, ontology commit, outputs, and limitations.
 
-## 9. Proposed modules
+## 10. Proposed modules
 - `core`: RecommendationEntity, Attribute, Colour, Style, Context, UserProfile, Preference.
 - `fashion`: Garment, Outfit, Footwear, Accessory, Material, Pattern, Fit.
 - `makeup`: FaceMakeup, EyeMakeup, LipMakeup, MakeupLook, MakeupFinish.
 - `recommendation`: Recommendation, Explanation, score records.
 - `provenance`: Evidence and source metadata.
 
-## 10. Open design questions
+## 11. Open design questions
 - Which upper ontology, if any, improves interoperability without unnecessary complexity?
 - Should outfit compatibility be a direct relation, a reified assessment, or both?
 - How should preference strength and uncertainty be represented?
