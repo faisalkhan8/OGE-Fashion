@@ -1,0 +1,401 @@
+@prefix oge: <https://w3id.org/oge-fashion/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/oge-fashion/ontology>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/oge-fashion/ontology/0.1.0> ;
+    owl:versionInfo "0.1.0 — initial structural draft" ;
+    dcterms:title "OGE-Fashion Ontology"@en ;
+    dcterms:created "2026-11-15"^^xsd:date ;
+    rdfs:comment "Preliminary research ontology for fashion and makeup recommendation. The proposed w3id namespace is not yet registered or asserted to be resolvable. This file is a structural starting point and has not yet passed reasoner validation."@en ;
+    rdfs:comment "No universal beauty, face-shape, or style rules are encoded. Compatibility assertions require explicit evidence, context, and method provenance."@en .
+
+### Core entities
+oge:RecommendationEntity a owl:Class ;
+    rdfs:label "Recommendation entity"@en ;
+    rdfs:comment "An item or entity that may be considered by the recommendation process."@en .
+
+oge:FashionItem a owl:Class ;
+    rdfs:subClassOf oge:RecommendationEntity ;
+    rdfs:label "Fashion item"@en .
+
+oge:Garment a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Garment"@en .
+
+oge:Outfit a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Outfit"@en ;
+    rdfs:comment "A curated combination of fashion items; membership and compatibility need explicit records."@en .
+
+оге:Footwear a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Footwear"@en .
+
+oge:Accessory a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Accessory"@en .
+
+oge:GarmentPart a owl:Class ;
+    rdfs:label "Garment part"@en ;
+    rdfs:comment "A part or region of a garment, aligned with a source vocabulary where possible."@en .
+
+oge:MakeupItem a owl:Class ;
+    rdfs:subClassOf oge:RecommendationEntity ;
+    rdfs:label "Makeup item"@en .
+
+oge:MakeupProduct a owl:Class ;
+    rdfs:subClassOf oge:MakeupItem ;
+    rdfs:label "Makeup product"@en .
+
+oge:MakeupLook a owl:Class ;
+    rdfs:subClassOf oge:MakeupItem ;
+    rdfs:label "Makeup look"@en .
+
+oge:FaceMakeup a owl:Class ;
+    rdfs:subClassOf oge:MakeupProduct ;
+    rdfs:label "Face makeup product"@en .
+
+oge:EyeMakeup a owl:Class ;
+    rdfs:subClassOf oge:MakeupProduct ;
+    rdfs:label "Eye makeup product"@en .
+
+oge:LipMakeup a owl:Class ;
+    rdfs:subClassOf oge:MakeupProduct ;
+    rdfs:label "Lip makeup product"@en .
+
+### Descriptive concepts
+oge:Attribute a owl:Class ;
+    rdfs:label "Attribute"@en .
+
+oge:Category a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Category"@en .
+
+oge:Colour a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Colour"@en .
+
+oge:Style a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Style"@en .
+
+oge:Material a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Material"@en .
+
+oge:Pattern a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Pattern"@en .
+
+oge:Fit a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Fit"@en .
+
+oge:MakeupFinish a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Makeup finish"@en .
+
+oge:ApplicationStyle a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Application style"@en .
+
+oge:Brand a owl:Class ;
+    rdfs:label "Brand"@en ;
+    rdfs:comment "Use only where the source data and intended use permit brand-name processing."@en .
+
+### User and context
+oge:UserProfile a owl:Class ;
+    rdfs:label "User profile"@en ;
+    rdfs:comment "A user-controlled preference profile. Sensitive inference is outside the initial scope."@en .
+
+oge:Preference a owl:Class ;
+    rdfs:label "Preference"@en ;
+    rdfs:comment "An explicitly selected positive, negative, or neutral preference."@en .
+
+oge:Context a owl:Class ;
+    rdfs:label "Recommendation context"@en .
+
+oge:Occasion a owl:Class ;
+    rdfs:subClassOf oge:Context ;
+    rdfs:label "Occasion"@en .
+
+oge:BudgetConstraint a owl:Class ;
+    rdfs:label "Budget constraint"@en .
+
+oge:FaceAttribute a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Face attribute"@en ;
+    rdfs:comment "Optional, user-confirmed descriptor only; it is not required by the core recommender."@en .
+
+oge:FaceShape a owl:Class ;
+    rdfs:subClassOf oge:FaceAttribute ;
+    rdfs:label "Face shape"@en ;
+    rdfs:comment "Optional descriptive category retained for continuity with the earlier FYP scope. It does not imply that a face shape determines suitable clothing or makeup."@en .
+
+oge:OvalFaceShape a owl:NamedIndividual, oge:FaceShape ;
+    rdfs:label "Oval"@en .
+
+oge:DiamondFaceShape a owl:NamedIndividual, oge:FaceShape ;
+    rdfs:label "Diamond"@en .
+
+oge:SquareFaceShape a owl:NamedIndividual, oge:FaceShape ;
+    rdfs:label "Square"@en .
+
+### Recommendation and provenance
+oge:Recommendation a owl:Class ;
+    rdfs:label "Recommendation"@en .
+
+oge:Explanation a owl:Class ;
+    rdfs:label "Explanation"@en ;
+    rdfs:comment "An explanation must point to evidence, profile preferences, item attributes, or scoring components that actually contributed."@en .
+
+oge:Evidence a owl:Class ;
+    rdfs:label "Evidence"@en ;
+    rdfs:comment "A source record, curated annotation, rule, or model output supporting an assertion."@en .
+
+oge:CompatibilityAssessment a owl:Class ;
+    rdfs:label "Compatibility assessment"@en ;
+    rdfs:comment "A reified assessment connecting two items with method, context, score, and evidence. It supports context-sensitive and traceable compatibility."@en .
+
+### Object properties
+оге:hasAttribute a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "has attribute"@en .
+
+oge:hasCategory a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Category ;
+    rdfs:label "has category"@en .
+
+oge:hasColour a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Colour ;
+    rdfs:label "has colour"@en .
+
+oge:hasStyle a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Style ;
+    rdfs:label "has style"@en .
+
+oge:hasMaterial a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:Material ;
+    rdfs:label "has material"@en .
+
+oge:hasPattern a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:Pattern ;
+    rdfs:label "has pattern"@en .
+
+oge:hasFit a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:Fit ;
+    rdfs:label "has fit"@en .
+
+oge:hasFinish a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:MakeupProduct ;
+    rdfs:range oge:MakeupFinish ;
+    rdfs:label "has finish"@en .
+
+oge:hasApplicationStyle a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:MakeupItem ;
+    rdfs:range oge:ApplicationStyle ;
+    rdfs:label "has application style"@en .
+
+oge:hasPart a owl:ObjectProperty ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:GarmentPart ;
+    rdfs:label "has part"@en .
+
+oge:hasBrand a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Brand ;
+    rdfs:label "has brand"@en .
+
+oge:hasPreference a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:Preference ;
+    rdfs:label "has preference"@en .
+
+oge:preferenceAbout a owl:ObjectProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "preference about"@en .
+
+oge:preferenceValue a owl:ObjectProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "preference value"@en .
+
+оге:hasContext a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:Context ;
+    rdfs:label "has context"@en .
+
+oge:hasOccasion a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasContext ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:Occasion ;
+    rdfs:label "has occasion"@en .
+
+oge:hasBudgetConstraint a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:BudgetConstraint ;
+    rdfs:label "has budget constraint"@en .
+
+oge:hasFaceShape a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:FaceShape ;
+    rdfs:label "has face shape"@en ;
+    rdfs:comment "Optional and user-confirmed; no deterministic suitability rule is implied."@en .
+
+oge:compatibleWith a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "compatible with"@en ;
+    rdfs:comment "An explicitly supported compatibility assertion. Do not assume symmetry, transitivity, universality, or context independence."@en .
+
+oge:hasCompatibilityAssessment a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:CompatibilityAssessment ;
+    rdfs:label "has compatibility assessment"@en .
+
+oge:assessesItemA a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "assesses item A"@en .
+
+oge:assessesItemB a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "assesses item B"@en .
+
+oge:assessmentContext a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:Context ;
+    rdfs:label "assessment context"@en .
+
+oge:assessmentEvidence a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "assessment evidence"@en .
+
+oge:forProfile a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:UserProfile ;
+    rdfs:label "for profile"@en .
+
+oge:forContext a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:Context ;
+    rdfs:label "for context"@en .
+
+oge:recommendsItem a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "recommends item"@en .
+
+oge:explains a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Recommendation ;
+    rdfs:label "explains"@en .
+
+oge:supportedBy a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "supported by"@en .
+
+oge:derivedFrom a owl:ObjectProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "derived from"@en .
+
+### Datatype properties
+oge:label a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "label"@en .
+
+oge:description a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "description"@en .
+
+oge:priceAmount a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "price amount"@en .
+
+oge:currencyCode a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Use a three-letter currency code where known; keep currency separate from amount."@en .
+
+oge:preferencePolarity a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Controlled values: positive, negative, neutral. Validate with application rules or SHACL."@en .
+
+oge:preferenceWeight a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "User-selected or learned weight; its scale and calibration must be documented."@en .
+
+oge:confidenceScore a owl:DatatypeProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Method-specific confidence, not certainty. Define and record its scale."@en .
+
+oge:compatibilityScore a owl:DatatypeProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "compatibility score"@en ;
+    rdfs:comment "A method- and context-specific score, not an intrinsic truth about two items."@en .
+
+oge:sourceIdentifier a owl:DatatypeProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "source identifier"@en .
+
+oge:sourceURL a owl:DatatypeProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "source URL"@en .
+
+oge:isUserConfirmed a owl:DatatypeProperty ;
+    rdfs:domain oge:Attribute ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is user confirmed"@en .
+
+oge:methodName a owl:DatatypeProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "method name"@en .
+
+oge:methodVersion a owl:DatatypeProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "method version"@en .
+
+oge:rankPosition a owl:DatatypeProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:label "rank position"@en .
+
+### Modelling notes
+oge:FashionItem rdfs:comment "Fashion vocabulary should be aligned to Fashionpedia and relevant prior OWL fashion work before adding detailed category hierarchies."@en .
+oge:MakeupItem rdfs:comment "Makeup categories should be derived from validated terminology and source fields; dataset tags must not be treated as authoritative ontology classes without review."@en .
