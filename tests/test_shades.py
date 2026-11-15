@@ -2,7 +2,7 @@
 
 import unittest
 
-from oge_fashion.shades import parse_shade_csv, rank_shades
+from oge_fashion.shades import ShadeSourceError, parse_shade_csv, rank_shades
 
 
 CSV_FIXTURE = """brand,product,hex,group,H,S,V,L
@@ -31,7 +31,7 @@ class ShadeParsingTests(unittest.TestCase):
 
     def test_invalid_hex_is_rejected(self):
         fixture = CSV_FIXTURE.replace("F3CFB3", "NOTHEX", 1)
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ShadeSourceError):
             parse_shade_csv(fixture)
 
     def test_missing_required_column_is_rejected(self):
