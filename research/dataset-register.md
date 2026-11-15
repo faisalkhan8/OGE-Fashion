@@ -1,5 +1,5 @@
 # Dataset and Data-Source Register
-**Version:** 0.3 — first-pass source and licence review, not legal advice or final clearance.
+**Version:** 0.4 — first-pass source and licence review, not legal advice or final clearance.
 
 ## Acceptance checklist
 A source may be used only after its identity, access conditions, licence, permitted purposes, redistribution limits, attribution, provenance, and suitability for the planned research are recorded. Public download availability does not imply commercial reuse rights. The licence for annotations/metadata may differ from the licence for underlying images.
@@ -51,6 +51,8 @@ The official page states non-commercial research only. The release agreement res
 - No access request or download has been made.
 
 ## Makeup data — detailed review
+See [Makeup Data Review](makeup-data-review.md) for the candidate-by-candidate assessment and initial data plan.
+
 See [Makeup Data Review](makeup-data-review.md) for the candidate-by-candidate assessment and recommended experiment design.
 
 ### Current recommendation
@@ -61,7 +63,7 @@ See [Makeup Data Review](makeup-data-review.md) for the candidate-by-candidate a
 - Treat preference labels as a separate research requirement; do not infer them from product catalogue data.
 
 ## Required record per source
-For each source, retain official URL, owner/publisher, version/access date, citation, full licence/terms, permitted research/commercial/modification/redistribution uses, attribution, personal-data/consent concerns, fields/label definitions, known bias, intended role, and final decision.
+For each source, retain official URL, owner/publisher, version/access date, citation, full licence/terms, permitted research/commercial/modification/redistribution uses, attribution, personal-data/consent concerns, fields/label definitions, known bias, intended role, and final decision. For Open Beauty Facts, separate the ODbL database, individual database contents, and photographs/third-party artwork; the linked general legal guide is for the shared platform, so verify OBF-specific terms for actual records before deployment.
 
 ## Data segregation
 - Keep raw/restricted data outside the public Git repository.
