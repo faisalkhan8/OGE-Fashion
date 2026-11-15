@@ -91,43 +91,89 @@ This discrepancy must be resolved before using `L`:
 
 The swatches are product-site colour representations from 2018, not instrument-measured skin samples. The dataset has no user ratings, customer interactions, or human preference labels.
 
-## 3. Open Beauty Facts — metadata profiling plan
+## 3. Open Beauty Facts — live metadata profile
 
-The official Product Opener documentation states that it powers Open Beauty Facts as a sibling project and that structured API v2 search supports category filters, field selection, and pagination. Search API documentation recommends limiting returned fields and observes a search rate limit. See:
+**Profile workflow:** https://github.com/faisalkhan8/OGE-Fashion/actions/runs/43722932460  
+**Profile timestamp:** 2026-11-15 14:07:16 UTC  
+**API:** `https://world.openbeautyfacts.org/api/v2/search`  
+**Method:** nine structured category-tag queries; page 1; page size 100; metadata-only fields; six-second delay between category requests; descriptive User-Agent. No image fields were requested.
+
+### Category counts returned by the API
+
+| English category tag | API matching count | Records sampled on page 1 |
+|---|---:|---:|
+| makeup | 968 | 100 |
+| cosmetics | 137 | 100 |
+| face-makeup | 250 | 100 |
+| lip-makeup | 115 | 100 |
+| mascara | 88 | 88 |
+| foundation | 66 | 66 |
+| lipstick | 60 | 60 |
+| eyeshadow | 26 | 26 |
+| make-up | 3 | 3 |
+
+All nine category queries succeeded. These values are counts returned for each category filter at the profile timestamp. They **must not be summed**: category tags are hierarchical/overlapping, so a product can be counted in more than one query. The counts are not a count of unique products across all categories.
+
+### Field coverage in the first-page samples
+
+Percentages below are calculated within the records returned for each category (maximum 100). They describe presence of non-empty fields, not correctness or completeness of the underlying product description.
+
+| Category tag | Sample n | Product name | Brand | Category tags | Ingredients text | Allergen tags | Country tags | Last modified |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| makeup | 100 | 91.0% | 95.0% | 100% | 84.0% | 0% | 100% | 100% |
+| cosmetics | 100 | 89.0% | 81.0% | 100% | 22.0% | 1.0% | 100% | 100% |
+| face-makeup | 100 | 95.0% | 98.0% | 100% | 79.0% | 0% | 100% | 100% |
+| lip-makeup | 100 | 90.0% | 89.0% | 100% | 71.0% | 8.0% | 100% | 100% |
+| mascara | 88 | 97.7% | 93.2% | 100% | 48.9% | 2.3% | 98.9% | 100% |
+| foundation | 66 | 100% | 100% | 100% | 90.9% | 4.5% | 100% | 100% |
+| lipstick | 60 | 91.7% | 86.7% | 100% | 68.3% | 18.3% | 100% | 100% |
+| eyeshadow | 26 | 96.2% | 92.3% | 100% | 69.2% | 0% | 100% | 100% |
+| make-up | 3 | 66.7% | 33.3% | 100% | 33.3% | 0% | 100% | 100% |
+
+### Barcode checks
+
+- No returned record in any of the nine first-page samples was missing a barcode.
+- No repeated barcode rows were observed within any individual category sample.
+- This is a first-page sample check only; it does not establish catalogue-wide uniqueness.
+- Samples from different category queries can overlap. No unique cross-category union count was calculated.
+
+### Query fields and data handling
+
+Requested fields were: `code`, `product_name`, `brands`, `categories_tags`, `ingredients_text`, `allergens_tags`, `countries_tags`, and `last_modified_t`.
+
+No images or image URLs were requested. The profiler processes the returned product metadata in memory and emits only aggregate counts and field coverage. It does not write API product records, barcodes, names, or photographs to the repository.
+
+### API lifecycle limitation
+
+The official Product Opener documentation currently labels API v2 deprecated. It also states that structured category-filter search is available through `/api/v2/search`, while structured search is not available in the current v3 API documentation. This profile therefore uses the documented v2 structured-search route as a research snapshot, not as a long-term production integration. Recheck the API migration path before building a deployed catalogue importer.
+
+Official API references:
 - https://openfoodfacts.github.io/documentation/docs/Product-Opener/v2/search/get-search/
 - https://openfoodfacts.github.io/openfoodfacts-server/api/
-- https://openfoodfacts.github.io/documentation/docs/Product-Opener/api/tutorial-off-api/
 
-### Status
-**No product counts or field-coverage percentages are reported yet.** The live Open Beauty Facts JSON endpoint could not be inspected through the current browser retrieval route. Do not substitute Open Food Facts food-category counts or third-party scraper summaries for actual Open Beauty Facts makeup coverage.
+### Go / no-go decision
 
-### Planned read-only profile
-Use a small, metadata-only query after confirming current Open Beauty Facts endpoint and licence details:
-- confirm exact taxonomy slugs for foundation, lipstick, eyeshadow, mascara, blush and other target categories;
-- request only fields such as barcode, product name, brands, category tags, ingredients text, allergen tags, countries tags, completeness, and last-modified timestamp;
-- avoid image fields and do not download product images;
-- record query URL/parameters, date, page/page-size, response counts, and exact product fields returned;
-- profile duplicate barcodes, missing values, category coverage, record freshness and ingredient completeness;
-- respect official request limits and custom User-Agent requirements;
-- preserve ODbL attribution/share-alike obligations where applicable, and separately check rights in product contents and images.
+**Conditional GO for a metadata-only catalogue prototype.** The general `makeup` tag returned 968 matching products, with the first 100 records showing 91% product-name coverage, 95% brand coverage, and 84% ingredient-text coverage. This is sufficient to justify a small metadata retrieval and ontology-mapping experiment, subject to ODbL and source-content rights review.
 
-Open Beauty Facts v2 documentation states the endpoint supports `fields`, `page` and `page_size`; the API documentation distinguishes structured category-filter search from full-text search and asks users to limit fields. It also documents read/search rate limits. Confirm the current API deployment and Open Beauty Facts-specific use terms before requests or redistribution.
+**NO-GO for allergy or safety decisions.** The `makeup` sample had 0% non-empty `allergens_tags`, and allergen-tag coverage stayed low across all queried categories (0–18.3%). Ingredient text is also incomplete and unverified. Do not use absence of an allergen tag as evidence that a product is allergen-free, and do not generate medical/safety claims from these records.
+
+The profile is not a recommendation evaluation. It contains no user ratings, preference feedback, or human relevance judgements. Category counts and first-page field coverage cannot be treated as evidence of consumer preference or product quality.
 
 ## 4. Next decision
 - Proceed with The Pudding shade data as a small controlled **attribute-retrieval baseline**, after documenting the `L` discrepancy and a duplicate policy.
-- Keep Open Beauty Facts at **pending profiling** until the actual makeup-category coverage and required field completeness are measured.
+- Use Open Beauty Facts conditionally for metadata-only prototyping: the `makeup` tag returned 968 matches and the first 100 records had 84% ingredient-text coverage. Do not use it for allergen/safety decisions because allergen-tag coverage is very low, and do not treat its metadata as user preference labels.
 - Do not claim a makeup recommender has been evaluated until real preference/relevance labels and a defensible evaluation protocol exist.
 - Keep all source datasets and any future derived data outside this public repository unless their terms explicitly permit distribution.
 
 ## 5. Foundation shade baseline — GitHub Actions smoke run
 
-**Workflow run:** https://github.com/faisalkhan8/OGE-Fashion/actions/runs/43722252920  
+**Workflow run:** https://github.com/faisalkhan8/OGE-Fashion/actions/runs/43723048053  
 **Commit tested:** `638205d9f7459c77b2a714ba7bab930eccf218bd`  
 **Runtime:** GitHub-hosted Ubuntu runner, Python 3.12.16  
 **Result:** successful.
 
 ### Test results
-- 14 unit tests passed.
+- 15 unit tests passed, including an aggregate-profile test for Open Beauty Facts field coverage and duplicate-barcode diagnostics.
 - Eight published CIEDE2000 reference pairs passed within 0.0001 of their rounded expected values.
 - sRGB-to-CIELAB tests for black, white, and red passed.
 - Parser tests for duplicate handling, missing H/S/V, disputed L-column exclusion, and invalid source fields passed.
