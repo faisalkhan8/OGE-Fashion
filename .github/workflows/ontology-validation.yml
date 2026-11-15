@@ -32,4 +32,4 @@ jobs:
       - name: Parse ontology and verify taxonomy records
         run: python scripts/validate_ontology.py
       - name: Run synthetic SPARQL competency tests
-        run: python tests/test_competency_queries.py
+        run: python scripts/test_competency_queries.py
