@@ -1,7 +1,7 @@
 # Research Questions and Operational Definitions
-**Version:** 0.1 — proposed, pending literature and dataset review.
+**Version:** 0.2 — proposed, pending literature and dataset review.
 
-## RQ1 — Ontology representation
+## RQ1 — Ontology alignment and representation
 How can existing fashion vocabularies be aligned with makeup concepts and shared user-preference/context concepts in an extensible, machine-readable semantic model?
 
 **Evidence:** competency-question coverage; ontology consistency/reasoner checks; class/property coverage against catalogue metadata; documentation of unsupported concepts.
