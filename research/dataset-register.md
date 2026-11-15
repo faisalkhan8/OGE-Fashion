@@ -51,7 +51,9 @@ The official page states non-commercial research only. The release agreement res
 - No access request or download has been made.
 
 ## Makeup data — detailed review
-See [Makeup Data Review](makeup-data-review.md) for the candidate-by-candidate assessment, source rights, and initial experiment design.
+
+See [Data Profiling](data-profiling.md) for the initial The Pudding CSV checks. Its 625 rows had no blank cells and valid HEX codes, but 12 records had H/S/V marked `NA`, and four brand–product–HEX combinations repeated. The `L` field's README definition (0–1) does not match the observed CSV range (11–95); this remains unresolved. Open Beauty Facts profile is pending.
+See [Makeup Data Review](makeup-data-review.md) for the candidate-by-candidate assessment and [Data Profiling](data-profiling.md) for the observed shade-source checks.
 
 ### Current recommendation
 - Use The Pudding's MIT-licensed foundation-shade table as the initial, image-free shade seed.
