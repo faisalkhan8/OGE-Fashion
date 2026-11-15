@@ -1,6 +1,6 @@
 # Research Protocol
 **Project:** OGE-Fashion  
-**Protocol version:** 0.1 (initial proposal)  
+**Protocol version:** 0.2 (initial proposal)  
 **Status:** Draft for review; not preregistered  
 **Date:** 2026-11-15
 
