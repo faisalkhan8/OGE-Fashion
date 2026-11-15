@@ -36,7 +36,7 @@ class ShadeParsingTests(unittest.TestCase):
 
     def test_missing_required_column_is_rejected(self):
         fixture = CSV_FIXTURE.replace("group,H,S,V,L", "H,S,V,L")
-        with self.assertRaises(ValueError):
+        with self.assertRaises(ShadeSourceError):
             parse_shade_csv(fixture)
 
 
