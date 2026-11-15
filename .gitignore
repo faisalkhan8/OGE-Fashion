@@ -21,8 +21,21 @@ ENV/
 .env.*
 *.pem
 *.key
+*.p12
+*.pfx
+*.jks
+*.token
+*.credentials
+.envrc
+.aws/
+.ssh/
+.secrets/
 secrets/
 credentials/
+service-account*.json
+*service-account*.json
+terraform.tfstate
+terraform.tfstate.*
 
 # Notebooks
 .ipynb_checkpoints/
