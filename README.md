@@ -37,7 +37,10 @@ Candidate ranking metrics include Precision@K, Recall@K, NDCG@K, and MAP@K. Cove
 - `research/data-profiling.md`: source-level profile results and data-quality observations.
 - `research/`: protocol, questions, dataset register.
 - `ontology/`: ontology specification and competency questions.
-- `docs/`: roadmap and cloud-first workflow.
+- `docs/`: roadmap, cloud-first workflow, and foundation shade baseline.
+- `oge_fashion/`: colour conversion, pinned shade-source loader, and ranking CLI.
+- `tests/`: standard-library unit tests.
+- `scripts/`: metadata-only external catalogue profiling tools.
 
 ## Cloud-first development
 Use GitHub as the source of truth and a browser-based environment such as GitHub Codespaces or a hosted notebook for implementation. Do not download large datasets to the laptop. Keep raw/restricted assets and model checkpoints outside Git; commit only permitted code, documentation, manifests, and small synthetic fixtures. Check cloud quotas and billing before starting compute.
@@ -49,6 +52,11 @@ Use GitHub as the source of truth and a browser-based environment such as GitHub
 - Follow applicable institutional ethics review and consent requirements before human-participant recruitment.
 - Tune on training/validation data only; preserve an untouched test set.
 - Report negative and null results, limitations, and methodology.
+
+## Initial implementation
+The first foundation-shade attribute baseline is implemented under `oge_fashion/`, with unit tests in `tests/` and a GitHub Actions workflow. It fetches a pinned shade CSV at runtime, converts sRGB HEX values to CIELAB, and ranks swatches using CIEDE2000. See [foundation shade baseline](docs/foundation-shade-baseline.md) and [data profiling](research/data-profiling.md). The first hosted CI run passed 14 unit tests and the sample ranking.
+
+The baseline compares displayed product swatches only. It does not predict skin tone, foundation suitability, or personal preference.
 
 ## Current status
 **Sprint 1:** research protocol, questions, dataset due diligence, ontology specification, and cloud workflow setup. No deployed product, evaluated model, publication, or empirical finding is claimed.
