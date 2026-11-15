@@ -6,6 +6,10 @@ on:
     paths:
       - "ontology/**"
       - "scripts/validate_ontology.py"
+      - "scripts/validate_shacl.py"
+      - "scripts/test_shacl.py"
+      - "scripts/validate_shacl.py"
+      - "scripts/test_shacl.py"
       - "scripts/reason_ontology.py"
       - "scripts/test_competency_queries.py"
       - "tests/fixtures/**"
@@ -45,3 +49,9 @@ jobs:
         run: python scripts/reason_ontology.py
       - name: Run synthetic SPARQL competency tests
         run: python scripts/test_competency_queries.py
+      - name: Install SHACL validator
+        run: python -m pip install "pyshacl==0.40.2"
+      - name: Validate synthetic data against SHACL shapes
+        run: python scripts/validate_shacl.py
+      - name: Run positive and negative SHACL tests
+        run: python scripts/test_shacl.py
