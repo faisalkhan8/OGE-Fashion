@@ -29,6 +29,7 @@ These are research questions, not established findings. See [research protocol](
 Candidate ranking metrics include Precision@K, Recall@K, NDCG@K, and MAP@K. Coverage and diversity will also be measured. Explanation usefulness requires separate human evaluation. Data rights, split strategy, and ethics requirements must be addressed before experiments.
 
 ## Repository structure
+- `research/literature/`: preliminary literature evidence matrix and review-search method.
 - `research/`: protocol, questions, dataset register.
 - `ontology/`: ontology specification and competency questions.
 - `docs/`: roadmap and cloud-first workflow.
