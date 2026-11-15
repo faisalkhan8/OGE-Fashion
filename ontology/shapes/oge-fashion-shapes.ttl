@@ -1,0 +1,274 @@
+@prefix oge: <https://w3id.org/oge-fashion/ontology#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+# OGE-Fashion SHACL shapes
+# These validate application/data-record structure. They do not make OWL axioms
+# stronger, and they do not decide whether a subjective fashion judgement is true.
+
+oge:PreferenceShape a sh:NodeShape ;
+    sh:targetClass oge:Preference ;
+    sh:property [
+        sh:path oge:preferenceAbout ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:Attribute ;
+        sh:message "A preference must identify exactly one attribute field."@en
+    ] ;
+    sh:property [
+        sh:path oge:preferenceValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:Attribute ;
+        sh:message "A preference must identify exactly one preferred or excluded value."@en
+    ] ;
+    sh:property [
+        sh:path oge:preferenceDomain ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "fashion" "makeup" "shared" ) ;
+        sh:message "Preference domain must be fashion, makeup, or shared."@en
+    ] ;
+    sh:property [
+        sh:path oge:preferencePolarity ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "positive" "negative" "neutral" ) ;
+        sh:message "Preference polarity must be positive, negative, or neutral."@en
+    ] ;
+    sh:property [
+        sh:path oge:preferenceWeight ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minInclusive 0 ;
+        sh:maxInclusive 1 ;
+        sh:message "Optional preference weight must be a decimal between 0 and 1."@en
+    ] ;
+    sh:property [
+        sh:path oge:isHardConstraint ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean
+    ] .
+
+oge:ProfileAssertionShape a sh:NodeShape ;
+    sh:targetClass oge:ProfileAssertion ;
+    sh:property [
+        sh:path oge:assertionAbout ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:Attribute
+    ] ;
+    sh:property [
+        sh:path oge:assertionValue ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:Attribute
+    ] ;
+    sh:property [
+        sh:path oge:isUserConfirmed ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:boolean
+    ] ;
+    sh:property [
+        sh:path oge:assertionOrigin ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "user-confirmed" "model-inferred" "other-declared" ) ;
+        sh:message "Assertion origin must identify whether the value is user-confirmed, model-inferred, or otherwise declared."@en
+    ] .
+
+oge:BudgetConstraintShape a sh:NodeShape ;
+    sh:targetClass oge:BudgetConstraint ;
+    sh:property [
+        sh:path oge:maxBudgetAmount ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal ;
+        sh:minExclusive 0
+    ] ;
+    sh:property [
+        sh:path oge:budgetCurrencyCode ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string ;
+        sh:pattern "^[A-Z]{3}$" ;
+        sh:message "Budget currency must use a three-letter uppercase currency code."@en
+    ] .
+
+oge:CompatibilityAssessmentShape a sh:NodeShape ;
+    sh:targetClass oge:CompatibilityAssessment ;
+    sh:property [
+        sh:path oge:assessesItemA ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:RecommendationEntity
+    ] ;
+    sh:property [
+        sh:path oge:assessesItemB ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:RecommendationEntity
+    ] ;
+    sh:property [
+        sh:path oge:assessmentContext ;
+        sh:maxCount 1 ;
+        sh:class oge:Context
+    ] ;
+    sh:property [
+        sh:path oge:assessmentEvidence ;
+        sh:class oge:Evidence
+    ] ;
+    sh:property [
+        sh:path oge:methodName ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path oge:methodVersion ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path oge:compatibilityScore ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal
+    ] .
+
+oge:RecommendationShape a sh:NodeShape ;
+    sh:targetClass oge:Recommendation ;
+    sh:property [
+        sh:path oge:forProfile ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:UserProfile
+    ] ;
+    sh:property [
+        sh:path oge:forContext ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:Context
+    ] ;
+    sh:property [
+        sh:path oge:hasResult ;
+        sh:minCount 1 ;
+        sh:class oge:RecommendationResult
+    ] .
+
+oge:RecommendationResultShape a sh:NodeShape ;
+    sh:targetClass oge:RecommendationResult ;
+    sh:property [
+        sh:path oge:resultItem ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:RecommendationEntity
+    ] ;
+    sh:property [
+        sh:path oge:rankPosition ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:positiveInteger
+    ] ;
+    sh:property [
+        sh:path oge:resultScore ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:decimal
+    ] ;
+    sh:property [
+        sh:path oge:hasResultExplanation ;
+        sh:class oge:Explanation
+    ] .
+
+oge:ExplanationShape a sh:NodeShape ;
+    sh:targetClass oge:Explanation ;
+    sh:property [
+        sh:path oge:explains ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:class oge:RecommendationResult
+    ] ;
+    sh:property [
+        sh:path oge:explanationStatus ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:in ( "supported" "partially-supported" "insufficient_evidence" )
+    ] ;
+    sh:property [
+        sh:path oge:explanationMessage ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path oge:supportedBy ;
+        sh:class oge:Evidence
+    ] ;
+    sh:or (
+        [
+            sh:property [
+                sh:path oge:explanationStatus ;
+                sh:hasValue "supported"
+            ] ;
+            sh:property [
+                sh:path oge:supportedBy ;
+                sh:minCount 1 ;
+                sh:class oge:Evidence
+            ]
+        ]
+        [
+            sh:property [
+                sh:path oge:explanationStatus ;
+                sh:hasValue "partially-supported"
+            ] ;
+            sh:property [
+                sh:path oge:supportedBy ;
+                sh:minCount 1 ;
+                sh:class oge:Evidence
+            ]
+        ]
+        [
+            sh:property [
+                sh:path oge:explanationStatus ;
+                sh:hasValue "insufficient_evidence"
+            ] ;
+            sh:property [
+                sh:path oge:supportedBy ;
+                sh:maxCount 0
+            ]
+        ]
+    ) ;
+    sh:message "Supported explanations need an evidence record; insufficient-evidence explanations must not assert supporting evidence."@en .
+
+oge:SourceTaxonomyProvenanceShape a sh:NodeShape ;
+    sh:targetSubjectsOf oge:sourceDataset ;
+    sh:property [
+        sh:path oge:sourceLocalID ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer
+    ] ;
+    sh:property [
+        sh:path oge:sourceTaxonomyID ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path oge:sourceSupercategory ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:string
+    ] ;
+    sh:property [
+        sh:path oge:sourceTaxonomyLevel ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:integer
+    ] ;
+    sh:property [
+        sh:path oge:sourceDataset ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:datatype xsd:anyURI
+    ] .
