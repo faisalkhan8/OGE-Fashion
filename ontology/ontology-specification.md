@@ -3,7 +3,7 @@
 **Project:** OGE-Fashion — An Ontology-Guided Explainable Recommendation Framework for Personalised Fashion and Beauty Recommendations  
 **Specification version:** 0.3  
 **Ontology file:** `oge-fashion-v0.1.ttl`  
-**Status:** Working structural draft; RDF/Turtle parser and source-manifest checks are automated; OWL 2 DL reasoner validation and full semantic review remain pending.  
+**Status:** Working draft; RDF/Turtle parser, source-manifest checks, HermiT consistency classification, and 12 synthetic SPARQL competency tests pass in GitHub Actions. Full source semantics review and recommendation evaluation remain pending.  
 **Proposed ontology identifier:** `https://w3id.org/oge-fashion/ontology` (proposed only; not claimed to be registered or resolvable).
 
 ## 1. Purpose and research boundaries
@@ -171,7 +171,7 @@ The 20 competency questions are listed in [competency-questions.md](competency-q
 - [SPARQL test runner](../scripts/test_competency_queries.py)
 - [RDF/source-integrity validator](../scripts/validate_ontology.py)
 
-RDF/Turtle parsing and deterministic structure checks are separate from OWL 2 DL consistency/classification. The latter still requires a reasoner such as HermiT or another verified OWL 2 DL reasoner. No recommendation-quality or human-evaluation result is claimed.
+RDF/Turtle parsing, deterministic structure checks, OWL reasoning, and query-level competency tests are separate validation layers. On 2026-11-15, GitHub Actions parsed 3,237 RDF triples; verified the 46 category and 294 attribute source records with provenance; ran Owlready2 0.51 using HermiT against 59 OWL classes with no ontology inconsistency and no named class equivalent to owl:Nothing; and passed 12/12 synthetic SPARQL tests. The HermiT runner is [scripts/reason_ontology.py](../scripts/reason_ontology.py). Its CI setup uses Java 17 and Owlready2 0.51. These checks establish logical consistency for the current asserted model and query behaviour on the supplied synthetic fixtures. They do not establish that the source mappings are semantically perfect, that compatibility judgements are factually correct, or that recommendations are relevant. No recommendation-quality or human-evaluation result is claimed.
 
 ## 11. Open decisions
 
