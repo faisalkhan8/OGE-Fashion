@@ -8,7 +8,7 @@
 The first makeup experiments should not depend on face photographs. The most defensible initial combination is:
 
 1. **Foundation shade attributes:** use The Pudding's `makeup-shades/shades.csv` as a small, image-free seed dataset for shade and colour representation. The file contains 625 shade rows, with product/brand identifiers, HEX, HSV, lightness, and a grouping field. The source repository carries an MIT licence. Its README says the source swatch values were collected by visiting selected brand websites in May 2018, covering products selected for the US, Nigeria, India, and Japan. This is a historical sample of product swatches, not a measurement of human skin or a complete makeup recommender. The underlying brand/product identifiers and original source material should still be treated with their own rights and attribution considerations.
-2. **Product and ingredient metadata:** assess Open Beauty Facts as a supplementary catalogue source. Its project describes a community-maintained cosmetics database with 100,000+ products from 170 countries, product-label information, ingredients, and allergens. The Open Beauty Facts data export is listed under ODbL. Use structured metadata first; do not use product photographs in the first experiment.
+2. **Product and ingredient metadata:** assess Open Beauty Facts as a supplementary catalogue source. Its project describes a community-maintained cosmetics database with 100,000+ products from 170 countries, product-label information, ingredients, and allergens. A cloud API profile on 2026-11-15 returned 968 matches for the makeup category tag; the first 100 records had 91% product-name, 95% brand, and 84% ingredient-text coverage, but 0% non-empty allergen tags. The export is listed under ODbL. See data-profiling.md for category and field coverage. Use structured metadata only; do not use product photographs in the first experiment.
 3. **Ingredient vocabulary:** consult the European Commission's CosIng database only as a controlled vocabulary/reference for ingredient names and identifiers. CosIng expressly states that it is informational and non-legally binding; an ingredient's presence in the inventory does not mean it is approved for use.
 
 No candidate provides complete, reliable user-preference labels for a makeup recommender. We will need a separately designed preference-evaluation set. Synthetic profiles may test code and ontology rules, but they cannot be presented as evidence of user relevance.
@@ -45,10 +45,11 @@ The CSV contains HEX and HSV/lightness values. The source README describes `L` a
 CIEDE2000 or another perceptual colour-distance measure may be tested as a nearest-shade baseline after colour conversion is implemented and validated. A colour-distance score is not, by itself, proof that a shade will match a person's skin or be preferred by them.
 
 ### 3.2 Product and ingredient metadata
-Profile an Open Beauty Facts export/API sample in a cloud workspace before selecting fields. Candidate fields include product name, category, barcode, country/market, ingredient list, allergen labels and source/provenance fields where available.
+Open Beauty Facts was profiled in a cloud workflow using the documented v2 structured-search endpoint. The general makeup tag returned 968 API matches; the first 100 records had 91% product-name, 95% brand, 100% category-tag, 84% ingredient-text, 0% allergen-tag, 100% country-tag, and 100% last-modified-field coverage. Category-specific counts and coverage are in data-profiling.md. This is first-page sampling, not full-catalogue field coverage. The v2 structured-search API is deprecated, and the v3 documentation currently lists no structured search; do not design a production integration around this endpoint without reassessing API migration.
 
 For the first product-data experiment:
 - use text/structured metadata only;
+- do not use absence of allergen tags as evidence that a product is allergen-free; initial sample allergen-tag coverage was 0% for the general makeup tag;
 - omit product images;
 - retain source identifiers and last-modified/provenance data;
 - measure missingness and duplicate/variant handling;
@@ -135,11 +136,11 @@ See [data-profiling.md](data-profiling.md) for the observed profile of The Puddi
 |---|---|---|
 | Start without face images | Decided | Product metadata and shade swatches are sufficient for the first experiments; reduces privacy and licensing risk. |
 | Use The Pudding shade data as initial seed | Recommended | Clear repository MIT licence, 625 structured shade records, no face images. |
-| Assess Open Beauty Facts metadata as product catalogue source | Recommended, pending schema profiling | Large global cosmetics database and open data; ODbL obligations must be preserved. |
+| Assess Open Beauty Facts metadata as product catalogue source | Conditional GO for metadata-only prototype | 968 API matches for makeup tag; first 100 had 84% ingredient-text coverage but 0% allergen-tag coverage. ODbL obligations and deprecated v2 search endpoint require caution. |
 | Use product images in the first experiment | Excluded | Not necessary for shade/ingredient metadata and each image has separate rights. |
 | Use BeautyBank/YMU face images in the initial model | Excluded | Not needed for the initial research questions; distinct licence, consent, and representation risks. |
 | Treat synthetic profiles as user-study evidence | Excluded | Synthetic profiles test software only, not real user relevance. |
 | Build linked fashion–makeup recommendations immediately | Deferred | Need defensible domain-specific labels and evaluation in each domain first. |
 
 ## 8. Review limitations
-This is a first-pass dataset triage, not legal advice or a complete catalogue of available datasets. Listings, licences and provider terms can change. The Pudding seed is old and narrow. Open Beauty Facts is community-contributed and requires a data-quality audit. No data has been downloaded, transformed, or used to train a model in this review.
+This is a first-pass dataset triage, not legal advice or a complete catalogue of available datasets. Listings, licences and provider terms can change. The Pudding seed is old and narrow. Open Beauty Facts is community-contributed and requires a data-quality audit. The cloud profile queried metadata in memory and retained aggregate statistics only; no raw export, product records, barcode list, images, or product photos were committed. No recommendation model has been trained on these records.
