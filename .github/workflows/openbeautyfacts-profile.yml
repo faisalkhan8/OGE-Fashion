@@ -1,0 +1,46 @@
+name: Open Beauty Facts metadata profile
+
+on:
+  push:
+    paths:
+      - "scripts/profile_open_beauty_facts.py"
+      - ".github/workflows/openbeautyfacts-profile.yml"
+  workflow_dispatch:
+    inputs:
+      categories:
+        description: Comma-separated English category tags
+        required: false
+        default: "makeup,make-up,cosmetics,foundation,lipstick,mascara,eyeshadow,face-makeup,lip-makeup"
+      page_size:
+        description: Sample size per category (1-100)
+        required: false
+        default: "100"
+
+permissions:
+  contents: read
+
+jobs:
+  profile:
+    name: Aggregate metadata field profile
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      PYTHONUNBUFFERED: "1"
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Profile Open Beauty Facts categories
+        env:
+          PROFILE_CATEGORIES: ${{ inputs.categories || 'makeup,make-up,cosmetics,foundation,lipstick,mascara,eyeshadow,face-makeup,lip-makeup' }}
+          PROFILE_PAGE_SIZE: ${{ inputs.page_size || '100' }}
+        run: >-
+          python scripts/profile_open_beauty_facts.py
+          --categories "${PROFILE_CATEGORIES}"
+          --page-size "${PROFILE_PAGE_SIZE}"
+          --delay 6
