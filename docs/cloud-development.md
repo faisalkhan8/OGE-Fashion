@@ -4,6 +4,12 @@
 Keep laptop storage use close to zero. Source code, research notes, lightweight ontology files, and configurations live in GitHub. Large data and compute stay in cloud services where feasible.
 
 ## Recommended workflow
+GitHub documents that Codespaces usage includes both compute time (while the environment is active) and storage (while the codespace exists). Storage includes files and data loaded into the codespace. Personal-account included quotas are limited; usage can be restricted after a quota is exhausted unless spending and payment are configured. Review the live account billing page before creating a codespace, and delete unused codespaces to avoid unnecessary storage usage.
+
+Official billing guidance: https://docs.github.com/en/billing/concepts/product-billing/github-codespaces
+Included-use guidance: https://docs.github.com/en/enterprise-cloud@latest/codespaces/troubleshooting/troubleshooting-included-usage
+
+
 1. **GitHub:** source of truth for code, Markdown, ontology files, small fixtures, configuration templates, and reproducibility instructions.
 2. **Browser IDE:** use GitHub Codespaces or another cloud IDE for editing and command-line work. Check availability, included quota, and billing before launch.
 3. **Hosted notebooks:** use a cloud notebook for exploratory preparation and GPU experiments when its terms and storage fit the dataset licence.
