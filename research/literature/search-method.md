@@ -70,3 +70,10 @@ Publisher and official research pages from ACM-related records, CVF Open Access,
 
 ## Reporting boundary
 The current literature evidence matrix is a targeted first pass. Do not call it a systematic review, claim completeness, or use it alone to establish absence of prior work.
+
+## Additional focused sources identified
+- "A personalized recommender system for the cosmetic business" (2004): a cosmetics product recommender combining content-based, collaborative filtering and data mining.
+- "Convolutional networks for appearance-based recommendation and visualisation of mascara products" (2020): visual-similarity mascara recommendation and product visualisation using a small controlled subject cohort.
+- Kachbal & El Abdellaoui (2026), systematic review of 200 studies (2017–2025) on computer vision in fashion, including cosmetics, outfits and recommendations. The paper reports a PRISMA procedure and searches across Scopus, Web of Science, IEEE Xplore, ACM Digital Library and other databases.
+
+These sources broaden the review but do not prove a cross-domain ontology gap.
