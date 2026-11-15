@@ -32,7 +32,7 @@ oge:Outfit a owl:Class ;
     rdfs:label "Outfit"@en ;
     rdfs:comment "A curated combination of fashion items; membership and compatibility need explicit records."@en .
 
-оге:Footwear a owl:Class ;
+oge:Footwear a owl:Class ;
     rdfs:subClassOf oge:FashionItem ;
     rdfs:label "Footwear"@en .
 
@@ -163,7 +163,7 @@ oge:CompatibilityAssessment a owl:Class ;
     rdfs:comment "A reified assessment connecting two items with method, context, score, and evidence. It supports context-sensitive and traceable compatibility."@en .
 
 ### Object properties
-оге:hasAttribute a owl:ObjectProperty ;
+oge:hasAttribute a owl:ObjectProperty ;
     rdfs:domain oge:RecommendationEntity ;
     rdfs:range oge:Attribute ;
     rdfs:label "has attribute"@en .
@@ -241,7 +241,7 @@ oge:preferenceValue a owl:ObjectProperty ;
     rdfs:range oge:Attribute ;
     rdfs:label "preference value"@en .
 
-оге:hasContext a owl:ObjectProperty ;
+oge:hasContext a owl:ObjectProperty ;
     rdfs:domain oge:UserProfile ;
     rdfs:range oge:Context ;
     rdfs:label "has context"@en .
