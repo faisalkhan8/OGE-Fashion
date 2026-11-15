@@ -31,5 +31,14 @@ jobs:
         run: python -m pip install "rdflib>=7.1,<8"
       - name: Parse ontology and verify taxonomy records
         run: python scripts/validate_ontology.py
+      - name: Set up Java for HermiT
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+      - name: Install OWL reasoner wrapper
+        run: python -m pip install "owlready2>=0.52,<0.53"
+      - name: Check OWL consistency and unsatisfiable classes
+        run: python scripts/reason_ontology.py
       - name: Run synthetic SPARQL competency tests
         run: python scripts/test_competency_queries.py
