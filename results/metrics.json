@@ -1,0 +1,39 @@
+{
+  "experiment": "synthetic_baseline_vs_ontology_guided_v1",
+  "seed": 20261117,
+  "k": 3,
+  "profile_count": 24,
+  "test_profile_count": 6,
+  "test_profile_ids": [
+    "synthetic-02",
+    "synthetic-16",
+    "synthetic-01",
+    "synthetic-03",
+    "synthetic-08",
+    "synthetic-12"
+  ],
+  "catalogue_item_count": 18,
+  "data_status": "synthetic_constructed_benchmark",
+  "ground_truth_definition": "Exact occasion, dress-code and style match plus encoded-sRGB Euclidean colour distance <= 155.",
+  "conditions": {
+    "A_baseline": "Weighted colour-distance and attribute score over all catalogue items; no hard filtering.",
+    "B_ontology_guided": "SPARQL over the committed OGE ontology plus in-memory synthetic RDF facts filters exact occasion, dress-code and style constraints; remaining items use the same score and receive structured property-level traces."
+  },
+  "metrics": {
+    "A_baseline": {
+      "precision_at_3": 0.666667,
+      "recall_at_3": 0.888889,
+      "ndcg_at_3": 0.921787,
+      "constraint_satisfaction_rate": 0.666667,
+      "explanation_trace_coverage": 0
+    },
+    "B_ontology_guided": {
+      "precision_at_3": 0.777778,
+      "recall_at_3": 1,
+      "ndcg_at_3": 1,
+      "constraint_satisfaction_rate": 1,
+      "explanation_trace_coverage": 1
+    }
+  },
+  "interpretation_boundary": "Deterministic synthetic benchmark only. Labels are generated from the same constructed fields used by the constraints. Results demonstrate implementation behaviour on this fixture; they do not establish real-world recommendation quality, user preference, generalisation, causal benefit or statistical significance."
+}
