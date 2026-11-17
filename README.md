@@ -35,12 +35,12 @@ Candidate ranking metrics include Precision@K, Recall@K, NDCG@K, and MAP@K. Cove
 - `research/literature/`: preliminary literature evidence matrix and review-search method.
 - `research/makeup-data-review.md`: makeup dataset candidates, rights, limitations, and initial data plan.
 - `research/data-profiling.md`: source-level profile results and data-quality observations.
-- `research/`: protocol, questions, dataset register.
-- `ontology/`: ontology specification and competency questions.
+- `research/`: protocol, questions, dataset register, data profiling, and a historical FYP timeline that separates the 2023–2024 degree project from the later research extension.
+- `ontology/`: ontology specification, competency questions, preliminary vocabulary alignment, Fashionpedia source mappings (46 categories and 294 attributes), SHACL data shapes, SPARQL query templates, and the OWL 2/Turtle structural draft.
 - `docs/`: roadmap, cloud-first workflow, and foundation shade baseline.
 - `oge_fashion/`: colour conversion, pinned shade-source loader, and ranking CLI.
-- `tests/`: standard-library unit tests.
-- `scripts/`: metadata-only external catalogue profiling tools.
+- `tests/`: standard-library unit tests and synthetic RDF/SPARQL/SHACL fixture data.
+- `scripts/`: metadata-only external catalogue profiling tools, RDF/source-integrity validation, OWL reasoner validation, SHACL validation/tests, and the dedicated SPARQL competency-query test runner.
 
 ## Cloud-first development
 Use GitHub as the source of truth and a browser-based environment such as GitHub Codespaces or a hosted notebook for implementation. Do not download large datasets to the laptop. Keep raw/restricted assets and model checkpoints outside Git; commit only permitted code, documentation, manifests, and small synthetic fixtures. Check cloud quotas and billing before starting compute.
@@ -59,7 +59,7 @@ The first foundation-shade attribute baseline is implemented under `oge_fashion/
 The baseline compares displayed product swatches only. It does not predict skin tone, foundation suitability, or personal preference.
 
 ## Current status
-**Sprint 1:** research protocol, questions, dataset due diligence, ontology specification, and cloud workflow setup. No deployed product, evaluated model, publication, or empirical finding is claimed.
+**Sprint 1 (research extension, 2026-11-15):** research protocol, questions, initial dataset due diligence and metadata profiling, concept-level prior-art alignment, and an OWL 2/Turtle structural draft. The ontology draft now represents the 46 extracted Fashionpedia category entries and 294 attribute entries as provenance-bearing named individuals. Twelve SPARQL competency-query templates, a synthetic fixture, a Python test runner, and a GitHub Actions workflow have been added. The latest GitHub Actions run parsed 3,237 RDF triples; verified 46 Fashionpedia category and 294 attribute source entries with provenance; ran Owlready2 0.51 / HermiT over 59 OWL classes with no ontology inconsistency or named unsatisfiable classes; passed all 12 synthetic SPARQL tests; and validated 3,417 data triples against 243 SHACL shape triples. All four SHACL positive/negative tests passed. The independent foundation shade workflow also passed all 15 tests and its sample ranking. RDF parsing, source integrity, HermiT consistency, SPARQL query behaviour on synthetic fixtures, and SHACL data constraints are validated; source semantics and recommendation quality are not. Further source-relation review, makeup vocabulary alignment, evaluation protocol and labels, model comparisons, user evaluation, deployment, and publication remain outstanding. The original university FYP period is recorded separately as semesters 7 and 8 (November 2023–May 2024). No deployed product, evaluated model, publication, or empirical recommendation-quality finding is claimed.
 
 ## Contribution
 Use GitHub Issues for research decisions and implementation tasks. Ontology changes should state the competency question, class/property change, expected reasoning behaviour, evidence/rationale, and compatibility impact.

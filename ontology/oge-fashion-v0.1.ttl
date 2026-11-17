@@ -1,0 +1,3316 @@
+@prefix oge: <https://w3id.org/oge-fashion/ontology#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+<https://w3id.org/oge-fashion/ontology>
+    a owl:Ontology ;
+    owl:versionIRI <https://w3id.org/oge-fashion/ontology/0.1.0> ;
+    owl:versionInfo "0.1.0 — initial structural draft" ;
+    dcterms:title "OGE-Fashion Ontology"@en ;
+    dcterms:source <https://fashionpedia.github.io/home/index.html> ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:description "Includes source-aligned taxonomy terms from Fashionpedia (Jia et al., ECCV 2020), used with attribution under official CC BY 4.0 terms for the ontology and annotations."@en ;
+    dcterms:created "2026-11-15"^^xsd:date ;
+    rdfs:comment "Preliminary research ontology for fashion and makeup recommendation. The proposed w3id namespace is not yet registered or asserted to be resolvable. This file is a structural starting point and has not yet passed reasoner validation."@en ;
+    rdfs:comment "No universal beauty, face-shape, or style rules are encoded. Compatibility assertions require explicit evidence, context, and method provenance."@en .
+
+### Core entities
+oge:RecommendationEntity a owl:Class ;
+    rdfs:label "Recommendation entity"@en ;
+    rdfs:comment "An item or entity that may be considered by the recommendation process."@en .
+
+oge:FashionItem a owl:Class ;
+    rdfs:subClassOf oge:RecommendationEntity ;
+    rdfs:label "Fashion item"@en .
+
+oge:Garment a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Garment"@en .
+
+oge:Outfit a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Outfit"@en ;
+    rdfs:comment "A curated combination of fashion items; membership and compatibility need explicit records."@en .
+
+oge:Footwear a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Footwear"@en .
+
+oge:Accessory a owl:Class ;
+    rdfs:subClassOf oge:FashionItem ;
+    rdfs:label "Accessory"@en .
+
+oge:GarmentPart a owl:Class ;
+    rdfs:label "Garment part"@en ;
+    rdfs:comment "A part or region of a garment, aligned with a source vocabulary where possible."@en .
+
+oge:MakeupItem a owl:Class ;
+    rdfs:subClassOf oge:RecommendationEntity ;
+    rdfs:label "Makeup item"@en .
+
+oge:MakeupProduct a owl:Class ;
+    rdfs:subClassOf oge:MakeupItem ;
+    rdfs:label "Makeup product"@en .
+
+oge:MakeupLook a owl:Class ;
+    rdfs:subClassOf oge:MakeupItem ;
+    rdfs:label "Makeup look"@en .
+
+oge:FaceMakeup a owl:Class ;
+    rdfs:subClassOf oge:MakeupProduct ;
+    rdfs:label "Face makeup product"@en .
+
+oge:EyeMakeup a owl:Class ;
+    rdfs:subClassOf oge:MakeupProduct ;
+    rdfs:label "Eye makeup product"@en .
+
+oge:LipMakeup a owl:Class ;
+    rdfs:subClassOf oge:MakeupProduct ;
+    rdfs:label "Lip makeup product"@en .
+
+### Descriptive concepts
+oge:Attribute a owl:Class ;
+    rdfs:label "Attribute"@en .
+
+oge:Category a owl:Class ;
+    rdfs:label "Category"@en ;
+    rdfs:comment "A product or apparel category is kept distinct from descriptive attributes, following the category/attribute distinction in Fashionpedia."@en .
+
+oge:Colour a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Colour"@en .
+
+oge:Style a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Style"@en .
+
+oge:Material a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Material"@en .
+
+oge:Pattern a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Pattern"@en .
+
+oge:Fit a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Fit"@en .
+
+oge:MakeupFinish a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Makeup finish"@en .
+
+oge:ApplicationStyle a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Application style"@en .
+
+oge:Brand a owl:Class ;
+    rdfs:label "Brand"@en ;
+    rdfs:comment "Use only where the source data and intended use permit brand-name processing."@en .
+
+### User and context
+oge:UserProfile a owl:Class ;
+    rdfs:label "User profile"@en ;
+    rdfs:comment "A user-controlled preference profile. Sensitive inference is outside the initial scope."@en .
+
+oge:Preference a owl:Class ;
+    rdfs:label "Preference"@en ;
+    rdfs:comment "An explicitly selected positive, negative, or neutral preference."@en .
+
+oge:ProfileAssertion a owl:Class ;
+    rdfs:label "Profile assertion"@en ;
+    rdfs:comment "A user-specific attribute statement with confirmation status and optional evidence. Do not attach user-confirmation flags to a shared attribute concept."@en .
+
+oge:Context a owl:Class ;
+    rdfs:label "Recommendation context"@en .
+
+oge:Occasion a owl:Class ;
+    rdfs:subClassOf oge:Context ;
+    rdfs:label "Occasion"@en .
+
+oge:BudgetConstraint a owl:Class ;
+    rdfs:label "Budget constraint"@en .
+
+oge:FaceAttribute a owl:Class ;
+    rdfs:subClassOf oge:Attribute ;
+    rdfs:label "Face attribute"@en ;
+    rdfs:comment "Optional, user-confirmed descriptor only; it is not required by the core recommender."@en .
+
+oge:FaceShape a owl:Class ;
+    rdfs:subClassOf oge:FaceAttribute ;
+    rdfs:label "Face shape"@en ;
+    rdfs:comment "Optional descriptive category retained for continuity with the earlier FYP scope. It does not imply that a face shape determines suitable clothing or makeup."@en .
+
+oge:OvalFaceShape a owl:NamedIndividual, oge:FaceShape ;
+    rdfs:label "Oval"@en .
+
+oge:DiamondFaceShape a owl:NamedIndividual, oge:FaceShape ;
+    rdfs:label "Diamond"@en .
+
+oge:SquareFaceShape a owl:NamedIndividual, oge:FaceShape ;
+    rdfs:label "Square"@en .
+
+### Recommendation and provenance
+oge:Recommendation a owl:Class ;
+    rdfs:label "Recommendation"@en ;
+    rdfs:comment "A recommendation request/result set for a particular profile and context."@en .
+
+oge:RecommendationResult a owl:Class ;
+    rdfs:label "Recommendation result"@en ;
+    rdfs:comment "A single ranked item within a recommendation, allowing rank and explanation to be attached to the correct item."@en .
+
+oge:Explanation a owl:Class ;
+    rdfs:label "Explanation"@en ;
+    rdfs:comment "An explanation must point to evidence, profile preferences, item attributes, or scoring components that actually contributed."@en .
+
+oge:Evidence a owl:Class ;
+    rdfs:label "Evidence"@en ;
+    rdfs:comment "A source record, curated annotation, rule, or model output supporting an assertion."@en .
+
+oge:CompatibilityAssessment a owl:Class ;
+    rdfs:label "Compatibility assessment"@en ;
+    rdfs:comment "A reified assessment connecting two items with method, context, score, and evidence. It supports context-sensitive and traceable compatibility."@en .
+
+
+oge:ScoringComponent a owl:Class ;
+    rdfs:label "Recommendation scoring component"@en ;
+    rdfs:comment "A traceable contribution to a recommendation score, such as learned model, ontology reasoning, preference alignment, or context fit."@en .
+
+oge:LearnedModelComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Learned model component"@en .
+
+oge:OntologyReasoningComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Ontology reasoning component"@en .
+
+oge:PreferenceAlignmentComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Preference alignment component"@en .
+
+oge:ContextFitComponent a owl:Class ;
+    rdfs:subClassOf oge:ScoringComponent ;
+    rdfs:label "Context fit component"@en .
+
+
+### Fashionpedia-aligned classes
+oge:FashionCategory a owl:Class ; rdfs:subClassOf oge:Category ; rdfs:label "Fashion category"@en .
+oge:MainApparelCategory a owl:Class ; rdfs:subClassOf oge:FashionCategory ; rdfs:label "Main apparel category"@en .
+oge:ApparelPartCategory a owl:Class ; rdfs:subClassOf oge:FashionCategory ; rdfs:label "Apparel part category"@en .
+oge:GarmentPartCategory a owl:Class ; rdfs:subClassOf oge:ApparelPartCategory ; rdfs:label "Garment part category"@en .
+oge:ClosureCategory a owl:Class ; rdfs:subClassOf oge:ApparelPartCategory ; rdfs:label "Closure category"@en .
+oge:DecorationCategory a owl:Class ; rdfs:subClassOf oge:ApparelPartCategory ; rdfs:label "Decoration category"@en .
+oge:FashionpediaAttributeValue a owl:Class ; rdfs:subClassOf oge:Attribute ; rdfs:label "Fashionpedia-aligned attribute value"@en .
+oge:GarmentNicknameAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Garment nickname attribute"@en .
+oge:GarmentSilhouetteAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Garment silhouette attribute"@en .
+oge:WaistlineAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Waistline attribute"@en .
+oge:GarmentLengthAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Garment length attribute"@en .
+oge:NecklineTypeAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Neckline type attribute"@en .
+oge:OpeningTypeAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Opening type attribute"@en .
+oge:NonTextileMaterialTypeAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Non-textile material type attribute"@en .
+oge:LeatherAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Leather attribute"@en .
+oge:TextileFinishingTechniqueAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Textile finishing technique attribute"@en .
+oge:TextilePatternAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Textile pattern attribute"@en .
+oge:AnimalPatternAttribute a owl:Class ; rdfs:subClassOf oge:FashionpediaAttributeValue ; rdfs:label "Animal pattern attribute"@en .
+
+### Object properties
+oge:hasAttribute a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "has attribute"@en .
+
+oge:hasCategory a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Category ;
+    rdfs:label "has category"@en .
+
+oge:hasColour a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Colour ;
+    rdfs:label "has colour"@en .
+
+oge:hasStyle a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Style ;
+    rdfs:label "has style"@en .
+
+oge:hasMaterial a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:Material ;
+    rdfs:label "has material"@en .
+
+oge:hasPattern a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:Pattern ;
+    rdfs:label "has pattern"@en .
+
+oge:hasFit a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:Fit ;
+    rdfs:label "has fit"@en .
+
+oge:hasFinish a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:MakeupProduct ;
+    rdfs:range oge:MakeupFinish ;
+    rdfs:label "has finish"@en .
+
+oge:hasApplicationStyle a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasAttribute ;
+    rdfs:domain oge:MakeupItem ;
+    rdfs:range oge:ApplicationStyle ;
+    rdfs:label "has application style"@en .
+
+oge:hasPart a owl:ObjectProperty ;
+    rdfs:domain oge:FashionItem ;
+    rdfs:range oge:GarmentPart ;
+    rdfs:label "has part"@en .
+
+oge:hasBrand a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:Brand ;
+    rdfs:label "has brand"@en .
+
+oge:hasPreference a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:Preference ;
+    rdfs:label "has preference"@en .
+
+oge:hasProfileAssertion a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:ProfileAssertion ;
+    rdfs:label "has profile assertion"@en .
+
+oge:assertedByProfile a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:UserProfile ;
+    rdfs:label "asserted by profile"@en .
+
+oge:assertionAbout a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "assertion about"@en .
+
+oge:assertionValue a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "assertion value"@en .
+
+oge:assertionEvidence a owl:ObjectProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "assertion evidence"@en .
+
+oge:preferenceAbout a owl:ObjectProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "preference about"@en .
+
+oge:preferenceValue a owl:ObjectProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "preference value"@en .
+
+oge:hasContext a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:Context ;
+    rdfs:label "has context"@en .
+
+oge:hasOccasion a owl:ObjectProperty ;
+    rdfs:subPropertyOf oge:hasContext ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:Occasion ;
+    rdfs:label "has occasion"@en .
+
+oge:hasBudgetConstraint a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:BudgetConstraint ;
+    rdfs:label "has budget constraint"@en .
+
+oge:hasFaceShape a owl:ObjectProperty ;
+    rdfs:domain oge:UserProfile ;
+    rdfs:range oge:FaceShape ;
+    rdfs:label "has face shape"@en ;
+    rdfs:comment "Optional and user-confirmed; no deterministic suitability rule is implied."@en .
+
+oge:compatibleWith a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "compatible with"@en ;
+    rdfs:comment "An explicitly supported compatibility assertion. Do not assume symmetry, transitivity, universality, or context independence."@en .
+
+oge:hasCompatibilityAssessment a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range oge:CompatibilityAssessment ;
+    rdfs:label "has compatibility assessment"@en .
+
+oge:assessesItemA a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "assesses item A"@en .
+
+oge:assessesItemB a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "assesses item B"@en .
+
+oge:assessmentContext a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:Context ;
+    rdfs:label "assessment context"@en .
+
+oge:assessmentEvidence a owl:ObjectProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "assessment evidence"@en .
+
+oge:hasResult a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:RecommendationResult ;
+    rdfs:label "has result"@en .
+
+oge:resultItem a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "result item"@en .
+
+oge:hasResultExplanation a owl:ObjectProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range oge:Explanation ;
+    rdfs:label "has result explanation"@en .
+
+
+oge:hasRequiredAttribute a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "has required attribute"@en ;
+    rdfs:comment "An attribute value or feature required by a recommendation request. A missing item assertion is treated as unknown, not incompatible."@en .
+
+oge:explanationPreference a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Preference ;
+    rdfs:label "explanation preference"@en .
+
+oge:explanationAttribute a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Attribute ;
+    rdfs:label "explanation attribute"@en .
+
+oge:explanationCompatibilityAssessment a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:CompatibilityAssessment ;
+    rdfs:label "explanation compatibility assessment"@en .
+
+oge:explanationScoringComponent a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:ScoringComponent ;
+    rdfs:label "explanation scoring component"@en .
+
+oge:forProfile a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:UserProfile ;
+    rdfs:label "for profile"@en .
+
+oge:forContext a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:Context ;
+    rdfs:label "for context"@en .
+
+oge:recommendsItem a owl:ObjectProperty ;
+    rdfs:domain oge:Recommendation ;
+    rdfs:range oge:RecommendationEntity ;
+    rdfs:label "recommends item"@en .
+
+oge:explains a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:RecommendationResult ;
+    rdfs:label "explains"@en .
+
+oge:supportedBy a owl:ObjectProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "supported by"@en .
+
+oge:derivedFrom a owl:ObjectProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range oge:Evidence ;
+    rdfs:label "derived from"@en .
+
+
+oge:hasFashionpediaCategory a owl:ObjectProperty ; rdfs:subPropertyOf oge:hasCategory ; rdfs:domain oge:RecommendationEntity ; rdfs:range oge:FashionCategory ; rdfs:label "has Fashionpedia-aligned category"@en .
+oge:hasFashionpediaAttribute a owl:ObjectProperty ; rdfs:subPropertyOf oge:hasAttribute ; rdfs:domain oge:RecommendationEntity ; rdfs:range oge:FashionpediaAttributeValue ; rdfs:label "has Fashionpedia-aligned attribute"@en .
+
+### Datatype properties
+oge:label a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "label"@en .
+
+oge:description a owl:DatatypeProperty ;
+    rdfs:domain owl:Thing ;
+    rdfs:range xsd:string ;
+    rdfs:label "description"@en .
+
+oge:priceAmount a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "price amount"@en .
+
+oge:currencyCode a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationEntity ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Use a three-letter currency code where known; keep currency separate from amount."@en .
+
+oge:maxBudgetAmount a owl:DatatypeProperty ;
+    rdfs:domain oge:BudgetConstraint ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "maximum budget amount"@en .
+
+oge:budgetCurrencyCode a owl:DatatypeProperty ;
+    rdfs:domain oge:BudgetConstraint ;
+    rdfs:range xsd:string ;
+    rdfs:label "budget currency code"@en .
+
+oge:preferencePolarity a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:string ;
+    rdfs:comment "Controlled values: positive, negative, neutral. Validate with application rules or SHACL."@en .
+
+oge:preferenceWeight a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "User-selected or learned weight; its scale and calibration must be documented."@en .
+
+oge:confidenceScore a owl:DatatypeProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range xsd:decimal ;
+    rdfs:comment "Method-specific confidence, not certainty. Define and record its scale."@en .
+
+oge:compatibilityScore a owl:DatatypeProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "compatibility score"@en ;
+    rdfs:comment "A method- and context-specific score, not an intrinsic truth about two items."@en .
+
+oge:sourceIdentifier a owl:DatatypeProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range xsd:string ;
+    rdfs:label "source identifier"@en .
+
+oge:sourceURL a owl:DatatypeProperty ;
+    rdfs:domain oge:Evidence ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "source URL"@en .
+
+oge:isUserConfirmed a owl:DatatypeProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is user confirmed"@en .
+
+oge:methodName a owl:DatatypeProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "method name"@en .
+
+oge:methodVersion a owl:DatatypeProperty ;
+    rdfs:domain oge:CompatibilityAssessment ;
+    rdfs:range xsd:string ;
+    rdfs:label "method version"@en .
+
+
+oge:resultScore a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "result score"@en ;
+    rdfs:comment "Overall ranking score produced by a documented ranking method."@en .
+
+oge:scoreValue a owl:DatatypeProperty ;
+    rdfs:domain oge:ScoringComponent ;
+    rdfs:range xsd:decimal ;
+    rdfs:label "scoring component value"@en .
+
+oge:componentName a owl:DatatypeProperty ;
+    rdfs:domain oge:ScoringComponent ;
+    rdfs:range xsd:string ;
+    rdfs:label "scoring component name"@en .
+
+oge:componentVersion a owl:DatatypeProperty ;
+    rdfs:domain oge:ScoringComponent ;
+    rdfs:range xsd:string ;
+    rdfs:label "scoring component version"@en .
+
+oge:preferenceDomain a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:string ;
+    rdfs:label "preference domain"@en ;
+    rdfs:comment "Controlled values: fashion, makeup, shared. The value identifies the recommendation domain the preference applies to."@en .
+
+oge:isHardConstraint a owl:DatatypeProperty ;
+    rdfs:domain oge:Preference ;
+    rdfs:range xsd:boolean ;
+    rdfs:label "is hard constraint"@en ;
+    rdfs:comment "True when a negative preference must exclude matching candidates; validate in application logic."@en .
+
+oge:assertionOrigin a owl:DatatypeProperty ;
+    rdfs:domain oge:ProfileAssertion ;
+    rdfs:range xsd:string ;
+    rdfs:label "assertion origin"@en ;
+    rdfs:comment "Controlled values should distinguish user-confirmed, model-inferred, and other declared sources."@en .
+
+oge:explanationStatus a owl:DatatypeProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range xsd:string ;
+    rdfs:label "explanation status"@en ;
+    rdfs:comment "Controlled values: supported, partially-supported, insufficient_evidence."@en .
+
+oge:explanationMessage a owl:DatatypeProperty ;
+    rdfs:domain oge:Explanation ;
+    rdfs:range xsd:string ;
+    rdfs:label "explanation message"@en .
+
+oge:rankPosition a owl:DatatypeProperty ;
+    rdfs:domain oge:RecommendationResult ;
+    rdfs:range xsd:positiveInteger ;
+    rdfs:label "rank position"@en .
+
+
+oge:sourceLocalID a owl:DatatypeProperty ; rdfs:domain owl:Thing ; rdfs:range xsd:integer ; rdfs:label "source local ID"@en .
+oge:sourceTaxonomyID a owl:DatatypeProperty ; rdfs:domain owl:Thing ; rdfs:range xsd:string ; rdfs:label "source taxonomy ID"@en .
+oge:sourceSupercategory a owl:DatatypeProperty ; rdfs:domain owl:Thing ; rdfs:range xsd:string ; rdfs:label "source supercategory"@en .
+oge:sourceTaxonomyLevel a owl:DatatypeProperty ; rdfs:domain owl:Thing ; rdfs:range xsd:integer ; rdfs:label "source taxonomy level"@en .
+oge:sourceDataset a owl:DatatypeProperty ; rdfs:domain owl:Thing ; rdfs:range xsd:anyURI ; rdfs:label "source dataset URL"@en .
+
+### Fashionpedia source-aligned individuals
+# Taxonomy terms only. No images, masks, or participant data are included.
+
+oge:fp-category-combo000000 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "shirt, blouse"@en ;
+    oge:sourceLocalID "0"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000000" ;
+    oge:sourceSupercategory "upperbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-combo000001 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "top, t-shirt, sweatshirt"@en ;
+    oge:sourceLocalID "1"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000001" ;
+    oge:sourceSupercategory "upperbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000008_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "sweater"@en ;
+    oge:sourceLocalID "2"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000008_00" ;
+    oge:sourceSupercategory "upperbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000009_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "cardigan"@en ;
+    oge:sourceLocalID "3"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000009_00" ;
+    oge:sourceSupercategory "upperbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000010_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "jacket"@en ;
+    oge:sourceLocalID "4"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000010_00" ;
+    oge:sourceSupercategory "upperbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000011_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "vest"@en ;
+    oge:sourceLocalID "5"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000011_00" ;
+    oge:sourceSupercategory "upperbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000013_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "pants"@en ;
+    oge:sourceLocalID "6"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000013_00" ;
+    oge:sourceSupercategory "lowerbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000014_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "shorts"@en ;
+    oge:sourceLocalID "7"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000014_00" ;
+    oge:sourceSupercategory "lowerbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000015_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "skirt"@en ;
+    oge:sourceLocalID "8"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000015_00" ;
+    oge:sourceSupercategory "lowerbody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000017_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "coat"@en ;
+    oge:sourceLocalID "9"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000017_00" ;
+    oge:sourceSupercategory "wholebody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000018_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "dress"@en ;
+    oge:sourceLocalID "10"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000018_00" ;
+    oge:sourceSupercategory "wholebody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000019_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "jumpsuit"@en ;
+    oge:sourceLocalID "11"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000019_00" ;
+    oge:sourceSupercategory "wholebody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000020_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "cape"@en ;
+    oge:sourceLocalID "12"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000020_00" ;
+    oge:sourceSupercategory "wholebody" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000023_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "glasses"@en ;
+    oge:sourceLocalID "13"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000023_00" ;
+    oge:sourceSupercategory "head" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000025_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "hat"@en ;
+    oge:sourceLocalID "14"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000025_00" ;
+    oge:sourceSupercategory "head" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-combo000002 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "headband, head covering, hair accessory"@en ;
+    oge:sourceLocalID "15"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000002" ;
+    oge:sourceSupercategory "head" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000030_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "tie"@en ;
+    oge:sourceLocalID "16"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000030_00" ;
+    oge:sourceSupercategory "neck" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000032_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "glove"@en ;
+    oge:sourceLocalID "17"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000032_00" ;
+    oge:sourceSupercategory "arms and hands" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000033_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "watch"@en ;
+    oge:sourceLocalID "18"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000033_00" ;
+    oge:sourceSupercategory "arms and hands" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000035_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "belt"@en ;
+    oge:sourceLocalID "19"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000035_00" ;
+    oge:sourceSupercategory "waist" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000037_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "leg warmer"@en ;
+    oge:sourceLocalID "20"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000037_00" ;
+    oge:sourceSupercategory "legs and feet" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-combo000003 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "tights, stockings"@en ;
+    oge:sourceLocalID "21"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000003" ;
+    oge:sourceSupercategory "legs and feet" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000040_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "sock"@en ;
+    oge:sourceLocalID "22"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000040_00" ;
+    oge:sourceSupercategory "legs and feet" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000041_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "shoe"@en ;
+    oge:sourceLocalID "23"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000041_00" ;
+    oge:sourceSupercategory "legs and feet" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-combo000004 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "bag, wallet"@en ;
+    oge:sourceLocalID "24"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000004" ;
+    oge:sourceSupercategory "others" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000045_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "scarf"@en ;
+    oge:sourceLocalID "25"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000045_00" ;
+    oge:sourceSupercategory "others" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000046_00 a owl:NamedIndividual, oge:MainApparelCategory ;
+    rdfs:label "umbrella"@en ;
+    oge:sourceLocalID "26"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000046_00" ;
+    oge:sourceSupercategory "others" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000049_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "hood"@en ;
+    oge:sourceLocalID "27"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000049_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000050_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "collar"@en ;
+    oge:sourceLocalID "28"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000050_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000051_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "lapel"@en ;
+    oge:sourceLocalID "29"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000051_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000052_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "epaulette"@en ;
+    oge:sourceLocalID "30"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000052_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000053_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "sleeve"@en ;
+    oge:sourceLocalID "31"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000053_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000055_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "pocket"@en ;
+    oge:sourceLocalID "32"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000055_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000056_00 a owl:NamedIndividual, oge:GarmentPartCategory ;
+    rdfs:label "neckline"@en ;
+    oge:sourceLocalID "33"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000056_00" ;
+    oge:sourceSupercategory "garment parts" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000058_00 a owl:NamedIndividual, oge:ClosureCategory ;
+    rdfs:label "buckle"@en ;
+    oge:sourceLocalID "34"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000058_00" ;
+    oge:sourceSupercategory "closures" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000059_00 a owl:NamedIndividual, oge:ClosureCategory ;
+    rdfs:label "zipper"@en ;
+    oge:sourceLocalID "35"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000059_00" ;
+    oge:sourceSupercategory "closures" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000061_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "applique"@en ;
+    oge:sourceLocalID "36"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000061_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000062_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "bead"@en ;
+    oge:sourceLocalID "37"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000062_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000063_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "bow"@en ;
+    oge:sourceLocalID "38"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000063_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000064_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "flower"@en ;
+    oge:sourceLocalID "39"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000064_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000065_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "fringe"@en ;
+    oge:sourceLocalID "40"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000065_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000066_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "ribbon"@en ;
+    oge:sourceLocalID "41"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000066_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000067_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "rivet"@en ;
+    oge:sourceLocalID "42"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000067_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000068_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "ruffle"@en ;
+    oge:sourceLocalID "43"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000068_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000069_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "sequin"@en ;
+    oge:sourceLocalID "44"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000069_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-category-obj000070_00 a owl:NamedIndividual, oge:DecorationCategory ;
+    rdfs:label "tassel"@en ;
+    oge:sourceLocalID "45"^^xsd:integer ;
+    oge:sourceTaxonomyID "obj000070_00" ;
+    oge:sourceSupercategory "decorations" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000002_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "classic (t-shirt)"@en ;
+    oge:sourceLocalID "0"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000002_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000003_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "polo (shirt)"@en ;
+    oge:sourceLocalID "1"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000003_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000004_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "undershirt"@en ;
+    oge:sourceLocalID "2"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000004_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000005_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "henley (shirt)"@en ;
+    oge:sourceLocalID "3"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000005_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000006_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "ringer (t-shirt)"@en ;
+    oge:sourceLocalID "4"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000006_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000007_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "raglan (t-shirt)"@en ;
+    oge:sourceLocalID "5"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000007_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000008_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "rugby (shirt)"@en ;
+    oge:sourceLocalID "6"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000008_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000009_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sailor (shirt)"@en ;
+    oge:sourceLocalID "7"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000009_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000010_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "crop (top)"@en ;
+    oge:sourceLocalID "8"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000010_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000011_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "halter (top)"@en ;
+    oge:sourceLocalID "9"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000011_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000012_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "camisole"@en ;
+    oge:sourceLocalID "10"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000012_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000013_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tank (top)"@en ;
+    oge:sourceLocalID "11"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000013_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000014_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "peasant (top)"@en ;
+    oge:sourceLocalID "12"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000014_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000015_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tube (top)"@en ;
+    oge:sourceLocalID "13"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000015_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000016_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tunic (top)"@en ;
+    oge:sourceLocalID "14"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000016_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000017_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "smock (top)"@en ;
+    oge:sourceLocalID "15"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000017_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000018_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "hoodie"@en ;
+    oge:sourceLocalID "16"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000018_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000019_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "blazer"@en ;
+    oge:sourceLocalID "17"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000019_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000020_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "pea (jacket)"@en ;
+    oge:sourceLocalID "18"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000020_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000021_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "puffer (jacket)"@en ;
+    oge:sourceLocalID "19"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000021_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000022_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "biker (jacket)"@en ;
+    oge:sourceLocalID "20"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000022_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000023_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "trucker (jacket)"@en ;
+    oge:sourceLocalID "21"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000023_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000024_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bomber (jacket)"@en ;
+    oge:sourceLocalID "22"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000024_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000025_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "anorak"@en ;
+    oge:sourceLocalID "23"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000025_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000026_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "safari (jacket)"@en ;
+    oge:sourceLocalID "24"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000026_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000027_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "mao (jacket)"@en ;
+    oge:sourceLocalID "25"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000027_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000028_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "nehru (jacket)"@en ;
+    oge:sourceLocalID "26"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000028_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000029_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "norfolk (jacket)"@en ;
+    oge:sourceLocalID "27"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000029_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000030_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "classic military (jacket)"@en ;
+    oge:sourceLocalID "28"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000030_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000031_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "track (jacket)"@en ;
+    oge:sourceLocalID "29"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000031_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000032_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "windbreaker"@en ;
+    oge:sourceLocalID "30"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000032_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000033_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "chanel (jacket)"@en ;
+    oge:sourceLocalID "31"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000033_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000034_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bolero"@en ;
+    oge:sourceLocalID "32"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000034_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000035_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tuxedo (jacket)"@en ;
+    oge:sourceLocalID "33"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000035_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000036_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "varsity (jacket)"@en ;
+    oge:sourceLocalID "34"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000036_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000037_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "crop (jacket)"@en ;
+    oge:sourceLocalID "35"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000037_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000038_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "jeans"@en ;
+    oge:sourceLocalID "36"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000038_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000039_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sweatpants"@en ;
+    oge:sourceLocalID "37"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000039_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000040_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "leggings"@en ;
+    oge:sourceLocalID "38"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000040_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000041_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "hip-huggers (pants)"@en ;
+    oge:sourceLocalID "39"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000041_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000042_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "cargo (pants)"@en ;
+    oge:sourceLocalID "40"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000042_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000043_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "culottes"@en ;
+    oge:sourceLocalID "41"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000043_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000044_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "capri (pants)"@en ;
+    oge:sourceLocalID "42"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000044_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000045_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "harem (pants)"@en ;
+    oge:sourceLocalID "43"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000045_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000046_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sailor (pants)"@en ;
+    oge:sourceLocalID "44"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000046_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000047_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "jodhpur"@en ;
+    oge:sourceLocalID "45"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000047_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000048_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "peg (pants)"@en ;
+    oge:sourceLocalID "46"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000048_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000049_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "camo (pants)"@en ;
+    oge:sourceLocalID "47"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000049_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000050_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "track (pants)"@en ;
+    oge:sourceLocalID "48"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000050_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000051_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "crop (pants)"@en ;
+    oge:sourceLocalID "49"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000051_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000052_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "short (shorts)"@en ;
+    oge:sourceLocalID "50"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000052_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000053_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "booty (shorts)"@en ;
+    oge:sourceLocalID "51"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000053_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000054_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bermuda (shorts)"@en ;
+    oge:sourceLocalID "52"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000054_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000055_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "cargo (shorts)"@en ;
+    oge:sourceLocalID "53"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000055_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000056_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "trunks"@en ;
+    oge:sourceLocalID "54"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000056_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000057_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "boardshorts"@en ;
+    oge:sourceLocalID "55"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000057_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000058_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "skort"@en ;
+    oge:sourceLocalID "56"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000058_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000059_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "roll-up (shorts)"@en ;
+    oge:sourceLocalID "57"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000059_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000060_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tie-up (shorts)"@en ;
+    oge:sourceLocalID "58"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000060_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000061_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "culotte (shorts)"@en ;
+    oge:sourceLocalID "59"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000061_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000062_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "lounge (shorts)"@en ;
+    oge:sourceLocalID "60"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000062_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000063_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bloomers"@en ;
+    oge:sourceLocalID "61"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000063_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000064_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tutu (skirt)"@en ;
+    oge:sourceLocalID "62"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000064_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000065_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "kilt"@en ;
+    oge:sourceLocalID "63"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000065_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000066_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "wrap (skirt)"@en ;
+    oge:sourceLocalID "64"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000066_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000067_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "skater (skirt)"@en ;
+    oge:sourceLocalID "65"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000067_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000068_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "cargo (skirt)"@en ;
+    oge:sourceLocalID "66"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000068_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000069_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "hobble (skirt)"@en ;
+    oge:sourceLocalID "67"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000069_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000070_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sheath (skirt)"@en ;
+    oge:sourceLocalID "68"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000070_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000071_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "ball gown (skirt)"@en ;
+    oge:sourceLocalID "69"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000071_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000072_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "gypsy (skirt)"@en ;
+    oge:sourceLocalID "70"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000072_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000073_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "rah-rah (skirt)"@en ;
+    oge:sourceLocalID "71"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000073_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000074_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "prairie (skirt)"@en ;
+    oge:sourceLocalID "72"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000074_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000075_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "flamenco (skirt)"@en ;
+    oge:sourceLocalID "73"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000075_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000076_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "accordion (skirt)"@en ;
+    oge:sourceLocalID "74"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000076_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000077_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sarong (skirt)"@en ;
+    oge:sourceLocalID "75"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000077_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000078_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tulip (skirt)"@en ;
+    oge:sourceLocalID "76"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000078_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000079_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "dirndl (skirt)"@en ;
+    oge:sourceLocalID "77"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000079_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000080_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "godet (skirt)"@en ;
+    oge:sourceLocalID "78"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000080_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000081_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "blanket (coat)"@en ;
+    oge:sourceLocalID "79"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000081_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000082_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "parka"@en ;
+    oge:sourceLocalID "80"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000082_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000083_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "trench (coat)"@en ;
+    oge:sourceLocalID "81"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000083_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000084_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "pea (coat)"@en ;
+    oge:sourceLocalID "82"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000084_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000085_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "shearling (coat)"@en ;
+    oge:sourceLocalID "83"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000085_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000086_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "teddy bear (coat)"@en ;
+    oge:sourceLocalID "84"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000086_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000087_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "puffer (coat)"@en ;
+    oge:sourceLocalID "85"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000087_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000088_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "duster (coat)"@en ;
+    oge:sourceLocalID "86"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000088_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000089_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "raincoat"@en ;
+    oge:sourceLocalID "87"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000089_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000090_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "kimono"@en ;
+    oge:sourceLocalID "88"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000090_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000091_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "robe"@en ;
+    oge:sourceLocalID "89"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000091_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000092_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "dress (coat )"@en ;
+    oge:sourceLocalID "90"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000092_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000093_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "duffle (coat)"@en ;
+    oge:sourceLocalID "91"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000093_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000094_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "wrap (coat)"@en ;
+    oge:sourceLocalID "92"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000094_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000095_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "military (coat)"@en ;
+    oge:sourceLocalID "93"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000095_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000096_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "swing (coat)"@en ;
+    oge:sourceLocalID "94"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000096_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000097_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "halter (dress)"@en ;
+    oge:sourceLocalID "95"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000097_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000098_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "wrap (dress)"@en ;
+    oge:sourceLocalID "96"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000098_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000099_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "chemise (dress)"@en ;
+    oge:sourceLocalID "97"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000099_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000100_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "slip (dress)"@en ;
+    oge:sourceLocalID "98"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000100_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000101_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "cheongsams"@en ;
+    oge:sourceLocalID "99"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000101_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000102_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "jumper (dress)"@en ;
+    oge:sourceLocalID "100"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000102_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000103_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "shift (dress)"@en ;
+    oge:sourceLocalID "101"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000103_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000104_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sheath (dress)"@en ;
+    oge:sourceLocalID "102"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000104_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000105_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "shirt (dress)"@en ;
+    oge:sourceLocalID "103"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000105_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000106_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sundress"@en ;
+    oge:sourceLocalID "104"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000106_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000107_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "kaftan"@en ;
+    oge:sourceLocalID "105"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000107_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000108_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bodycon (dress)"@en ;
+    oge:sourceLocalID "106"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000108_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000109_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "nightgown"@en ;
+    oge:sourceLocalID "107"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000109_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000110_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "gown"@en ;
+    oge:sourceLocalID "108"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000110_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000111_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sweater (dress)"@en ;
+    oge:sourceLocalID "109"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000111_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000112_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tea (dress)"@en ;
+    oge:sourceLocalID "110"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000112_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000113_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "blouson (dress)"@en ;
+    oge:sourceLocalID "111"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000113_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000114_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tunic (dress)"@en ;
+    oge:sourceLocalID "112"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000114_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000115_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "skater (dress)"@en ;
+    oge:sourceLocalID "113"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000115_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000117_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "asymmetrical"@en ;
+    oge:sourceLocalID "114"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000117_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000118_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "symmetrical"@en ;
+    oge:sourceLocalID "115"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000118_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000119_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "peplum"@en ;
+    oge:sourceLocalID "116"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000119_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000120_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "circle"@en ;
+    oge:sourceLocalID "117"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000120_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000121_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "flare"@en ;
+    oge:sourceLocalID "118"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000121_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000122_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "fit and flare"@en ;
+    oge:sourceLocalID "119"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000122_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000123_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "trumpet"@en ;
+    oge:sourceLocalID "120"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000123_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000124_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "mermaid"@en ;
+    oge:sourceLocalID "121"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000124_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000125_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "balloon"@en ;
+    oge:sourceLocalID "122"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000125_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000126_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "bell"@en ;
+    oge:sourceLocalID "123"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000126_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000127_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "bell bottom"@en ;
+    oge:sourceLocalID "124"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000127_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000128_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "bootcut"@en ;
+    oge:sourceLocalID "125"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000128_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000129_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "peg"@en ;
+    oge:sourceLocalID "126"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000129_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000130_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "pencil"@en ;
+    oge:sourceLocalID "127"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000130_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000131_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "straight"@en ;
+    oge:sourceLocalID "128"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000131_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000132_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "a-line"@en ;
+    oge:sourceLocalID "129"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000132_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000133_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "tent"@en ;
+    oge:sourceLocalID "130"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000133_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000134_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "baggy"@en ;
+    oge:sourceLocalID "131"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000134_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000135_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "wide leg"@en ;
+    oge:sourceLocalID "132"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000135_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000136_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "high low"@en ;
+    oge:sourceLocalID "133"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000136_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000137_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "curved (fit)"@en ;
+    oge:sourceLocalID "134"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000137_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000138_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "tight (fit)"@en ;
+    oge:sourceLocalID "135"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000138_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000139_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "regular (fit)"@en ;
+    oge:sourceLocalID "136"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000139_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000140_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "loose (fit)"@en ;
+    oge:sourceLocalID "137"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000140_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000141_00 a owl:NamedIndividual, oge:GarmentSilhouetteAttribute ;
+    rdfs:label "oversized"@en ;
+    oge:sourceLocalID "138"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000141_00" ;
+    oge:sourceSupercategory "silhouette" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000143_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "empire waistline"@en ;
+    oge:sourceLocalID "139"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000143_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000144_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "dropped waistline"@en ;
+    oge:sourceLocalID "140"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000144_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000145_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "high waist"@en ;
+    oge:sourceLocalID "141"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000145_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000146_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "normal waist"@en ;
+    oge:sourceLocalID "142"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000146_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000147_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "low waist"@en ;
+    oge:sourceLocalID "143"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000147_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000148_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "basque (wasitline)"@en ;
+    oge:sourceLocalID "144"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000148_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000149_00 a owl:NamedIndividual, oge:WaistlineAttribute ;
+    rdfs:label "no waistline"@en ;
+    oge:sourceLocalID "145"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000149_00" ;
+    oge:sourceSupercategory "waistline" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000151_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "above-the-hip (length)"@en ;
+    oge:sourceLocalID "146"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000151_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000152_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "hip (length)"@en ;
+    oge:sourceLocalID "147"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000152_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000153_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "micro (length)"@en ;
+    oge:sourceLocalID "148"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000153_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000154_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "mini (length)"@en ;
+    oge:sourceLocalID "149"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000154_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000155_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "above-the-knee (length)"@en ;
+    oge:sourceLocalID "150"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000155_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000156_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "knee (length)"@en ;
+    oge:sourceLocalID "151"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000156_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000157_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "below the knee (length)"@en ;
+    oge:sourceLocalID "152"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000157_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000158_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "midi"@en ;
+    oge:sourceLocalID "153"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000158_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000159_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "maxi (length)"@en ;
+    oge:sourceLocalID "154"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000159_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000160_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "floor (length)"@en ;
+    oge:sourceLocalID "155"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000160_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000161_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "sleeveless"@en ;
+    oge:sourceLocalID "156"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000161_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000162_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "short (length)"@en ;
+    oge:sourceLocalID "157"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000162_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000163_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "elbow-length"@en ;
+    oge:sourceLocalID "158"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000163_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000164_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "three quarter (length)"@en ;
+    oge:sourceLocalID "159"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000164_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000165_00 a owl:NamedIndividual, oge:GarmentLengthAttribute ;
+    rdfs:label "wrist-length"@en ;
+    oge:sourceLocalID "160"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000165_00" ;
+    oge:sourceSupercategory "length" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000166_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "asymmetric (collar)"@en ;
+    oge:sourceLocalID "161"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000166_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000167_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "regular (collar)"@en ;
+    oge:sourceLocalID "162"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000167_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000168_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "shirt (collar)"@en ;
+    oge:sourceLocalID "163"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000168_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000169_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "polo (collar)"@en ;
+    oge:sourceLocalID "164"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000169_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000170_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "chelsea (collar)"@en ;
+    oge:sourceLocalID "165"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000170_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000171_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "banded (collar)"@en ;
+    oge:sourceLocalID "166"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000171_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000172_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "mandarin (collar)"@en ;
+    oge:sourceLocalID "167"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000172_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000173_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "peter pan (collar)"@en ;
+    oge:sourceLocalID "168"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000173_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000174_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bow (collar)"@en ;
+    oge:sourceLocalID "169"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000174_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000175_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "stand-away (collar)"@en ;
+    oge:sourceLocalID "170"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000175_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000176_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "jabot (collar)"@en ;
+    oge:sourceLocalID "171"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000176_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000177_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "sailor (collar)"@en ;
+    oge:sourceLocalID "172"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000177_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000178_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "oversized (collar)"@en ;
+    oge:sourceLocalID "173"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000178_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000179_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "notched (lapel)"@en ;
+    oge:sourceLocalID "174"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000179_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000180_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "peak (lapel)"@en ;
+    oge:sourceLocalID "175"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000180_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000181_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "shawl (lapel)"@en ;
+    oge:sourceLocalID "176"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000181_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000182_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "napoleon (lapel)"@en ;
+    oge:sourceLocalID "177"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000182_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000183_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "oversized (lapel)"@en ;
+    oge:sourceLocalID "178"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000183_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000185_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "collarless"@en ;
+    oge:sourceLocalID "179"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000185_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000186_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "asymmetric (neckline)"@en ;
+    oge:sourceLocalID "180"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000186_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000187_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "crew (neck)"@en ;
+    oge:sourceLocalID "181"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000187_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000188_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "round (neck)"@en ;
+    oge:sourceLocalID "182"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000188_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000189_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "v-neck"@en ;
+    oge:sourceLocalID "183"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000189_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000190_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "surplice (neck)"@en ;
+    oge:sourceLocalID "184"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000190_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000191_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "oval (neck)"@en ;
+    oge:sourceLocalID "185"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000191_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000192_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "u-neck"@en ;
+    oge:sourceLocalID "186"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000192_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000193_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "sweetheart (neckline)"@en ;
+    oge:sourceLocalID "187"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000193_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000194_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "queen anne (neck)"@en ;
+    oge:sourceLocalID "188"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000194_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000195_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "boat (neck)"@en ;
+    oge:sourceLocalID "189"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000195_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000196_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "scoop (neck)"@en ;
+    oge:sourceLocalID "190"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000196_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000197_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "square (neckline)"@en ;
+    oge:sourceLocalID "191"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000197_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000198_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "plunging (neckline)"@en ;
+    oge:sourceLocalID "192"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000198_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000199_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "keyhole (neck)"@en ;
+    oge:sourceLocalID "193"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000199_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000200_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "halter (neck)"@en ;
+    oge:sourceLocalID "194"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000200_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000201_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "crossover (neck)"@en ;
+    oge:sourceLocalID "195"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000201_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000202_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "choker (neck)"@en ;
+    oge:sourceLocalID "196"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000202_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000203_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "high (neck)"@en ;
+    oge:sourceLocalID "197"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000203_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000204_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "turtle (neck)"@en ;
+    oge:sourceLocalID "198"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000204_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000205_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "cowl (neck)"@en ;
+    oge:sourceLocalID "199"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000205_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000206_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "straight across (neck)"@en ;
+    oge:sourceLocalID "200"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000206_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000207_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "illusion (neck)"@en ;
+    oge:sourceLocalID "201"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000207_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000208_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "off-the-shoulder"@en ;
+    oge:sourceLocalID "202"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000208_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000209_00 a owl:NamedIndividual, oge:NecklineTypeAttribute ;
+    rdfs:label "one shoulder"@en ;
+    oge:sourceLocalID "203"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000209_00" ;
+    oge:sourceSupercategory "neckline type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000210_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "set-in sleeve"@en ;
+    oge:sourceLocalID "204"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000210_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000211_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "dropped-shoulder sleeve"@en ;
+    oge:sourceLocalID "205"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000211_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000212_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "raglan (sleeve)"@en ;
+    oge:sourceLocalID "206"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000212_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000213_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "cap (sleeve)"@en ;
+    oge:sourceLocalID "207"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000213_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000214_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "tulip (sleeve)"@en ;
+    oge:sourceLocalID "208"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000214_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000215_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "puff (sleeve)"@en ;
+    oge:sourceLocalID "209"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000215_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000216_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bell (sleeve)"@en ;
+    oge:sourceLocalID "210"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000216_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000217_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "circular flounce (sleeve)"@en ;
+    oge:sourceLocalID "211"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000217_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000218_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "poet (sleeve)"@en ;
+    oge:sourceLocalID "212"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000218_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-combo000005 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "dolman (sleeve), batwing (sleeve)"@en ;
+    oge:sourceLocalID "213"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000005" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000221_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "bishop (sleeve)"@en ;
+    oge:sourceLocalID "214"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000221_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000222_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "leg of mutton (sleeve)"@en ;
+    oge:sourceLocalID "215"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000222_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000223_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "kimono (sleeve)"@en ;
+    oge:sourceLocalID "216"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000223_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000224_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "cargo (pocket)"@en ;
+    oge:sourceLocalID "217"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000224_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000225_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "patch (pocket)"@en ;
+    oge:sourceLocalID "218"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000225_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000226_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "welt (pocket)"@en ;
+    oge:sourceLocalID "219"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000226_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000227_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "kangaroo (pocket)"@en ;
+    oge:sourceLocalID "220"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000227_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000228_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "seam (pocket)"@en ;
+    oge:sourceLocalID "221"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000228_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000229_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "slash (pocket)"@en ;
+    oge:sourceLocalID "222"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000229_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000230_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "curved (pocket)"@en ;
+    oge:sourceLocalID "223"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000230_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000231_00 a owl:NamedIndividual, oge:GarmentNicknameAttribute ;
+    rdfs:label "flap (pocket)"@en ;
+    oge:sourceLocalID "224"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000231_00" ;
+    oge:sourceSupercategory "nickname" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000233_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "single breasted"@en ;
+    oge:sourceLocalID "225"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000233_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000234_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "double breasted"@en ;
+    oge:sourceLocalID "226"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000234_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000235_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "lace up"@en ;
+    oge:sourceLocalID "227"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000235_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000236_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "wrapping"@en ;
+    oge:sourceLocalID "228"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000236_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000237_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "zip-up"@en ;
+    oge:sourceLocalID "229"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000237_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000238_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "fly (opening)"@en ;
+    oge:sourceLocalID "230"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000238_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000239_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "chained (opening)"@en ;
+    oge:sourceLocalID "231"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000239_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000240_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "buckled (opening)"@en ;
+    oge:sourceLocalID "232"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000240_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000241_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "toggled (opening)"@en ;
+    oge:sourceLocalID "233"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000241_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000242_00 a owl:NamedIndividual, oge:OpeningTypeAttribute ;
+    rdfs:label "no opening"@en ;
+    oge:sourceLocalID "234"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000242_00" ;
+    oge:sourceSupercategory "opening type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000298_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "plastic"@en ;
+    oge:sourceLocalID "281"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000298_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000299_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "rubber"@en ;
+    oge:sourceLocalID "282"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000299_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000300_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "metal"@en ;
+    oge:sourceLocalID "283"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000300_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000302_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "feather"@en ;
+    oge:sourceLocalID "285"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000302_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000303_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "gem"@en ;
+    oge:sourceLocalID "286"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000303_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000304_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "bone"@en ;
+    oge:sourceLocalID "287"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000304_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000305_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "ivory"@en ;
+    oge:sourceLocalID "288"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000305_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000306_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "fur"@en ;
+    oge:sourceLocalID "289"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000306_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000308_00 a owl:NamedIndividual, oge:LeatherAttribute ;
+    rdfs:label "suede"@en ;
+    oge:sourceLocalID "290"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000308_00" ;
+    oge:sourceSupercategory "leather" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000309_00 a owl:NamedIndividual, oge:LeatherAttribute ;
+    rdfs:label "shearling"@en ;
+    oge:sourceLocalID "291"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000309_00" ;
+    oge:sourceSupercategory "leather" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000310_00 a owl:NamedIndividual, oge:LeatherAttribute ;
+    rdfs:label "crocodile"@en ;
+    oge:sourceLocalID "292"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000310_00" ;
+    oge:sourceSupercategory "leather" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000311_00 a owl:NamedIndividual, oge:LeatherAttribute ;
+    rdfs:label "snakeskin"@en ;
+    oge:sourceLocalID "293"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000311_00" ;
+    oge:sourceSupercategory "leather" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000312_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "wood"@en ;
+    oge:sourceLocalID "294"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000312_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000313_00 a owl:NamedIndividual, oge:NonTextileMaterialTypeAttribute ;
+    rdfs:label "no non-textile material"@en ;
+    oge:sourceLocalID "295"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000313_00" ;
+    oge:sourceSupercategory "non-textile material type" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000316_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "burnout"@en ;
+    oge:sourceLocalID "296"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000316_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000317_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "distressed"@en ;
+    oge:sourceLocalID "297"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000317_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000318_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "washed"@en ;
+    oge:sourceLocalID "298"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000318_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000319_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "embossed"@en ;
+    oge:sourceLocalID "299"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000319_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000320_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "frayed"@en ;
+    oge:sourceLocalID "300"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000320_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000321_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "printed"@en ;
+    oge:sourceLocalID "301"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000321_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000322_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "ruched"@en ;
+    oge:sourceLocalID "302"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000322_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000323_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "quilted"@en ;
+    oge:sourceLocalID "303"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000323_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000324_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "pleat"@en ;
+    oge:sourceLocalID "304"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000324_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000325_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "gathering"@en ;
+    oge:sourceLocalID "305"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000325_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000326_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "smocking"@en ;
+    oge:sourceLocalID "306"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000326_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000327_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "tiered"@en ;
+    oge:sourceLocalID "307"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000327_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000328_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "cutout"@en ;
+    oge:sourceLocalID "308"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000328_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000329_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "slit"@en ;
+    oge:sourceLocalID "309"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000329_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000330_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "perforated"@en ;
+    oge:sourceLocalID "310"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000330_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000331_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "lining"@en ;
+    oge:sourceLocalID "311"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000331_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000332_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "applique(a)"@en ;
+    oge:sourceLocalID "312"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000332_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000333_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "bead(a)"@en ;
+    oge:sourceLocalID "313"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000333_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000334_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "rivet(a)"@en ;
+    oge:sourceLocalID "314"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000334_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000335_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "sequin(a)"@en ;
+    oge:sourceLocalID "315"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000335_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000336_00 a owl:NamedIndividual, oge:TextileFinishingTechniqueAttribute ;
+    rdfs:label "no special manufacturing technique"@en ;
+    oge:sourceLocalID "316"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000336_00" ;
+    oge:sourceSupercategory "textile finishing, manufacturing techniques" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000338_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "plain (pattern)"@en ;
+    oge:sourceLocalID "317"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000338_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000339_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "abstract"@en ;
+    oge:sourceLocalID "318"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000339_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000340_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "cartoon"@en ;
+    oge:sourceLocalID "319"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000340_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-combo000009 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "letters, numbers"@en ;
+    oge:sourceLocalID "320"^^xsd:integer ;
+    oge:sourceTaxonomyID "combo000009" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000343_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "camouflage"@en ;
+    oge:sourceLocalID "321"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000343_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000344_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "check"@en ;
+    oge:sourceLocalID "322"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000344_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000345_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "dot"@en ;
+    oge:sourceLocalID "323"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000345_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000346_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "fair isle"@en ;
+    oge:sourceLocalID "324"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000346_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000347_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "floral"@en ;
+    oge:sourceLocalID "325"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000347_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000348_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "geometric"@en ;
+    oge:sourceLocalID "326"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000348_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000349_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "paisley"@en ;
+    oge:sourceLocalID "327"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000349_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000350_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "stripe"@en ;
+    oge:sourceLocalID "328"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000350_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000351_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "houndstooth (pattern)"@en ;
+    oge:sourceLocalID "329"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000351_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000352_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "herringbone (pattern)"@en ;
+    oge:sourceLocalID "330"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000352_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000353_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "chevron"@en ;
+    oge:sourceLocalID "331"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000353_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000354_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "argyle"@en ;
+    oge:sourceLocalID "332"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000354_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000356_00 a owl:NamedIndividual, oge:AnimalPatternAttribute ;
+    rdfs:label "leopard"@en ;
+    oge:sourceLocalID "333"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000356_00" ;
+    oge:sourceSupercategory "animal" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000357_00 a owl:NamedIndividual, oge:AnimalPatternAttribute ;
+    rdfs:label "snakeskin (pattern)"@en ;
+    oge:sourceLocalID "334"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000357_00" ;
+    oge:sourceSupercategory "animal" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000358_00 a owl:NamedIndividual, oge:AnimalPatternAttribute ;
+    rdfs:label "cheetah"@en ;
+    oge:sourceLocalID "335"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000358_00" ;
+    oge:sourceSupercategory "animal" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000359_00 a owl:NamedIndividual, oge:AnimalPatternAttribute ;
+    rdfs:label "peacock"@en ;
+    oge:sourceLocalID "336"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000359_00" ;
+    oge:sourceSupercategory "animal" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000360_00 a owl:NamedIndividual, oge:AnimalPatternAttribute ;
+    rdfs:label "zebra"@en ;
+    oge:sourceLocalID "337"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000360_00" ;
+    oge:sourceSupercategory "animal" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000361_00 a owl:NamedIndividual, oge:AnimalPatternAttribute ;
+    rdfs:label "giraffe"@en ;
+    oge:sourceLocalID "338"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000361_00" ;
+    oge:sourceSupercategory "animal" ;
+    oge:sourceTaxonomyLevel "2"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000362_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "toile de jouy"@en ;
+    oge:sourceLocalID "339"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000362_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+oge:fp-attribute-att000363_00 a owl:NamedIndividual, oge:TextilePatternAttribute ;
+    rdfs:label "plant"@en ;
+    oge:sourceLocalID "340"^^xsd:integer ;
+    oge:sourceTaxonomyID "att000363_00" ;
+    oge:sourceSupercategory "textile pattern" ;
+    oge:sourceTaxonomyLevel "1"^^xsd:integer ;
+    oge:sourceDataset "https://github.com/KMnP/fashionpedia-api/blob/master/data/demo/category_attributes_descriptions.json"^^xsd:anyURI .
+
+### Modelling notes
+oge:FashionItem rdfs:comment "Fashion vocabulary should be aligned to Fashionpedia and relevant prior OWL fashion work before adding detailed category hierarchies."@en .
+oge:MakeupItem rdfs:comment "Makeup categories should be derived from validated terminology and source fields; dataset tags must not be treated as authoritative ontology classes without review."@en .

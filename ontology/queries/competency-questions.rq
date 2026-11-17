@@ -1,0 +1,135 @@
+# Competency query templates for OGE-Fashion.
+# Each query is evaluated against the ontology plus a synthetic test fixture.
+# These tests verify query behaviour only, not recommendation quality.
+
+# BEGIN CQ01_FASHION_PREFERENCES
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?preference ?value WHERE {
+  oge:profileA oge:hasPreference ?preference .
+  ?preference oge:preferenceDomain "fashion" ;
+              oge:preferencePolarity "positive" ;
+              oge:preferenceValue ?value .
+}
+ORDER BY ?preference
+# END CQ01_FASHION_PREFERENCES
+
+# BEGIN CQ02_MAKEUP_PREFERENCES
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?preference ?value WHERE {
+  oge:profileA oge:hasPreference ?preference .
+  ?preference oge:preferenceDomain "makeup" ;
+              oge:preferencePolarity "positive" ;
+              oge:preferenceValue ?value .
+}
+ORDER BY ?preference
+# END CQ02_MAKEUP_PREFERENCES
+
+# BEGIN CQ03_HARD_EXCLUSIONS
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?item WHERE {
+  ?item a oge:RecommendationEntity ;
+        oge:hasColour ?excludedColour .
+  oge:profileA oge:hasPreference ?preference .
+  ?preference oge:preferencePolarity "negative" ;
+              oge:isHardConstraint true ;
+              oge:preferenceValue ?excludedColour .
+}
+ORDER BY ?item
+# END CQ03_HARD_EXCLUSIONS
+
+# BEGIN CQ04_BUDGET_AND_OCCASION
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?occasion ?amount ?currency WHERE {
+  oge:profileA oge:hasContext ?occasion ;
+               oge:hasBudgetConstraint ?budget .
+  ?budget oge:maxBudgetAmount ?amount ;
+          oge:budgetCurrencyCode ?currency .
+}
+# END CQ04_BUDGET_AND_OCCASION
+
+# BEGIN CQ05_PROFILE_ASSERTION_ORIGIN
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?assertion ?origin ?confirmed WHERE {
+  oge:profileA oge:hasProfileAssertion ?assertion .
+  ?assertion oge:assertionOrigin ?origin ;
+             oge:isUserConfirmed ?confirmed .
+}
+ORDER BY ?origin
+# END CQ05_PROFILE_ASSERTION_ORIGIN
+
+# BEGIN CQ06_FASHION_CATEGORY
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?item WHERE {
+  ?item a oge:Garment ;
+        oge:hasFashionpediaCategory oge:fp-category-combo000000 .
+}
+# END CQ06_FASHION_CATEGORY
+
+# BEGIN CQ07_MAKEUP_ATTRIBUTES
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?item ?colour ?finish ?style WHERE {
+  ?item a oge:LipMakeup ;
+        oge:hasColour ?colour ;
+        oge:hasFinish ?finish ;
+        oge:hasStyle ?style .
+}
+# END CQ07_MAKEUP_ATTRIBUTES
+
+# BEGIN CQ08_MISSING_REQUIRED_ATTRIBUTE
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?candidate WHERE {
+  oge:officeRecommendation oge:hasRequiredAttribute oge:CottonMaterial .
+  ?candidate a oge:Garment .
+  FILTER NOT EXISTS { ?candidate oge:hasMaterial oge:CottonMaterial . }
+}
+ORDER BY ?candidate
+# END CQ08_MISSING_REQUIRED_ATTRIBUTE
+
+# BEGIN CQ09_COMPATIBILITY_WITH_EVIDENCE
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?assessment ?itemA ?itemB ?evidence WHERE {
+  ?itemA oge:hasCompatibilityAssessment ?assessment .
+  ?assessment oge:assessesItemA ?itemA ;
+              oge:assessesItemB ?itemB ;
+              oge:assessmentEvidence ?evidence ;
+              oge:assessmentContext oge:officeOccasion .
+}
+# END CQ09_COMPATIBILITY_WITH_EVIDENCE
+
+# BEGIN CQ10_EXPLANATION_TRACEABILITY
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?item ?preference ?attribute ?assessment ?evidence ?component WHERE {
+  oge:officeRecommendation oge:hasResult ?result .
+  ?result oge:resultItem ?item ;
+          oge:hasResultExplanation ?explanation .
+  ?explanation oge:explains ?result ;
+               oge:explanationPreference ?preference ;
+               oge:explanationAttribute ?attribute ;
+               oge:explanationCompatibilityAssessment ?assessment ;
+               oge:supportedBy ?evidence ;
+               oge:explanationScoringComponent ?component .
+  ?assessment oge:assessesItemA ?item .
+}
+ORDER BY ?component ?attribute
+# END CQ10_EXPLANATION_TRACEABILITY
+
+# BEGIN CQ11_LEARNED_MODEL_COMPONENT
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?component ?name ?score WHERE {
+  oge:shirtExplanation oge:explanationScoringComponent ?component .
+  ?component a oge:LearnedModelComponent ;
+             oge:componentName ?name ;
+             oge:scoreValue ?score .
+}
+# END CQ11_LEARNED_MODEL_COMPONENT
+
+# BEGIN CQ12_INSUFFICIENT_EVIDENCE
+PREFIX oge: <https://w3id.org/oge-fashion/ontology#>
+SELECT ?explanation ?result ?assessment WHERE {
+  ?explanation a oge:Explanation ;
+               oge:explanationStatus "insufficient_evidence" ;
+               oge:explains ?result ;
+               oge:explanationCompatibilityAssessment ?assessment .
+  FILTER NOT EXISTS { ?assessment oge:assessmentEvidence ?evidence . }
+}
+# END CQ12_INSUFFICIENT_EVIDENCE
