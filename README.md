@@ -1,68 +1,127 @@
 # OGE-Fashion
+
 **An Ontology-Guided Explainable Recommendation Framework for Personalised Fashion and Beauty Recommendations**
 
-OGE-Fashion investigates how a shared fashion-and-beauty ontology can be combined with machine-learning recommendation methods to generate personalised recommendations with traceable explanations.
+OGE-Fashion investigates whether a provenance-aware semantic model can improve recommendation constraint satisfaction and make recommendation explanations more traceable across fashion and beauty domains.
 
-> **Research status:** proposal and design stage. No performance results, user-study findings, or validated recommendation claims are reported.
+> **Evidence status:** the ontology and validation suite are implemented; a deterministic synthetic benchmark is included. The benchmark is a software-method demonstration only, not evidence of real-user preference or population-level recommendation quality.
 
-## Scope
-- **Fashion:** garments, outfits, categories, colours, patterns, materials, fit, and style.
-- **Makeup:** face, eye, and lip makeup categories; colours; finishes; application styles; product attributes.
-- **Shared concepts:** user preferences, constraints, budgets, occasions, styles, colours, and compatibility relationships.
+## Research question and problem statement
 
-Facial-image analysis is optional future work, not a dependency for the first experiments. Explicit user-entered or user-confirmed attributes are preferred.
+**Research question:** Does a provenance-aware OWL ontology with SHACL data constraints and SPARQL-executable competency rules improve hard-constraint satisfaction and explanation-trace coverage compared with a non-ontology colour/attribute-matching baseline, when both conditions use the same profiles, catalogue and held-out test split?
 
-## Research positioning
-Prior work already includes OWL-based personalised fashion recommendation, explainable fashion compatibility, makeup recommendation, cosmetic-product recommenders dating back to 2004, and separate systems for occasion-based clothing and facial makeup advice. OGE-Fashion therefore does not claim to invent ontology-guided fashion or makeup recommendation. Its tentative direction is to evaluate alignment of existing fashion vocabularies with makeup concepts and shared user/context preferences, then test evidence-grounded explanations. See the [literature evidence matrix](research/literature/evidence-matrix.md); novelty is not yet established.
+Recommendation systems can rank attribute-similar items while violating explicit occasion, dress-code or style constraints. OGE-Fashion models preferences, context, item attributes, compatibility assessments, recommendation results, explanations and evidence separately so that constraints and explanation provenance can be inspected.
 
-## Research questions
-1. How can a shared ontology represent fashion, makeup, user preferences, attributes, and compatibility relationships in a machine-readable way?
-2. Does combining ontology-based reasoning with a recommendation model improve recommendation relevance compared with suitable non-ontology baselines?
-3. Do ontology-grounded explanations help users understand why an item or combination was recommended?
-4. How do explicit user constraints and preferences affect relevance, diversity, and recommendation coverage across fashion and makeup?
+The current benchmark operationalises a narrow subset of these ideas. It does not establish generalisation to real users.
 
-These are research questions, not established findings. See [research protocol](research/research-protocol.md).
+## Provenance and project timeline
 
-## Planned comparison
-1. Content-based recommendation baseline.
-2. Ontology-only semantic matching.
-3. Machine-learning recommendation without ontology reasoning.
-4. Hybrid ranking combining learned signals and ontology-based compatibility.
+| Period | Work | Provenance boundary |
+|---|---|---|
+| **November 2023 – May 2024** | Historical BS Software Engineering Final Year Project (7th and 8th semesters), University of Sargodha. The original project explored ontology-supported clothing and makeup recommendations, including face-shape-related concepts. | Historical academic project. Exact original implementation details and outcomes require the original report, source artefacts or supervisor records. |
+| **2026 research extension** | OGE-Fashion framework: OWL/Turtle model, Fashionpedia source-aligned taxonomy mapping, SHACL shapes, SPARQL competency queries, HermiT consistency checks, dataset due diligence and a reproducible synthetic recommender benchmark. | Later research and implementation. These activities are not backdated to the BS capstone period. |
 
-Candidate ranking metrics include Precision@K, Recall@K, NDCG@K, and MAP@K. Coverage and diversity will also be measured. Explanation usefulness requires separate human evaluation. Data rights, split strategy, and ethics requirements must be addressed before experiments.
+See [historical FYP provenance](research/fyp-timeline.md).
 
-## Repository structure
-- `research/literature/`: preliminary literature evidence matrix and review-search method.
-- `research/makeup-data-review.md`: makeup dataset candidates, rights, limitations, and initial data plan.
-- `research/data-profiling.md`: source-level profile results and data-quality observations.
-- `research/`: protocol, questions, dataset register, data profiling, and a historical FYP timeline that separates the 2023–2024 degree project from the later research extension.
-- `ontology/`: ontology specification, competency questions, preliminary vocabulary alignment, Fashionpedia source mappings (46 categories and 294 attributes), SHACL data shapes, SPARQL query templates, and the OWL 2/Turtle structural draft.
-- `docs/`: roadmap, cloud-first workflow, and foundation shade baseline.
-- `oge_fashion/`: colour conversion, pinned shade-source loader, and ranking CLI.
-- `tests/`: standard-library unit tests and synthetic RDF/SPARQL/SHACL fixture data.
-- `scripts/`: metadata-only external catalogue profiling tools, RDF/source-integrity validation, OWL reasoner validation, SHACL validation/tests, and the dedicated SPARQL competency-query test runner.
+## Architecture
 
-## Cloud-first development
-Use GitHub as the source of truth and a browser-based environment such as GitHub Codespaces or a hosted notebook for implementation. Do not download large datasets to the laptop. Keep raw/restricted assets and model checkpoints outside Git; commit only permitted code, documentation, manifests, and small synthetic fixtures. Check cloud quotas and billing before starting compute.
+- **Domain model:** OWL/Turtle classes and properties for fashion/makeup items, attributes, profiles, preferences, contexts, compatibility assessments, recommendations, explanations and evidence.
+- **Source alignment:** Fashionpedia category and attribute records preserve source identifiers, labels, taxonomy levels and provenance. Lexical similarity is not asserted as semantic equivalence; unsupported owl:sameAs and owl:equivalentClass mappings are avoided.
+- **Data constraints:** SHACL shapes validate synthetic profile, preference, budget, compatibility, recommendation, explanation and provenance records.
+- **Query layer:** SPARQL competency questions test retrieval over the ontology and a synthetic fixture.
+- **Reasoning:** HermiT is used for ontology consistency checks.
+- **Benchmark:** a non-ontology baseline and an ontology-guided SPARQL-filtered condition are compared on the same deterministic synthetic test profiles.
 
-## Integrity, licensing, and responsible use
-- Confirm dataset and asset rights before downloading, redistributing, or using assets in a deployed product.
-- Do not infer sensitive traits or make attractiveness judgements.
-- Do not collect face images by default. Any future face-image feature must be optional, consent-based, minimised, and user-correctable.
-- Follow applicable institutional ethics review and consent requirements before human-participant recruitment.
-- Tune on training/validation data only; preserve an untouched test set.
-- Report negative and null results, limitations, and methodology.
+## Verified implementation status
 
-## Initial implementation
-The first foundation-shade attribute baseline is implemented under `oge_fashion/`, with unit tests in `tests/` and a GitHub Actions workflow. It fetches a pinned shade CSV at runtime, converts sRGB HEX values to CIELAB, and ranks swatches using CIEDE2000. See [foundation shade baseline](docs/foundation-shade-baseline.md) and [data profiling](research/data-profiling.md). The metadata-only Open Beauty Facts profiler is in scripts/profile_open_beauty_facts.py, with a rate-limited GitHub Actions workflow. Its first profile returned 968 API matches for the makeup tag; the first 100 records had 84% ingredient-text coverage and 0% allergen-tag coverage. The profile is suitable only for metadata prototyping, not allergen or safety decisions. The hosted CI run passed 15 unit tests and the sample ranking.
+The merged ontology branch's latest successful CI runs reported:
 
-The baseline compares displayed product swatches only. It does not predict skin tone, foundation suitability, or personal preference.
+| Check | Result | What it verifies |
+|---|---:|---|
+| RDF/Turtle structural validation | 3,237 triples parsed | Ontology parses and expected Fashionpedia records/provenance are present |
+| HermiT reasoning | Consistent; 59 OWL classes loaded | No inconsistency or named class equivalent to owl:Nothing was reported |
+| SPARQL competency queries | 12/12 passed | Query behaviour on the committed synthetic fixture |
+| SHACL validation | 4/4 positive/negative tests passed | Synthetic records conform and selected invalid records are rejected |
+| Foundation shade unit tests | 15/15 passed | Colour conversion, source parsing and shade-ranking implementation |
 
-## Current status
-**Sprint 1 (research extension, 2026-11-15):** research protocol, questions, initial dataset due diligence and metadata profiling, concept-level prior-art alignment, and an OWL 2/Turtle structural draft. The ontology draft now represents the 46 extracted Fashionpedia category entries and 294 attribute entries as provenance-bearing named individuals. Twelve SPARQL competency-query templates, a synthetic fixture, a Python test runner, and a GitHub Actions workflow have been added. The latest GitHub Actions run parsed 3,237 RDF triples; verified 46 Fashionpedia category and 294 attribute source entries with provenance; ran Owlready2 0.51 / HermiT over 59 OWL classes with no ontology inconsistency or named unsatisfiable classes; passed all 12 synthetic SPARQL tests; and validated 3,417 data triples against 243 SHACL shape triples. All four SHACL positive/negative tests passed. The independent foundation shade workflow also passed all 15 tests and its sample ranking. RDF parsing, source integrity, HermiT consistency, SPARQL query behaviour on synthetic fixtures, and SHACL data constraints are validated; source semantics and recommendation quality are not. Further source-relation review, makeup vocabulary alignment, evaluation protocol and labels, model comparisons, user evaluation, deployment, and publication remain outstanding. The original university FYP period is recorded separately as semesters 7 and 8 (November 2023–May 2024). No deployed product, evaluated model, publication, or empirical recommendation-quality finding is claimed.
+These are software/model validation results, not recommendation-performance results. See [ontology workflow](.github/workflows/ontology-validation.yml) and [shade workflow](.github/workflows/shade-baseline.yml).
 
-## Contribution
-Use GitHub Issues for research decisions and implementation tasks. Ontology changes should state the competency question, class/property change, expected reasoning behaviour, evidence/rationale, and compatibility impact.
+### Foundation shade baseline
+
+The repository also contains an attribute-retrieval baseline that ranks historical foundation swatches by CIEDE2000 colour difference. It compares displayed swatch colours only. It does **not** estimate skin tone, predict foundation suitability or infer user preference. See [the method note](docs/foundation-shade-baseline.md).
+
+## Synthetic recommender benchmark
+
+Install and run:
+
+~~~bash
+python -m pip install -r requirements-research.txt
+python experiments/evaluate_recommender.py
+python experiments/evaluate_recommender.py --demo
+~~~
+
+The experiment generates 24 synthetic profiles and evaluates both conditions on the same deterministic held-out split (seed 20261117). It writes results/metrics.json and results/evaluation_summary.md. The relevance labels are generated from the same constructed profile fields used by the constraints. Results therefore demonstrate behaviour on this fixture only; they are not independent evidence of user benefit.
+
+## Reproducibility / quickstart
+
+Python 3.12 is used in CI. From the repository root:
+
+~~~bash
+python -m pip install -r requirements-research.txt
+
+# Parse ontology and verify source taxonomy/provenance
+python scripts/validate_ontology.py
+
+# OWL consistency and unsatisfiable-class checks (Java 17 required)
+python scripts/reason_ontology.py
+
+# 12 synthetic SPARQL competency tests
+python scripts/test_competency_queries.py
+
+# SHACL conformance and positive/negative tests
+python scripts/validate_shacl.py
+python scripts/test_shacl.py
+
+# Standard-library foundation shade unit tests
+python -m unittest discover -s tests -v
+
+# Synthetic recommender benchmark and explanation trace
+python experiments/evaluate_recommender.py
+python experiments/evaluate_recommender.py --demo
+~~~
+
+The foundation shade sample command fetches its pinned upstream CSV and requires network access:
+
+~~~bash
+python -m oge_fashion.shade_baseline --target-hex F3CFB3 --top-k 5
+~~~
+
+## Current limitations and future work
+
+- The recommender experiment uses **constructed synthetic profiles and catalogue records**. It does not use real users, observed preferences or an externally labelled benchmark.
+- The benchmark uses encoded-sRGB Euclidean colour distance as a simple ranking signal; it is not a validated skin-tone or foundation-matching method.
+- The current SPARQL benchmark operationalises a small set of constraints aligned with OGE properties. It does not invoke HermiT for per-request inference.
+- Fashion/makeup vocabulary alignment remains preliminary and requires further relation-level review and expert assessment.
+- Facial-image computer-vision classification is **future work**, not a demonstrated capability.
+- Human user studies and explanation usefulness evaluation are **future work** and require appropriate ethics/consent review.
+- A learned recommender, matched real-data experiments, statistical uncertainty analysis, deployed demonstrator and peer-reviewed publication are **future work**.
+- Dataset rights differ across annotations, metadata, images and derived data. See the [dataset register](research/dataset-register.md).
+
+## Repository map
+
+- ontology/ — OWL/Turtle model, competency queries, SHACL shapes and source mappings.
+- research/ — questions, protocol, literature evidence matrix, dataset due diligence and historical provenance.
+- experiments/ — deterministic synthetic recommender benchmark.
+- results/ — generated benchmark metrics and interpretation.
+- oge_fashion/ — colour conversion, pinned shade-source loader and shade-ranking CLI.
+- scripts/ — ontology, HermiT, SPARQL and SHACL validation utilities.
+- tests/ — unit tests and synthetic RDF fixture.
+- docs/ — method notes, workflow guidance and research summary.
+
+## Research integrity
+
+OGE-Fashion distinguishes source-derived facts, project modelling choices, synthetic test fixtures and empirical findings. Synthetic tests are never presented as user evidence. Historical FYP work is never conflated with the 2026 extension. Negative/null findings and limitations should be retained in future reporting.
 
 ## Licence
-No software licence has been selected yet. Until a licence is added, standard copyright applies; public visibility does not automatically grant reuse rights. Dataset and third-party asset licences are separate.
+
+No repository-wide software licence has been selected. Until one is added, standard copyright applies to original repository code and documentation. Third-party dataset, annotation, image and metadata terms remain separate; consult the source-specific register before reuse.
