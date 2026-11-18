@@ -6,13 +6,15 @@ OGE-Fashion investigates whether a provenance-aware semantic model can improve r
 
 > **Evidence status:** the ontology and validation suite are implemented; a deterministic synthetic benchmark is included. The benchmark is a software-method demonstration only, not evidence of real-user preference or population-level recommendation quality.
 
+**Start here:** [Research summary](docs/RESEARCH_SUMMARY.md) · [Research questions](research/research-questions.md) · [Synthetic benchmark report](results/evaluation_summary.md) · [Dataset and licence register](research/dataset-register.md)
+
 ## Research question and problem statement
 
-**Research question:** Does a provenance-aware OWL ontology with SHACL data constraints and SPARQL-executable competency rules improve hard-constraint satisfaction and explanation-trace coverage compared with a non-ontology colour/attribute-matching baseline, when both conditions use the same profiles, catalogue and held-out test split?
+**Current benchmark question:** Does a provenance-aware OWL ontology with SHACL data constraints and SPARQL-executable competency rules improve hard-constraint satisfaction and explanation-trace coverage compared with a non-ontology colour/attribute-matching baseline, when both conditions use the same profiles, catalogue and held-out test split?
 
 Recommendation systems can rank attribute-similar items while violating explicit occasion, dress-code or style constraints. OGE-Fashion models preferences, context, item attributes, compatibility assessments, recommendation results, explanations and evidence separately so that constraints and explanation provenance can be inspected.
 
-The current benchmark operationalises a narrow subset of these ideas. It does not establish generalisation to real users.
+The repository also records a broader, proposed research programme covering vocabulary alignment, recommendation quality, explanation usefulness, and the effects of preferences and hard constraints. See [Research Questions and Operational Definitions](research/research-questions.md). The current synthetic benchmark addresses only a narrow implementation slice of that programme; it does not evaluate all four questions.
 
 ## Provenance and project timeline
 
@@ -32,11 +34,16 @@ See [historical FYP provenance](research/fyp-timeline.md).
 - **Reasoning:** HermiT is used for ontology consistency checks.
 - **Benchmark:** a non-ontology baseline and an ontology-guided SPARQL-filtered condition are compared on the same deterministic synthetic test profiles.
 
-## Verified implementation status
+## Validation suite and recorded checks
 
-The merged ontology branch's latest successful CI runs reported:
+The repository includes automated workflows for ontology validation and foundation-shade unit tests:
 
-| Check | Result | What it verifies |
+- [Ontology validation workflow](.github/workflows/ontology-validation.yml)
+- [Foundation shade workflow](.github/workflows/shade-baseline.yml)
+
+The recorded validation results include:
+
+| Check | Recorded result | What it verifies |
 |---|---:|---|
 | RDF/Turtle structural validation | 3,237 triples parsed | Ontology parses and expected Fashionpedia records/provenance are present |
 | HermiT reasoning | Consistent; 59 OWL classes loaded | No inconsistency or named class equivalent to owl:Nothing was reported |
@@ -44,7 +51,7 @@ The merged ontology branch's latest successful CI runs reported:
 | SHACL validation | 4/4 positive/negative tests passed | Synthetic records conform and selected invalid records are rejected |
 | Foundation shade unit tests | 15/15 passed | Colour conversion, source parsing and shade-ranking implementation |
 
-These are software/model validation results, not recommendation-performance results. See [ontology workflow](.github/workflows/ontology-validation.yml) and [shade workflow](.github/workflows/shade-baseline.yml).
+These are ontology/software validation checks, not evidence of recommendation quality or user benefit. The counts above are recorded project results; consult the linked Actions workflows for the status of individual runs and newer commits.
 
 ### Foundation shade baseline
 
@@ -60,7 +67,21 @@ python experiments/evaluate_recommender.py
 python experiments/evaluate_recommender.py --demo
 ~~~
 
-The experiment generates 24 synthetic profiles and evaluates both conditions on the same deterministic held-out split (seed 20261117). It writes results/metrics.json and results/evaluation_summary.md. The relevance labels are generated from the same constructed profile fields used by the constraints. Results therefore demonstrate behaviour on this fixture only; they are not independent evidence of user benefit.
+The experiment generates 24 synthetic profiles and evaluates both conditions on the same deterministic held-out split (seed 20261117). The test split contains 6 profiles and the synthetic catalogue contains 18 items. It writes `results/metrics.json` and `results/evaluation_summary.md`.
+
+### Recorded benchmark output
+
+| Metric | A: non-ontology baseline | B: SPARQL/ontology-guided |
+|---|---:|---:|
+| Precision@3 | 0.6667 | 0.7778 |
+| Recall@3 | 0.8889 | 1.0000 |
+| NDCG@3 | 0.9218 | 1.0000 |
+| Constraint satisfaction rate | 0.6667 | 1.0000 |
+| Explanation trace coverage | 0.0000 | 1.0000 |
+
+**Interpretation boundary:** both conditions use the same colour/attribute score; B adds SPARQL filtering for the encoded occasion, dress-code and style constraints and attaches structured property-level traces. Relevance labels are generated from the same constructed profile and catalogue fields used by the constraints. These figures therefore demonstrate behaviour on this small synthetic fixture only. They are not independent evidence of improved recommendations for people, generalisation, causal benefit, statistical significance, or human-perceived explanation quality. Trace coverage measures whether a trace is present, not whether a person finds it clear or useful.
+
+See the [full benchmark report](results/evaluation_summary.md) and [machine-readable metrics](results/metrics.json).
 
 ## Reproducibility / quickstart
 
@@ -109,14 +130,14 @@ python -m oge_fashion.shade_baseline --target-hex F3CFB3 --top-k 5
 
 ## Repository map
 
-- ontology/ — OWL/Turtle model, competency queries, SHACL shapes and source mappings.
-- research/ — questions, protocol, literature evidence matrix, dataset due diligence and historical provenance.
-- experiments/ — deterministic synthetic recommender benchmark.
-- results/ — generated benchmark metrics and interpretation.
-- oge_fashion/ — colour conversion, pinned shade-source loader and shade-ranking CLI.
-- scripts/ — ontology, HermiT, SPARQL and SHACL validation utilities.
-- tests/ — unit tests and synthetic RDF fixture.
-- docs/ — method notes, workflow guidance and research summary.
+- `ontology/` — OWL/Turtle model, competency queries, SHACL shapes and source mappings.
+- `research/` — questions, protocol, literature evidence matrix, dataset due diligence and historical provenance.
+- `experiments/` — deterministic synthetic recommender benchmark.
+- `results/` — generated benchmark metrics and interpretation.
+- `oge_fashion/` — colour conversion, pinned shade-source loader and shade-ranking CLI.
+- `scripts/` — ontology, HermiT, SPARQL and SHACL validation utilities.
+- `tests/` — unit tests and synthetic RDF fixture.
+- `docs/` — [technical research summary](docs/RESEARCH_SUMMARY.md), method notes and workflow guidance.
 
 ## Research integrity
 
