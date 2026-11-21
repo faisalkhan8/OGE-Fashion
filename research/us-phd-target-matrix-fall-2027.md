@@ -1,115 +1,116 @@
 # US PhD Target and Faculty-Fit Matrix — Fall 2027
 
-**Prepared:** 2026-11-22  
-**Status:** Initial shortlist from official university and faculty pages. Verify all requirements in the live application portal before payment.  
-**Applicant context:** BS Software Engineering, University of Sargodha (Pakistan), CGPA 3.65/4.00, June 2024; independent OGE-Fashion research extension; currently no IELTS/TOEFL score reported.
+**Prepared:** 22 November 2026  
+**Applicant context:** BS Software Engineering, University of Sargodha, Pakistan; 3.65/4.00; Bronze Medal; 130 credit hours; MOI certificate; no IELTS/TOEFL score currently reported.
 
-## Executive decision
+This is a working shortlist, not an admission prediction. No application has been submitted through this project, no professor has agreed to supervise, and funding is never guaranteed merely because a programme advertises assistantships.
 
-The strongest research matches identified so far are:
+## Priority order for the current no-test application cycle
 
-1. **Texas A&M — James Caverlee:** strongest direct recommender-systems match; the lab explicitly works on trustworthy and efficient recommendation, LLMs, and information retrieval.
-2. **USC — Xiang Ren / INK Lab:** strong knowledge representation, knowledge graphs, neural-symbolic reasoning, grounded NLP, and explainability match; the lab explicitly invites prospective PhD applicants to apply and list the professor.
-3. **Vanderbilt — Information and Intelligent Systems faculty:** programme supports direct PhD entry from a Bachelor's and first-year TA/RA packages, but faculty-level fit still needs to be narrowed.
-4. **UIC — Computer Science PhD:** potentially useful funded programme option, but no faculty match is confirmed in this document yet.
+### 1. Northwestern University — PhD in Technology and Social Behavior (TSB)
 
-This is a research-fit shortlist, not a ranking of admission probability. Admission and funding are competitive and never guaranteed.
+<badge>Deadline: 1 December 2026</badge>
 
-## Faculty matches
+**Why it is a priority:** the programme combines Computer Science and Communication and explicitly invites research that joins technical development with empirical study of how people interact with technology. This fits the proposed question about how users understand recommendation explanations, uncertainty and the distinction between observed evidence and inferred preferences.
 
-### A. Professor James Caverlee — Texas A&M University
+**Faculty connection:** Professor Noshir Contractor is a professor in Communication Studies and Management & Organizations and holds a courtesy appointment in Computer Science. His official profile describes research in network science, computational social science and web science, including social and knowledge networks. His CV lists a Semantic Recommender and team/people recommender work. This makes him a credible interdisciplinary point of connection, not proof of a direct algorithmic recommender-systems opening.
 
-**Fit:** Very strong for recommendation systems and personalised ranking; strong for LLM reasoning and trustworthy recommendation.
+**Entry and application:**
+- The TSB page says most students already hold a master's degree or equivalent experience, but exceptional candidates may be admitted directly after a bachelor's degree. The applicant's four-year BS and professional experience make an application possible, but direct entry remains uncertain.
+- Application materials: Academic Statement, Personal Statement, CV, transcripts and 2–3 recommendation letters.
+- English route: TSB lists an official transcript verifying an undergraduate degree from an accredited four-year institution or equivalent where English is the language of instruction. Upload the University of Sargodha transcript and MOI letter; the programme/Graduate School makes the final determination.
+- International TAs must have TSE 50 or TOEFL iBT speaking 26 (5 on the updated TOEFL scale). This is a separate appointment requirement, not the same as the admissions English-medium degree route. Ask whether RA/fellowship support is available if no speaking score is held.
+- TSB says it generally admits PhD applicants only when financial support is available; there is no separate financial-aid application.
 
-The professor describes his group's work as trustworthy, resilient, and responsible AI, grounded in data mining, information retrieval, and recommender systems. The group lists trustworthy and efficient recommendation and reliable LLMs as research dimensions. His publications include ReasoningRec (NAACL Findings 2025), Flow Matching for Collaborative Filtering (KDD 2025), Combating Heterogeneous Model Biases in Recommendations (WSDM 2025), and earlier work on conversational and long-tail recommendation.
+Official sources:
+- Admissions: https://tsb.northwestern.edu/admissions/apply.html
+- Programme: https://tsb.northwestern.edu/
+- Funding: https://tsb.northwestern.edu/admissions/financial-support.html
+- Contractor faculty profile: https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/contractor-noshir.html
+- Contractor CV: https://nosh.northwestern.edu/cv/
 
-**Project bridge:** Use OGE-Fashion's explicit preference, context, ontology and provenance representation to investigate evidence-grounded recommendation explanations, constraint adherence, and trade-offs in ranking quality, coverage, diversity, and efficiency.
+### 2. Stanford University — Computer Science PhD
 
-**Contact/application guidance:** His prospective-student page says PhD admissions are handled through the department and he reads applications that mention him. He cannot assess chances or review application materials by email. The statement of purpose should identify specific problems and connect them to one or two of his papers.
+<badge>Deadline: 8 December 2026</badge>
 
-- Faculty: https://people.engr.tamu.edu/caverlee/
-- Publications: https://people.engr.tamu.edu/caverlee/publications.html
-- Prospective PhD students: https://people.engr.tamu.edu/caverlee/prospective.html
-- Department application: https://engineering.tamu.edu/cse/admissions-and-aid/graduate-admissions/index.html
+**Faculty connection:** Professor Jure Leskovec works on machine learning over richly labelled relational structures, graphs and networks, with recommender systems among the applications. OGE-Fashion's ontology/provenance layer provides a small structured-knowledge testbed. The proposed extension must compare against existing graph-grounded recommendation and explanation methods, not claim to invent them.
 
-### B. Professor Xiang (Sean) Ren — University of Southern California, INK Lab
+**Entry and application:**
+- Direct PhD applications from a qualifying bachelor's degree are accepted.
+- Fall 2027 CS PhD deadline: 8 December 2026.
+- The CS FAQ lists three recommendation letters and recommends at least two academic letters.
+- The Statement of Purpose is limited to two pages / 8,000 characters under the current CS guidance.
+- GRE is not required/considered for the CS PhD application.
+- Stanford's English exemption permits an international equivalent bachelor's only if all instruction was conducted in English. The University of Sargodha MOI letter is useful, but the regulations allow language and Islamic Studies courses to be offered in Urdu or English. Do not select the exemption until the applicant can truthfully confirm the actual language used across the whole degree. A separate 24-consecutive-month full-time English-work route may exist, but Priv Inc must verify that the entire relevant work experience was conducted in English; the current employment letter does not establish that.
 
-**Fit:** Very strong for knowledge representation, knowledge graphs, neural-symbolic reasoning, grounded NLP and trustworthy explanations; less directly focused on recommender systems than Caverlee.
+Official sources:
+- CS deadlines: https://www.cs.stanford.edu/admissions-graduate-application-deadlines
+- CS PhD admissions: https://www.cs.stanford.edu/admissions/phd-admissions
+- CS FAQ: https://www.cs.stanford.edu/admissions/phd-admissions-frequently-asked-questions
+- University English eligibility: https://gradadmissions.stanford.edu/apply/eligibility
+- Leskovec: https://cs.stanford.edu/people/jure-leskovec
 
-The INK Lab studies knowledge acquisition, knowledge representation and reasoning, graph neural networks, language models, explanation, and model trustworthiness. Its prospective-student page explicitly invites applicants to the USC CS PhD programme to select Professor Ren in the application or mention him in the personal statement. It asks applicants to show relevant research experience, mathematical preparation, coding ability, and communication/writing ability.
+### 3. Cornell University — Computer Science PhD
 
-**Project bridge:** Position OGE-Fashion as a testbed for structured knowledge and provenance that can ground natural-language explanations and make claims verifiable. The research statement should focus on knowledge-grounded reasoning rather than presenting fashion recommendation as the sole intended PhD topic.
+<badge>Target deadline: 15 December 2026</badge>
 
-- Lab: https://inklab.usc.edu/
-- Research: https://inklab.usc.edu/research.html
-- Prospective students/contact: https://inklab.usc.edu/contact.html
-- USC faculty profile: https://viterbigradadmission.usc.edu/doctoral/faculty-research/profile/?fname=Xiang&lname=Ren
-- USC CS PhD application: https://www.cs.usc.edu/
+**Faculty connection:** Professor Thorsten Joachims studies machine learning from human interaction, recommendation, learning to rank, implicit feedback, and counterfactual/causal inference. LangPTune (CIKM 2025) is a relevant point of comparison for language-based user profiles. The candidate OGE-Fashion question is how claims in language-based profiles can be traced to underlying interactions or user-confirmed evidence.
 
-### C. Vanderbilt University — Computer Science PhD
+**Entry and application:**
+- Cornell's CS PhD is a research degree and applicants with a bachelor's degree may apply directly to the PhD.
+- The current departmental application page requires **three** recommendation letters.
+- The SOP should describe research interests and identify specific faculty; the personal statement has a 1,000-word limit.
+- Cornell's departmental page currently contains a Fall 2026 deadline line. The target Fall 2027 date is 15 December based on the usual cycle, but check the live 2027 portal before relying on it.
+- Cornell Graduate School's standing English exemption explicitly includes Pakistan for international-equivalent bachelor's degrees from universities where English is the language of instruction. The MOI must appear on the transcript or be verifiable on the institution's website, and the applicant must have been physically present in Pakistan for most of enrolment.
+- Research-degree applicants using this exemption may still need an English Language Assessment before TA appointment.
+- Cornell CS lists full support for PhD students in good standing.
 
-**Fit:** Programme-level option in AI and information/intelligent systems; individual supervisor match remains to be confirmed.
+Official sources:
+- CS PhD application: https://www.cs.cornell.edu/phd-computer-science/apply
+- Graduate School English rule: https://gradschool.cornell.edu/admissions/application-steps/required-tests/english-language-proficiency-requirement-2/
+- Financial support: https://gradschool.cornell.edu/financial-support/
+- Joachims: https://infosci.cornell.edu/people/thorsten-joachims
+- Joachims research: https://www.cs.cornell.edu/people/tj/
 
-The official programme page says applicants may apply directly to the PhD with a Bachelor's degree, no prior Master's is required, GRE is waived, and first-year students may receive TA or RA appointments. The continuation of funding depends on academic and research progress. The programme encourages applicants to identify and contact faculty whose research aligns.
+## Test-dependent or secondary targets
 
-- Programme: https://computing.vanderbilt.edu/csphd/
-- Fall 2027 priority deadline: December 1, 2026 (fee-waiver deadline)
-- Fall 2027 final deadline: December 15, 2026
-- Application fee listed: USD 95
-- English proficiency: TOEFL/IELTS requirement applies unless the Graduate School approves a waiver after application submission. Do not assume MOI alone qualifies.
+These have relevant research or funding, but the published English-test rules are not a reliable fit for an MOI-only application. Prioritise them only if the applicant books an accepted test or receives written confirmation of a valid exemption.
 
-### D. University of Illinois Chicago — Computer Science PhD
+| University / faculty | Research connection | Current caution |
+|---|---|---|
+| Texas A&M CSE — James Caverlee | Direct recommender-systems and LLM reasoning match; ReasoningRec (NAACL Findings 2025) | Engineering normally requires TOEFL/IELTS for international applicants; MOI is not a standard published exemption. |
+| USC CS — Xiang (Sean) Ren / INK Lab | Knowledge representation, knowledge graphs, neural-symbolic reasoning, grounded NLP and explanations | USC states English-medium study in a non-Anglophone country does not qualify for its standard waiver. |
+| Vanderbilt CS | Direct PhD from bachelor's and AI / intelligent systems options | Published waiver excludes Pakistani English-medium Bachelor's degrees; test normally required. |
+| UIC CS | Funded PhD option and graph/AI research groups | Current CS policy requires English competency testing unless a formal exception is confirmed; no MOI-only route established. |
 
-**Fit:** Programme-level funded option; individual faculty match still needs to be established.
+Official sources:
+- Texas A&M CSE: https://people.engr.tamu.edu/caverlee/
+- USC INK Lab: https://inklab.usc.edu/
+- Vanderbilt PhD: https://computing.vanderbilt.edu/csphd/
+- UIC PhD: https://cs.uic.edu/graduate/admissions/phd/
 
-The official CS page states that students in their first five years are guaranteed a funded fall/spring appointment, including full tuition waiver, partial fee waiver and stipend, subject to good standing and assistantship duties. It lists a recommended Fall deadline of December 15 and a final deadline of February 15. The same page requires English competency testing for applicants whose native language is not English, and lists TOEFL/IELTS/PTE thresholds. The currently displayed detailed page contains some prior-cycle text, so the Fall 2027 fee waiver and exact application portal requirements must be rechecked before applying.
+## Application readiness snapshot
 
-- Programme: https://cs.uic.edu/graduate/admissions/phd/
-- Fall 2027 deadline shown in current search result: December 15, 2026 recommended; February 15, 2027 final.
-- GRE: not required.
-- English: test required under currently displayed policy unless a formal exemption is confirmed.
+| Requirement | Status |
+|---|---|
+| Four-year BS, transcript and degree certificate | Available |
+| CGPA 3.65/4.00, Bronze Medal | Verified in uploaded records |
+| Research-focused CV | Draft prepared |
+| Stanford SOP | Draft prepared |
+| Cornell SOP | Draft prepared |
+| Northwestern TSB Academic Statement | Draft prepared |
+| Northwestern TSB Personal Statement | Draft prepared |
+| Research discussion brief | Draft prepared |
+| UOS MOI letter | Available |
+| Programme-specific UOS letter confirming all courses were taught in English | Not yet obtained; useful for Stanford |
+| Three recommenders willing to submit | Not yet confirmed |
+| TOEFL/IELTS result | Not available |
+| Applications submitted | None through this work |
 
-## Programme-level deadline snapshot
+## Immediate priorities
 
-| University / programme | Fall 2027 deadline | Funding information | Main risk for this applicant |
-|---|---|---|---|
-| Texas A&M CSE PhD | Dec 15, 2026 | All applicants considered for financial aid; assistantship funding is not guaranteed | English test/waiver; competitive admission |
-| USC CS PhD | Verify exact programme deadline in live portal | Faculty lab describes PhD RA openings; programme admission and funding are separate decisions | English test and programme-level funding confirmation |
-| Vanderbilt CS PhD | Dec 1 priority; Dec 15 final | Competitive TA/RA package; continuation tied to progress | English waiver; fee |
-| UIC CS PhD | Dec 15 recommended; Feb 15 final (reconfirm) | First five years funded fall/spring under stated conditions | English test; confirm current-cycle page and fit |
-
-## English-proficiency decision
-
-The applicant currently has a University of Sargodha Medium of Instruction certificate but no reported IELTS/TOEFL result.
-
-- Texas A&M Engineering states that international applicants normally provide TOEFL or IELTS. The CSE FAQ's published alternative-verification examples are limited to a US Master's or a four-year Bachelor's at a US-accredited university; a Pakistani MOI is not an automatic exemption. Treat a test as required unless Texas A&M Graduate Admissions confirms otherwise in writing.
-- Vanderbilt's official waiver policy limits exemption to a degree from Vanderbilt or a Bachelor's completed entirely in the US or in a specified Anglophone country (UK, Ireland, Australia, New Zealand, Canada except Quebec). A Pakistani English-medium Bachelor's and MOI do not meet this waiver rule.
-- UIC's current CS page requires an English competency test for applicants whose native language is not English; its stated minimums include TOEFL iBT 80 (with subscores), IELTS 6.5 (all bands at least 6.0), or PTE Academic 54 (with subscores). No Pakistan-MOI exemption is stated on the CS page.
-- USC's current graduate policy explicitly says English-medium study in a non-Anglophone country does not qualify for a waiver. Pakistan-based University of Sargodha MOI therefore does not waive the USC English-test requirement. USC accepts TOEFL, IELTS Academic, Cambridge C1 Advanced, or PTE Academic; for PhD applicants the listed thresholds to waive the arrival ISE exam are TOEFL iBT 100 (old scale) / 5 (new scale), IELTS 7, Cambridge C1 185, or PTE 68, with stated subscores. Confirm the current score interpretation in the portal.
-
-**Action:** Based on the current official policies reviewed, do not plan on MOI-only admission at Texas A&M, USC, Vanderbilt, or UIC. Arrange an accepted English test immediately if pursuing these Fall 2027 applications. Ask each programme whether a pending score is accepted for initial review, and confirm that the exact test version and score scale are accepted. Do not claim an exemption unless the university confirms it.
-
-## Research project work required before outreach
-
-1. Read ReasoningRec (NAACL Findings 2025) and record its task, data, model, training/evaluation, limitations, and exact claims.
-2. Compare it with knowledge-aware recommendation, knowledge-graph-grounded generation, faithful explanation, and constraint-aware ranking papers.
-3. Define one narrow research gap that is supported by the review.
-4. Obtain or identify a lawful dataset with actual user-item interactions/preferences and documented item attributes; the current 24-profile synthetic benchmark is not enough for empirical claims.
-5. Implement matched baselines and a claim-level evidence-verification component only after the research design is specified.
-6. Report ranking, constraint, explanation-faithfulness, diversity, coverage, and latency outcomes with uncertainty.
-7. Prepare a short research statement, CV, transcript, MOI/test plan, and three recommender requests.
-
-## Applicant tasks and documents
-
-- Official transcript and degree certificate (already available in the application file set).
-- Updated academic CV focused on research, methods, software, validation and clearly labelled professional experience.
-- Statement of Purpose tailored to each programme and faculty group.
-- Research proposal/statement (2–3 pages, programme-specific requirements take precedence).
-- Three academic/professional recommendation letters, ideally including undergraduate project supervisor and faculty who can assess academic/research ability.
-- English-test result or written exemption decision.
-- Writing sample or technical report only where accepted/requested.
-- Application fee and official score submission budget.
-
-## Research integrity
-
-OGE-Fashion's existing 2026 synthetic benchmark must continue to be labelled synthetic. Do not claim real-user improvement, causal benefit, statistically significant results, or peer-reviewed publication unless a properly designed study supports those statements. The 2023–2024 undergraduate FYP must remain distinct from the 2026 research extension. Never imply that a listed professor has agreed to supervise or endorse this project.
+1. Northwestern TSB: complete the portal and recommender invitations before 1 December.
+2. Stanford CS: verify the strict all-instruction English condition and complete the application before 8 December.
+3. Cornell CS: use the Pakistan standing-exemption route only if all conditions are true; confirm the Fall 2027 portal date and complete by 15 December.
+4. Ask three recommenders now; do not enter their details until they agree.
+5. Do not describe synthetic benchmark results as real-user performance or claim an unverified research novelty.
