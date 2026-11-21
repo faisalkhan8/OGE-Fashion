@@ -58,7 +58,7 @@ Official sources:
 
 **Entry and application:**
 - Cornell's CS PhD is a research degree and applicants with a bachelor's degree may apply directly to the PhD.
-- The current departmental application page requires **three** recommendation letters.
+- The current departmental application page requires **two** recommendation letters and permits **three or four**.
 - The SOP should describe research interests and identify specific faculty; the personal statement has a 1,000-word limit.
 - Cornell's departmental page currently contains a Fall 2026 deadline line. The target Fall 2027 date is 15 December based on the usual cycle, but check the live 2027 portal before relying on it.
 - Cornell Graduate School's standing English exemption explicitly includes Pakistan for international-equivalent bachelor's degrees from universities where English is the language of instruction. The MOI must appear on the transcript or be verifiable on the institution's website, and the applicant must have been physically present in Pakistan for most of enrolment.
