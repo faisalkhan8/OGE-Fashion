@@ -10,10 +10,10 @@ This is an application-planning document, not a prediction of admission. Deadlin
 | Priority | Programme / faculty fit | Deadline (Fall 2027) | English route | Letters | Assessment |
 |---|---|---|---|---|---|
 | 1 | Stanford CS PhD — Jure Leskovec (graphs, recommender systems, relational ML) | Dec 8, 2026 | CS FAQ lists an exception for an international equivalent Bachelor's from a university where all instruction was in English. UOS MOI letter may support this; final review is Stanford's. | 3; at least 2 academic recommended | High research fit; highly selective; prepare immediately |
-| 2 | Cornell CS PhD — Thorsten Joachims (recommendation, learning to rank, human interaction, generative AI) | Dec 15, 2026 | Standing exemption specifically includes Pakistan where the international equivalent Bachelor's is from a country where English is official and was the language of instruction; MOI must be on transcript or verifiable on institutional website, and applicant must have been physically present there for most of enrolment. | 3 | Strong fit and clearest published Pakistan exemption; final determination rests with Cornell |
-| 3 | Texas A&M CSE PhD — James Caverlee (LLM recommendation reasoning; ReasoningRec) | Dec 15, 2026 | International applicants normally need TOEFL/IELTS. A case-by-case waiver is not guaranteed and should not be treated as a standard MOI exemption. | 3 | Strong research fit, but English-test/waiver risk |
-| 4 | UCLA CS PhD — graph mining / network science faculty | Dec 15, 2026 | Current university rule is restrictive for country/medium-of-instruction exemptions; confirm with UCLA before applying without a test. | 3 | Consider if an accepted test can be provided |
-| 5 | University of Maryland CS PhD | Dec 4, 2026 | Graduate School lists recognised English-speaking countries; a Pakistani MOI letter alone is not a listed automatic exemption. | Check current programme page; prepare 3 as a practical baseline | Early deadline and test-risk; only proceed if English requirement is resolved |
+| 2 | Cornell CS PhD — Thorsten Joachims (recommendation, learning to rank, human interaction, generative AI) | Dec 15, 2026 | Graduate School standing exemption includes Pakistan for qualifying English-taught international Bachelor's graduates; applicant must have been physically present in Pakistan for most of enrolment. | 3 required | Strong research fit; exemption conditions must be satisfied and selected inside application |
+| 3 | Northwestern Technology and Social Behavior PhD — Noshir Contractor (knowledge/social networks, recommender systems, human-technology research) | Dec 1, 2026 | TSB accepts an undergraduate degree from a four-year institution where instruction is English as one route; submit MOI and transcript. Separate speaking-test rule may apply for TA appointment. | 2–3 | Interdisciplinary fit; exceptional direct-entry Bachelor's applicants considered |
+| 4 | Texas A&M CSE PhD — James Caverlee (LLM recommendation reasoning; ReasoningRec) | Dec 15, 2026 | International applicants normally need TOEFL/IELTS; case-by-case waiver is not guaranteed. | 3 | Research fit, but English-test/waiver risk |
+| 5 | Stanford, Cornell and Northwestern should be prioritised before additional test-restricted programmes. | — | — | — | UCLA and Maryland are lower-priority without a test; verify before spending fees. |
 
 ## Why Stanford and Cornell come first
 
@@ -34,11 +34,25 @@ Official pages:
 - https://www.cs.stanford.edu/admissions-graduate-application-deadlines
 - https://www.cs.stanford.edu/phd-program-overview/funding
 
+### Northwestern Technology and Social Behavior (TSB)
+
+- Deadline: December 1, 2026.
+- The application requires an Academic Statement, Personal Statement, CV, transcripts, and 2–3 recommendation letters.
+- The programme is interdisciplinary across Computer Science and Communication. It says most applicants already hold a master's degree or equivalent experience, but exceptional applicants may be admitted directly after a bachelor's degree. Your professional experience and independent project provide relevant preparation, but direct-entry admission remains uncertain.
+- English routes listed by TSB include an official transcript verifying an undergraduate degree from an accredited four-year institution where English is the language of instruction. Submit the UOS transcript and Registrar MOI letter; do not assume the Graduate School will accept them without review.
+- For an international student to be appointed as a TA, Northwestern lists TSE score 50 or TOEFL iBT speaking 26. Admission based on MOI does not necessarily satisfy this spoken-English appointment condition. Check whether an RA or fellowship funding route is available if you do not have the speaking score.
+- The programme says it generally admits PhD applicants only when financial support is available, with support from assistantships or fellowships; there is no separate financial-aid application.
+
+Official pages:
+- https://tsb.northwestern.edu/admissions/apply.html
+- https://tsb.northwestern.edu/Admissions/
+- https://nosh.northwestern.edu/cv/
+- https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/contractor-noshir.html
+
 ### Cornell Computer Science
 
-- PhD deadline: December 15, 2026; Fall admission only.
-- GRE: check programme portal; do not send a score unless requested or clearly accepted.
-- Recommendations: three letters from professors or supervisors who can assess academic/professional work and potential in CS.
+- PhD deadline: December 15, 2026; Fall admission only (the live departmental page currently describes the Fall 2026 cycle, so check the portal's Fall 2027 date before submission).
+- Recommendations: **three letters are required** by the current Cornell CS application page; use professors or supervisors who can assess your academic/professional work and CS potential.
 - Statement of Purpose should identify research areas and relevant faculty.
 - Personal Statement: up to 1,000 words, describing experiences shaping the decision/ability to pursue graduate study and contribution to an inclusive scholarly community.
 - A writing sample is optional; do not upload this project proposal as a scholarly paper unless the portal accepts a research proposal as the requested sample.
@@ -81,7 +95,7 @@ Use three people who can give detailed, specific evaluations:
 - ideally two University of Sargodha faculty members who taught or supervised the applicant;
 - one additional academic recommender or professional supervisor who can give concrete evidence of research ability, analytical skills, independent work, technical judgement, and reliability.
 
-Cornell allows professors or supervisors. Stanford allows academic or professional references but recommends at least two academic letters. Do not enter anyone's name or email without their agreement.
+Cornell requires three letters on its current CS application page. Stanford requires three and recommends at least two academic. Northwestern TSB asks for 2–3. Do not enter anyone's name or email without their agreement.
 
 ## Do not overstate
 
@@ -90,4 +104,4 @@ Cornell allows professors or supervisors. Stanford allows academic or profession
 - The explanation verifier is a prototype with exact-match rules, not a validated semantic entailment system.
 - No peer-reviewed publication is currently claimed.
 - Bronze Medal is verified; top-10% cohort ranking is not yet documented.
-- No TOEFL/IELTS score is currently available.
+- No TOEFL/IELTS score is currently available. The Northwestern TSB admissions pathway accepts English-medium undergraduate study as one method, but its TA speaking-language condition remains a separate issue.
