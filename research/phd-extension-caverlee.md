@@ -1,4 +1,4 @@
-# PhD Research Extension: Evidence-Grounded Explainable Recommendation
+# PhD Research Extension: Provenance-Aware Evidence Quality in Explainable Recommendation
 
 **Status:** Research direction proposal — not yet implemented or empirically validated  
 **Prepared:** 2026-11-22  
@@ -6,7 +6,7 @@
 
 ## 1. Purpose
 
-This document proposes a PhD-focused extension of OGE-Fashion. It preserves the existing ontology and provenance work while connecting it to research on LLM-based recommendation and human-interpretable explanations.
+This document proposes a PhD-focused extension of OGE-Fashion. It preserves the existing ontology and provenance work while examining evidence quality, provenance, conflict handling and abstention in recommendation explanations. A focused literature screen shows that LLM + KG explainable recommendation, graph-retrieved evidence and factuality evaluation are already established areas; the intended contribution is therefore not simply to add an LLM to a knowledge graph. See the [focused literature evidence matrix](literature/explainable-recommender-evidence-matrix.md).
 
 The project is **not** being presented as a completed paper, a validated real-world recommender, or a reproduction of another researcher's system. The proposed extension must first be checked against the literature, implemented, and evaluated.
 
@@ -33,50 +33,53 @@ Useful starting points:
 
 ## 3. Proposed working title
 
-**Evidence-Grounded Reasoning for Faithful and Constraint-Aware Explainable Recommendations**
+**Provenance-Aware Evidence Quality and Abstention in Explainable Recommendation**
 
 Fashion and beauty are the initial application domain inherited from OGE-Fashion. The research contribution should be framed around generalisable recommendation and explanation methods, with fashion as a testbed only where the data supports that scope.
 
 ## 4. Proposed problem
 
-A recommender can produce a plausible-sounding explanation that is not fully supported by the user's stated preferences, the recommended item's actual attributes, or the system's constraint checks. LLM-based reasoning may improve the readability of explanations, while structured knowledge representations may provide inspectable evidence.
+A recommender can produce a plausible-sounding explanation that overstates what its evidence establishes. Prior work already combines LLMs with collaborative signals, knowledge graphs, retrieved graph paths and subgraph reasoning for explainable recommendations (including G-Refer, K-RagRec and KAPER). Separate work has evaluated claim-level factual consistency. Therefore, simply providing graph evidence to an LLM or measuring factuality is not a novel claim.
+
+The narrower question is how recommendation explanations should preserve and communicate the source, version, time, evidence status and reliability of the records they use—especially when attributes are missing, stale, conflicting, or inferred. The project will test whether a provenance-aware verification and abstention layer adds measurable value beyond existing graph-grounded explanation approaches.
 
 The proposed system will investigate how to combine:
-1. explicit user preferences, dislikes, context, and hard constraints;
-2. a provenance-aware ontology or knowledge graph;
-3. a recommendation model or ranker;
-4. an explanation generator that receives identifiable evidence;
-5. a verification layer that checks explanation claims against the evidence.
+1. observed user-item interactions, separately labelled user-confirmed preferences, and model-inferred profile attributes;
+2. product catalogue facts linked to source identifiers, source versions, timestamps and provenance;
+3. a recommendation model or ranker and a reviewed ontology / knowledge graph;
+4. an explanation generator conditioned on identifiable evidence records;
+5. a verifier that checks evidence identity, status, conflict and temporal validity before permitting factual claims or abstaining.
 
 The explanation generator must not invent item attributes, preferences, or ontology relations. When evidence is missing, it should state that the system cannot substantiate the claim.
 
 ## 5. Proposed research questions
 
-- **RQ1 — Evidence grounding:** To what extent can structured ontology/knowledge-graph evidence ground LLM-generated recommendation explanations in explicit user preferences, item attributes, and context?
-- **RQ2 — Faithfulness and constraint adherence:** Does evidence-grounded generation reduce unsupported explanation claims and hard-constraint violations compared with an LLM-only explanation condition?
-- **RQ3 — Recommendation trade-offs:** What effects do evidence grounding and hard constraints have on ranking quality, catalogue coverage, diversity, and latency?
-- **RQ4 — Human understanding:** Do users find evidence-grounded explanations clearer, more useful, and more trustworthy than matched explanations without explicit evidence traces?
+- **RQ1 — Evidence provenance:** How can a recommendation pipeline represent the provenance, version, timestamp and epistemic status of interaction and catalogue evidence used in a user/item explanation?
+- **RQ2 — Evidence quality:** Under missing, conflicting, stale and controlled-corruption conditions, how accurately can the system identify supported, contradicted, unsupported and unverified explanation claims?
+- **RQ3 — Abstention and utility:** What trade-offs arise between recommendation ranking, claim support, appropriate abstention, coverage, diversity and latency when provenance-aware verification is applied?
+- **RQ4 — User understanding:** Do users better understand the limits of recommendation evidence when explanations distinguish observed behaviour, user-confirmed preferences, catalogue facts and model inferences?
 
-These questions are provisional. Final wording and hypotheses depend on literature review, dataset feasibility, and the actual methods that can be implemented.
+These questions are provisional. The focused literature matrix identifies close prior work, including KAPER (2026) and the PAKDD 2026 factual-consistency study. The research contribution and hypotheses must be revised after reading these papers and tracing their citations; no novelty claim is currently made.
 
 ## 6. Candidate hypotheses (to be reviewed before test evaluation)
 
-- **H1:** The evidence-grounded condition will produce fewer unsupported or contradicted explanation claims than an LLM-only explanation condition.
-- **H2:** Explicit hard-constraint enforcement will reduce constraint violations, while its effects on ranking quality, diversity, and catalogue coverage will be measured rather than assumed.
-- **H3:** Evidence-grounded explanations may improve user-rated clarity and usefulness, subject to a properly reviewed human evaluation.
+- **H1:** Adding provenance and record-status checks will reduce the rate of unsupported or contradicted factual claims under controlled missing/conflicting-evidence tests, compared with an otherwise matched graph/LLM explanation baseline.
+- **H2:** Explicit abstention when evidence is missing, stale or inconsistent will improve appropriate-abstention and claim-support rates, with measurable trade-offs in explanation coverage and latency.
+- **H3:** Any ranking-quality or user-understanding benefit is an empirical question; no improvement is presumed.
 
-Null or negative findings are valid. Hypotheses and analysis plans must be fixed before inspecting held-out test outcomes.
+These are candidate hypotheses only. The evaluation must distinguish controlled perturbations from naturally occurring catalog errors. Null or negative findings are valid. Hypotheses and analysis plans must be fixed before inspecting held-out test outcomes.
 
 ## 7. Proposed system and experiment arms
 
-The following comparison is a design proposal, not an implemented feature set:
+The following comparison is a design proposal, not an implemented feature set. It must include reproduction or adaptation of at least one close graph-grounded prior method, subject to code, data and licence availability:
 
 | Arm | Recommendation | Explanation |
 |---|---|---|
 | B1 — Non-ontology baseline | Reproducible content-based or interaction-based ranker | No generated evidence explanation |
 | B2 — Structured-knowledge baseline | Ontology/knowledge-graph constraints and features | Structured trace or template |
-| B3 — LLM reasoning baseline | LLM-based personalisation/reasoning, following a carefully documented adaptation of relevant prior work | LLM-generated natural-language explanation |
-| B4 — Evidence-grounded hybrid | Matched recommendation model with structured evidence and explicit constraints | LLM explanation conditioned on evidence IDs/paths, followed by claim checking |
+| B3 — LLM reasoning baseline | LLM-based personalisation/reasoning, following a carefully documented adaptation of ReasoningRec or LangPTune where feasible | LLM-generated natural-language explanation |
+| B4 — Graph-grounded baseline | A reproducible adaptation of G-Refer, K-RagRec or KAPER, selected after code/data review | Retrieved graph paths or structured evidence rendered for the LLM |
+| B5 — Provenance-aware candidate | Matched recommender and explanation generator with record-level provenance, version/status checks and conflict handling | Claim verification plus explicit abstention when evidence is not supportable |
 
 Ablations should isolate the contribution of knowledge-graph evidence, hard constraints, and claim verification. Comparisons must use the same eligible data, user/query cases, candidate sets, splits, and tuning policy wherever methodologically appropriate.
 
@@ -91,12 +94,14 @@ ReasoningRec should be studied and, if feasible, reproduced or adapted as a base
 - Catalogue coverage and intra-list diversity.
 - Runtime/latency with hardware and software configuration recorded.
 
-### Explanation quality and faithfulness
-- Claim-level support rate: proportion of verifiable explanation claims linked to valid preference, item, context, or ontology evidence.
-- Contradiction rate: proportion of claims that conflict with available records.
-- Evidence trace completeness and validity.
-- Counterfactual consistency: test whether an explanation changes appropriately when a relevant preference or item attribute is altered.
-- Human ratings of clarity, usefulness, and perceived trust, only after appropriate ethics review and informed consent.
+### Explanation quality and evidence status
+- Claim-level support precision and recall against a reviewed reference set.
+- Contradiction rate and unsupported-claim rate.
+- Correct detection of missing, stale, conflicting, revoked or model-inferred records.
+- Appropriate-abstention rate and over-abstention rate.
+- Provenance trace completeness (source, record ID, version, timestamp and derivation).
+- Counterfactual consistency under controlled changes to cited records.
+- Human ratings of clarity and understanding of evidence limitations, only after appropriate ethics review and informed consent.
 
 Automated language-model judging should not be treated as ground truth. Human assessment, rule-based evidence checks, and expert review should be reported separately.
 
@@ -110,7 +115,7 @@ The first candidate for a non-commercial fashion recommendation evaluation is th
 - Dataset: https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations/data
 - Competition rules: https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations/rules
 
-The dataset is **not downloaded or accepted yet**. Use is conditional on the applicant personally registering and accepting the current rules. Keep raw data outside GitHub and CI. Phase one should process only the CSV files and exclude customer age/postal code and images unless a later, separately justified research question and rights review require them.
+The dataset is **not downloaded or accepted yet**. Use is conditional on the applicant personally registering and accepting the current rules. Keep raw data outside GitHub and CI. Phase one should process only the CSV files and exclude customer age/postal code and images unless a later, separately justified research question and rights review require them. The available records support temporal purchase interactions and product metadata, but the dataset does not by itself provide a history of catalogue revisions. Missing/conflicting attribute scenarios must therefore be explicitly labelled as controlled perturbation experiments, not as observed real-world catalogue drift.
 
 Purchases provide implicit behavioural evidence, not explicit statements of preference. A model may infer interests from purchase history, but explanations must not call inferred interests user-confirmed preferences. The seven-day next-purchase task in the original competition and MAP@12 provide a useful benchmark reference; the research protocol should define its own temporal train/validation/test split and must not access hidden competition test labels.
 
@@ -173,7 +178,11 @@ The project should be described accurately as an independent research extension 
 
 Texas A&M CSE's published Fall PhD deadline is December 15. Its English-language requirements must be checked separately: a University of Sargodha Medium of Instruction letter should not be described as an automatic waiver unless the university confirms that in writing.
 
-## 15. Integrity and authorship
+## 15. Literature and novelty gate
+
+Before finalising the research contribution, complete the paper-by-paper review in [the explainable recommender evidence matrix](literature/explainable-recommender-evidence-matrix.md). At minimum, read KAPER (2026), G-Refer (WWW 2025), K-RagRec (ACL 2025), Kabongo & Guigue (PAKDD 2026), ReasoningRec (NAACL 2025) and LangPTune (CIKM 2025) in full. Record methods, data, evaluation and exact differences. Until this review and citation-chaining are complete, use language such as 'candidate question' and 'we will investigate'; do not use 'novel', 'first', or 'state of the art'.
+
+## 16. Integrity and authorship
 
 This file describes a research plan, not research results. All future work must distinguish:
 - implementation from empirical validation;
