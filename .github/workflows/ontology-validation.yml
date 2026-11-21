@@ -11,6 +11,10 @@ on:
       - "scripts/validate_shacl.py"
       - "scripts/test_shacl.py"
       - "tests/fixtures/**"
+      - "tests/test_explanation_verifier.py"
+      - "oge_fashion/explanation_verifier.py"
+      - "examples/evidence_verification_demo.py"
+      - "docs/evidence-grounded-explanation-verifier.md"
       - "experiments/**"
       - "requirements-research.txt"
       - ".github/workflows/ontology-validation.yml"
@@ -60,6 +64,10 @@ jobs:
         run: python scripts/test_shacl.py
       - name: Run reproducible synthetic recommender benchmark
         run: python experiments/evaluate_recommender.py
+      - name: Test evidence-grounded explanation verifier
+        run: python -m unittest tests.test_explanation_verifier -v
+      - name: Run illustrative evidence verifier demo
+        run: python examples/evidence_verification_demo.py
       - name: Verify generated benchmark outputs
         run: |
           python - <<'PY'
