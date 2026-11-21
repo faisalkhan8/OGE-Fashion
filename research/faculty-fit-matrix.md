@@ -51,6 +51,19 @@ This is a proposal, not a completed method or proven novel contribution. The exi
 
 **Potential adaptation:** Compare LLM-only explanation generation with generation conditioned on structured, provenance-aware evidence, then evaluate claim-level support, contradiction and abstention.
 
+### 4. Professor Noshir Contractor — Northwestern University, Technology and Social Behavior
+
+**Why the connection is substantive:** Contractor is a professor in Communication Studies and Management & Organizations, and Computer Science by courtesy. His official faculty biography describes research in network science, computational social science and web science, including how social and knowledge networks form and perform. His CV lists a Semantic Recommender and multiple team / people recommender systems. This is a relevant interdisciplinary connection for studying how recommendation evidence and explanations are interpreted within human and organisational networks—not a direct substitute for a recommender-systems ML lab.
+
+- Faculty profile: https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/contractor-noshir.html
+- CV / projects: https://nosh.northwestern.edu/cv/
+- TSB programme: https://tsb.northwestern.edu/
+- TSB admissions: https://tsb.northwestern.edu/admissions/apply.html
+
+**Potential adaptation:** Examine how explanation provenance, uncertainty and abstention influence users' understanding and acceptance of recommendations, using a rigorous technical system plus an approved human-centred study.
+
+**Application caution:** TSB is joint across Computer Science and Communication; most students have a master's degree or equivalent experience, but exceptional direct-from-BA candidates may be admitted. Do not assume a faculty member is accepting a student or has a funded position merely from the CV.
+
 ## How to choose among them
 
 The application should not list a professor merely because their webpage includes the word "AI." A credible fit requires:
