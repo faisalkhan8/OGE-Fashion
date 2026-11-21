@@ -61,7 +61,19 @@ The Cornell CS page contains a general statement that TOEFL/IELTS is required fo
 
 **Decision:** Cornell has the clearest published Pakistan-specific standing-exemption pathway. Eligibility still depends on the international degree-equivalency assessment, English-medium requirement, and physical-presence condition. Do not claim the exemption unless all conditions are true.
 
-## 4. Recommended submission procedure
+## 4. Northwestern University — Technology and Social Behavior PhD
+
+Official programme page: https://tsb.northwestern.edu/admissions/apply.html
+
+The TSB programme's published admissions instructions list as one English-proficiency route an official transcript verifying an undergraduate degree from an accredited four-year institution or equivalent where the language of instruction is English. This may fit the University of Sargodha BS and MOI documents, subject to programme and Graduate School review.
+
+The programme separately states that international applicants appointed as teaching assistants must provide either a Test of Spoken English (TSE) score of at least 50 or a TOEFL iBT speaking score of at least 26. This is a teaching appointment requirement, not the same as the English-medium admissions route. If no speaking score is available, ask the programme whether an RA/fellowship funding path is possible; do not assume a TA appointment will be available.
+
+The programme's Fall 2027 deadline is December 1, 2026. Its admissions page asks for an Academic Statement, Personal Statement, CV, transcripts and 2–3 recommendation letters. It notes that most entrants hold a master's degree or equivalent experience, but exceptional candidates may be admitted directly after a bachelor's degree.
+
+**Decision:** plausible application route without IELTS/TOEFL through the published English-medium degree pathway, but written admission confirmation and TA/funding rules must be distinguished. The uploaded UOS MOI letter is relevant evidence; it does not itself settle the funding appointment requirements.
+
+## 5. Recommended submission procedure
 
 1. Upload the university's official transcript and degree certificate.
 2. Upload the official UOS MOI letter.
