@@ -103,7 +103,20 @@ Automated language-model judging should not be treated as ground truth. Human as
 ### Statistical discipline
 Use train/validation/test separation, freeze the evaluation code before final test runs, tune only on training/validation data, report uncertainty intervals and effect sizes, and retain failed or negative results. Avoid claims based only on a handful of synthetic examples.
 
-## 9. Data strategy and governance
+## 9. Initial real-data candidate: H&M Personalized Fashion Recommendations
+
+The first candidate for a non-commercial fashion recommendation evaluation is the H&M Personalized Fashion Recommendations dataset hosted on Kaggle. Its official data description specifies chronological customer purchase history, article metadata, customer metadata, and optional article images. The official competition rules permit non-commercial academic research but prohibit redistributing the competition data or sharing it with people who have not accepted the rules.
+
+- Dataset: https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations/data
+- Competition rules: https://www.kaggle.com/competitions/h-and-m-personalized-fashion-recommendations/rules
+
+The dataset is **not downloaded or accepted yet**. Use is conditional on the applicant personally registering and accepting the current rules. Keep raw data outside GitHub and CI. Phase one should process only the CSV files and exclude customer age/postal code and images unless a later, separately justified research question and rights review require them.
+
+Purchases provide implicit behavioural evidence, not explicit statements of preference. A model may infer interests from purchase history, but explanations must not call inferred interests user-confirmed preferences. The seven-day next-purchase task in the original competition and MAP@12 provide a useful benchmark reference; the research protocol should define its own temporal train/validation/test split and must not access hidden competition test labels.
+
+The full access, schema-mapping, privacy, split, metrics and publication gates are documented in [the H&M real-data evaluation plan](hm-real-data-evaluation-plan.md). This dataset can support a real-data ranking experiment, but it cannot by itself establish explanation usefulness, causal purchase impact, or makeup recommendation quality.
+
+## 10. Data strategy and governance
 
 The current OGE-Fashion recommender benchmark uses 24 constructed profiles, 6 held-out synthetic profiles, and 18 synthetic items. Its labels are derived from fields used by its constraints. It is a useful software-level demonstration, but it cannot establish real-user relevance, population-level recommendation quality, or explanation usefulness.
 
@@ -119,13 +132,13 @@ A downloadable dataset is not automatically licensed for every intended use. Do 
 
 If no suitable real interaction dataset can be used lawfully, the project must narrow its claims and describe the evaluation as a controlled benchmark rather than imply real-user validation.
 
-## 10. Human-subject research and safety
+## 11. Human-subject research and safety
 
 No participant recruitment, user study, or collection of new personal data should begin until the applicable institution has determined whether ethics/IRB review or approval is required. The study should use informed consent, data minimisation, defined retention/deletion procedures, and voluntary withdrawal.
 
 The initial scope excludes sensitive face analysis, identity recognition, ethnicity inference, attractiveness scoring, and medical or dermatological recommendations. User preferences must remain editable and must not be inferred from sensitive characteristics.
 
-## 11. What already exists in OGE-Fashion
+## 12. What already exists in OGE-Fashion
 
 The current main branch documents:
 - a provenance-aware OWL/Turtle model;
@@ -141,7 +154,7 @@ The current benchmark reports better metrics for the ontology-filtered synthetic
 
 The 2023–2024 undergraduate FYP and the 2026 research extension must remain clearly separated in project history and attribution.
 
-## 12. Implementation gates
+## 13. Implementation gates
 
 1. **Literature gate:** read ReasoningRec in full; map relevant work on knowledge-aware recommendation, evidence-grounded LLM explanations, explanation faithfulness, constraint-aware recommendation, and fairness/trustworthiness.
 2. **Data gate:** select a permitted real dataset or formally narrow the intended claims; publish a source and licence register.
@@ -152,7 +165,7 @@ The 2023–2024 undergraduate FYP and the 2026 research extension must remain cl
 7. **Human evaluation gate:** obtain applicable ethics determination/approval before participant work.
 8. **Writing gate:** prepare a manuscript only from completed, reproducible methods and results, with every citation and claim manually verified.
 
-## 13. Application positioning
+## 14. Application positioning
 
 For a Texas A&M CSE PhD application, the research statement should focus on a specific question and connect it to one or two relevant Caverlee-group papers. Professor Caverlee's published prospective-student guidance says PhD admissions are handled through the departmental process and that applicants should make their case in the application; it discourages generic emails asking for a chance assessment or materials review.
 
@@ -160,7 +173,7 @@ The project should be described accurately as an independent research extension 
 
 Texas A&M CSE's published Fall PhD deadline is December 15. Its English-language requirements must be checked separately: a University of Sargodha Medium of Instruction letter should not be described as an automatic waiver unless the university confirms that in writing.
 
-## 14. Integrity and authorship
+## 15. Integrity and authorship
 
 This file describes a research plan, not research results. All future work must distinguish:
 - implementation from empirical validation;
