@@ -6,7 +6,7 @@ OGE-Fashion investigates whether a provenance-aware semantic model can improve r
 
 > **Evidence status:** the ontology and validation suite are implemented; a deterministic synthetic benchmark is included. The benchmark is a software-method demonstration only, not evidence of real-user preference or population-level recommendation quality.
 
-**Start here:** [Research summary](docs/RESEARCH_SUMMARY.md) · [Research questions](research/research-questions.md) · [Synthetic benchmark report](results/evaluation_summary.md) · [Dataset and licence register](research/dataset-register.md) · [PhD research extension proposal](research/phd-extension-caverlee.md)
+**Start here:** [Research summary](docs/RESEARCH_SUMMARY.md) · [Research questions](research/research-questions.md) · [Synthetic benchmark report](results/evaluation_summary.md) · [Dataset and licence register](research/dataset-register.md) · [PhD research extension proposal](research/phd-extension-caverlee.md) · [Evidence-grounded explanation verifier](docs/evidence-grounded-explanation-verifier.md)
 
 ## Research question and problem statement
 
@@ -135,6 +135,7 @@ python -m oge_fashion.shade_baseline --target-hex F3CFB3 --top-k 5
 - `experiments/` — deterministic synthetic recommender benchmark.
 - `results/` — generated benchmark metrics and interpretation.
 - `oge_fashion/` — colour conversion, pinned shade-source loader and shade-ranking CLI.
+- `oge_fashion/explanation_verifier.py` — fail-closed evidence matching prototype for explanation claims.
 - `scripts/` — ontology, HermiT, SPARQL and SHACL validation utilities.
 - `tests/` — unit tests and synthetic RDF fixture.
 - `docs/` — [technical research summary](docs/RESEARCH_SUMMARY.md), method notes and workflow guidance.
