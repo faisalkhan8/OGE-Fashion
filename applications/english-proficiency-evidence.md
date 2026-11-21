@@ -1,4 +1,4 @@
-# English-proficiency evidence note — Stanford and Cornell Fall 2027
+# English-proficiency evidence note — Stanford, Cornell and Northwestern Fall 2027
 
 **Prepared:** 2026-11-22  
 **Applicant:** Faisal Khan  
@@ -61,7 +61,7 @@ The Cornell CS page contains a general statement that TOEFL/IELTS is required fo
 
 **Decision:** Cornell has the clearest published Pakistan-specific standing-exemption pathway. Eligibility still depends on the international degree-equivalency assessment, English-medium requirement, and physical-presence condition. Do not claim the exemption unless all conditions are true.
 
-## 4. Northwestern University — Technology and Social Behavior PhD
+## 3. Northwestern University — Technology and Social Behavior PhD
 
 Official programme page: https://tsb.northwestern.edu/admissions/apply.html
 
@@ -73,7 +73,7 @@ The programme's Fall 2027 deadline is December 1, 2026. Its admissions page asks
 
 **Decision:** plausible application route without IELTS/TOEFL through the published English-medium degree pathway, but written admission confirmation and TA/funding rules must be distinguished. The uploaded UOS MOI letter is relevant evidence; it does not itself settle the funding appointment requirements.
 
-## 5. Recommended submission procedure
+## 4. Recommended submission procedure
 
 1. Upload the university's official transcript and degree certificate.
 2. Upload the official UOS MOI letter.
