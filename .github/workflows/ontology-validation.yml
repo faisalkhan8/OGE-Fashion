@@ -65,7 +65,7 @@ jobs:
       - name: Run reproducible synthetic recommender benchmark
         run: python experiments/evaluate_recommender.py
       - name: Test evidence-grounded explanation verifier
-        run: python -m unittest tests.test_explanation_verifier -v
+        run: python -m unittest discover -s tests -p 'test_explanation_verifier.py' -v
       - name: Run illustrative evidence verifier demo
         run: python examples/evidence_verification_demo.py
       - name: Verify generated benchmark outputs
