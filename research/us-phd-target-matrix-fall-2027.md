@@ -1,116 +1,105 @@
 # US PhD Target and Faculty-Fit Matrix — Fall 2027
 
 **Prepared:** 22 November 2026  
-**Applicant context:** BS Software Engineering, University of Sargodha, Pakistan; 3.65/4.00; Bronze Medal; 130 credit hours; MOI certificate; no IELTS/TOEFL score currently reported.
+**Applicant:** four-year BS Software Engineering, University of Sargodha, Pakistan; CGPA 3.65/4.00; 130 credit hours; Bronze Medal; official UOS Medium of Instruction letter; no IELTS/TOEFL score currently on file.
 
-This is a working shortlist, not an admission prediction. No application has been submitted through this project, no professor has agreed to supervise, and funding is never guaranteed merely because a programme advertises assistantships.
+This is a research-fit and application-planning shortlist, not an admission prediction. No application has been submitted through this workflow, and no professor has agreed to supervise the applicant.
 
-## Priority order for the current no-test application cycle
+## Priority order
 
 ### 1. Northwestern University — PhD in Technology and Social Behavior (TSB)
 
 <badge>Deadline: 1 December 2026</badge>
 
-**Why it is a priority:** the programme combines Computer Science and Communication and explicitly invites research that joins technical development with empirical study of how people interact with technology. This fits the proposed question about how users understand recommendation explanations, uncertainty and the distinction between observed evidence and inferred preferences.
+**Why it fits:** TSB combines Computer Science and Communication. The proposed research asks how recommendation explanations communicate evidence, uncertainty and inferred preferences to people. TSB is a natural place to study the technical system alongside human understanding and social consequences.
 
-**Faculty connection:** Professor Noshir Contractor is a professor in Communication Studies and Management & Organizations and holds a courtesy appointment in Computer Science. His official profile describes research in network science, computational social science and web science, including social and knowledge networks. His CV lists a Semantic Recommender and team/people recommender work. This makes him a credible interdisciplinary point of connection, not proof of a direct algorithmic recommender-systems opening.
+**Faculty connection:** Professor Noshir Contractor's official profile and CV describe network science, computational social science, knowledge networks, a Semantic Recommender and team/people recommender systems. This is an interdisciplinary research connection, not evidence of an available algorithmic recommender-systems opening.
 
-**Entry and application:**
-- The TSB page says most students already hold a master's degree or equivalent experience, but exceptional candidates may be admitted directly after a bachelor's degree. The applicant's four-year BS and professional experience make an application possible, but direct entry remains uncertain.
 - Application materials: Academic Statement, Personal Statement, CV, transcripts and 2–3 recommendation letters.
-- English route: TSB lists an official transcript verifying an undergraduate degree from an accredited four-year institution or equivalent where English is the language of instruction. Upload the University of Sargodha transcript and MOI letter; the programme/Graduate School makes the final determination.
-- International TAs must have TSE 50 or TOEFL iBT speaking 26 (5 on the updated TOEFL scale). This is a separate appointment requirement, not the same as the admissions English-medium degree route. Ask whether RA/fellowship support is available if no speaking score is held.
-- TSB says it generally admits PhD applicants only when financial support is available; there is no separate financial-aid application.
+- The programme FAQ says a Master's degree is not required to apply. Its admissions profile says many students have a Master's or equivalent experience and that exceptional applicants may be admitted directly after a Bachelor's.
+- English route: the published TSB instructions accept an official transcript verifying an undergraduate degree from an accredited four-year institution/equivalent where English is the language of instruction. Upload the UOS transcript and Registrar MOI letter; the programme and Graduate School make the final determination.
+- Funding: the TSB FAQ says admitted students are provided five years of support through research assistantships, teaching assistantships or fellowships. There is no separate financial-aid application; the applicant must request consideration in the admission form.
+- International TA appointments require TSE 50 or TOEFL iBT speaking 26 (5 on the updated scale). The MOI admissions route does not automatically fulfil the TA speaking condition. Ask whether an RA or fellowship route is available if no qualifying speaking score is held.
 
 Official sources:
 - Admissions: https://tsb.northwestern.edu/admissions/apply.html
-- Programme: https://tsb.northwestern.edu/
-- Funding: https://tsb.northwestern.edu/admissions/financial-support.html
-- Contractor faculty profile: https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/contractor-noshir.html
+- FAQ / five-year support: https://tsb.northwestern.edu/admissions/faq.html
+- Financial support: https://tsb.northwestern.edu/admissions/financial-support.html
+- Professor Noshir Contractor: https://www.mccormick.northwestern.edu/research-faculty/directory/profiles/contractor-noshir.html
 - Contractor CV: https://nosh.northwestern.edu/cv/
 
 ### 2. Stanford University — Computer Science PhD
 
 <badge>Deadline: 8 December 2026</badge>
 
-**Faculty connection:** Professor Jure Leskovec works on machine learning over richly labelled relational structures, graphs and networks, with recommender systems among the applications. OGE-Fashion's ontology/provenance layer provides a small structured-knowledge testbed. The proposed extension must compare against existing graph-grounded recommendation and explanation methods, not claim to invent them.
+**Faculty connection:** Professor Jure Leskovec's research includes machine learning over richly labelled relational structures, graphs and networks, with recommender systems among its applications. OGE-Fashion's ontology/provenance layer is a small structured-knowledge testbed; the PhD proposal must compare against existing graph-grounded recommendation methods rather than claim to invent them.
 
-**Entry and application:**
-- Direct PhD applications from a qualifying bachelor's degree are accepted.
-- Fall 2027 CS PhD deadline: 8 December 2026.
-- The CS FAQ lists three recommendation letters and recommends at least two academic letters.
-- The Statement of Purpose is limited to two pages / 8,000 characters under the current CS guidance.
-- GRE is not required/considered for the CS PhD application.
-- Stanford's English exemption permits an international equivalent bachelor's only if all instruction was conducted in English. The University of Sargodha MOI letter is useful, but the regulations allow language and Islamic Studies courses to be offered in Urdu or English. Do not select the exemption until the applicant can truthfully confirm the actual language used across the whole degree. A separate 24-consecutive-month full-time English-work route may exist, but Priv Inc must verify that the entire relevant work experience was conducted in English; the current employment letter does not establish that.
+- Direct PhD applications from a qualifying Bachelor's degree are accepted.
+- The CS department requires exactly three recommendation letters and recommends that at least two be academic.
+- The Statement of Purpose is limited to two pages under the current CS checklist.
+- GRE is not required/considered for the CS PhD.
+- English exemption: an international-equivalent Bachelor's qualifies only if all instruction was conducted in English; alternatively, at least 24 consecutive months of full-time professional/educational experience in English within the past 10 years. The UOS MOI letter supports the case but the UOS regulations say language courses and compulsory Islamic Studies may be offered in English or Urdu. Obtain programme-specific confirmation of the actual language used across the entire BS before selecting the degree exemption. The Priv Inc employment letter confirms role/dates/hours, not that all work was conducted in English.
+- Funding conditions must be checked in the offer and current department funding page.
 
 Official sources:
-- CS deadlines: https://www.cs.stanford.edu/admissions-graduate-application-deadlines
-- CS PhD admissions: https://www.cs.stanford.edu/admissions/phd-admissions
-- CS FAQ: https://www.cs.stanford.edu/admissions/phd-admissions-frequently-asked-questions
-- University English eligibility: https://gradadmissions.stanford.edu/apply/eligibility
+- Deadlines: https://www.cs.stanford.edu/admissions-graduate-application-deadlines
+- PhD admissions: https://www.cs.stanford.edu/admissions/phd-admissions
+- Application checklist: https://www.cs.stanford.edu/admissions/graduate-application-checklists
+- University English rules: https://gradadmissions.stanford.edu/apply/eligibility
 - Leskovec: https://cs.stanford.edu/people/jure-leskovec
 
 ### 3. Cornell University — Computer Science PhD
 
-<badge>Target deadline: 15 December 2026</badge>
+<badge>Fall deadline: 15 December 2026</badge>
 
-**Faculty connection:** Professor Thorsten Joachims studies machine learning from human interaction, recommendation, learning to rank, implicit feedback, and counterfactual/causal inference. LangPTune (CIKM 2025) is a relevant point of comparison for language-based user profiles. The candidate OGE-Fashion question is how claims in language-based profiles can be traced to underlying interactions or user-confirmed evidence.
+**Faculty connection:** Professor Thorsten Joachims studies machine learning from human interaction, recommendation, learning to rank, implicit feedback, and counterfactual/causal inference. LangPTune (CIKM 2025) is a relevant point of comparison for language-based user profiles. The proposed connection is to examine how claims in such profiles can be traced to source interactions or user-confirmed evidence.
 
-**Entry and application:**
-- Cornell's CS PhD is a research degree and applicants with a bachelor's degree may apply directly to the PhD.
-- The current departmental application page requires **two** recommendation letters and permits **three or four**.
-- The SOP should describe research interests and identify specific faculty; the personal statement has a 1,000-word limit.
-- Cornell's departmental page currently contains a Fall 2026 deadline line. The target Fall 2027 date is 15 December based on the usual cycle, but check the live 2027 portal before relying on it.
-- Cornell Graduate School's standing English exemption explicitly includes Pakistan for international-equivalent bachelor's degrees from universities where English is the language of instruction. The MOI must appear on the transcript or be verifiable on the institution's website, and the applicant must have been physically present in Pakistan for most of enrolment.
-- Research-degree applicants using this exemption may still need an English Language Assessment before TA appointment.
-- Cornell CS lists full support for PhD students in good standing.
+- Cornell admits applicants with a Bachelor's degree directly to the PhD.
+- The current departmental application page requires **two** recommendation letters and allows **three or four**.
+- The Statement of Purpose should state the applicant's research interests and relevant faculty. The Personal Statement limit is 1,000 words.
+- Cornell's department page states that Fall applications are due December 15. Confirm that the live portal is for Fall 2027 before final submission.
+- English exemption: Cornell's Graduate School standing exemption explicitly includes Pakistan for applicants with an international-equivalent US Bachelor's from a university in a country where English is an official language and English is the language of instruction. The medium must appear on the transcript or be easily verified on the university website; the applicant must have been physically present in Pakistan for the majority of enrolment. Research-degree applicants using this exemption still need an English Language Assessment before TA appointment and may receive a support plan.
+- Cornell CS says PhD students receive tuition, health insurance and a stipend while in good academic standing.
 
 Official sources:
-- CS PhD application: https://www.cs.cornell.edu/phd-computer-science/apply
+- CS application: https://www.cs.cornell.edu/phd-computer-science/apply
 - Graduate School English rule: https://gradschool.cornell.edu/admissions/application-steps/required-tests/english-language-proficiency-requirement-2/
-- Financial support: https://gradschool.cornell.edu/financial-support/
-- Joachims: https://infosci.cornell.edu/people/thorsten-joachims
+- Funding: https://gradschool.cornell.edu/financial-support/
+- Thorsten Joachims: https://infosci.cornell.edu/people/thorsten-joachims
 - Joachims research: https://www.cs.cornell.edu/people/tj/
 
 ## Test-dependent or secondary targets
 
-These have relevant research or funding, but the published English-test rules are not a reliable fit for an MOI-only application. Prioritise them only if the applicant books an accepted test or receives written confirmation of a valid exemption.
+These have useful research fit, but the published English policies are not a reliable match for an MOI-only application. Pursue them only if an accepted test is booked or written confirmation of a valid exemption is received.
 
-| University / faculty | Research connection | Current caution |
+| University / faculty | Research connection | Main blocker |
 |---|---|---|
-| Texas A&M CSE — James Caverlee | Direct recommender-systems and LLM reasoning match; ReasoningRec (NAACL Findings 2025) | Engineering normally requires TOEFL/IELTS for international applicants; MOI is not a standard published exemption. |
-| USC CS — Xiang (Sean) Ren / INK Lab | Knowledge representation, knowledge graphs, neural-symbolic reasoning, grounded NLP and explanations | USC states English-medium study in a non-Anglophone country does not qualify for its standard waiver. |
-| Vanderbilt CS | Direct PhD from bachelor's and AI / intelligent systems options | Published waiver excludes Pakistani English-medium Bachelor's degrees; test normally required. |
-| UIC CS | Funded PhD option and graph/AI research groups | Current CS policy requires English competency testing unless a formal exception is confirmed; no MOI-only route established. |
+| Texas A&M CSE — James Caverlee | Direct recommendation-systems and LLM reasoning fit; ReasoningRec (NAACL Findings 2025) | Engineering normally requires TOEFL/IELTS; UOS MOI is not a standard published exemption |
+| USC CS — Xiang (Sean) Ren / INK Lab | Knowledge representation, knowledge graphs, neural-symbolic reasoning, grounded NLP | USC's standard waiver does not cover English-medium study in a non-Anglophone country |
+| Vanderbilt CS | Direct PhD after Bachelor's; AI / intelligent systems | Published waiver excludes a Pakistani English-medium Bachelor's |
+| UIC CS | Funded CS PhD programme with AI/graph-related research groups | Current CS policy requires English competency testing unless a formal exemption is confirmed |
 
-Official sources:
-- Texas A&M CSE: https://people.engr.tamu.edu/caverlee/
-- USC INK Lab: https://inklab.usc.edu/
-- Vanderbilt PhD: https://computing.vanderbilt.edu/csphd/
-- UIC PhD: https://cs.uic.edu/graduate/admissions/phd/
+## Application readiness
 
-## Application readiness snapshot
-
-| Requirement | Status |
+| Item | Current status |
 |---|---|
-| Four-year BS, transcript and degree certificate | Available |
-| CGPA 3.65/4.00, Bronze Medal | Verified in uploaded records |
-| Research-focused CV | Draft prepared |
-| Stanford SOP | Draft prepared |
-| Cornell SOP | Draft prepared |
-| Northwestern TSB Academic Statement | Draft prepared |
-| Northwestern TSB Personal Statement | Draft prepared |
-| Research discussion brief | Draft prepared |
+| BS transcript and degree certificate | Available |
+| CGPA 3.65/4.00, 130 credit hours, Bronze Medal | Verified in uploaded records |
+| US academic CV | Draft prepared |
+| Stanford CS SOP | Draft prepared |
+| Cornell CS SOP and Personal Statement | Drafts prepared |
+| Northwestern TSB Academic Statement and Personal Statement | Drafts prepared |
+| OGE-Fashion research discussion brief | Draft prepared |
 | UOS MOI letter | Available |
-| Programme-specific UOS letter confirming all courses were taught in English | Not yet obtained; useful for Stanford |
-| Three recommenders willing to submit | Not yet confirmed |
-| TOEFL/IELTS result | Not available |
-| Applications submitted | None through this work |
+| UOS programme-specific confirmation that **all** BS courses were taught in English | Not yet obtained; important for Stanford |
+| Three referees willing to submit | Not yet confirmed |
+| IELTS/TOEFL result | Not currently available |
+| US applications submitted | None through this workflow |
 
 ## Immediate priorities
 
-1. Northwestern TSB: complete the portal and recommender invitations before 1 December.
-2. Stanford CS: verify the strict all-instruction English condition and complete the application before 8 December.
-3. Cornell CS: use the Pakistan standing-exemption route only if all conditions are true; confirm the Fall 2027 portal date and complete by 15 December.
-4. Ask three recommenders now; do not enter their details until they agree.
-5. Do not describe synthetic benchmark results as real-user performance or claim an unverified research novelty.
+1. Northwestern TSB: complete the portal and referee invitations before December 1.
+2. Stanford CS: verify the strict all-instruction English condition and complete the application before December 8.
+3. Cornell CS: use the Pakistan standing exemption only if every condition is true; verify the Fall 2027 portal and complete by December 15.
+4. Ask at least three referees now. Stanford requires exactly three; Northwestern asks for 2–3; Cornell requires two and accepts up to four.
+5. Do not describe synthetic benchmark results as real-user performance or claim unverified research novelty.
