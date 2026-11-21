@@ -6,7 +6,7 @@ OGE-Fashion investigates whether a provenance-aware semantic model can improve r
 
 > **Evidence status:** the ontology and validation suite are implemented; a deterministic synthetic benchmark is included. The benchmark is a software-method demonstration only, not evidence of real-user preference or population-level recommendation quality.
 
-**Start here:** [Research summary](docs/RESEARCH_SUMMARY.md) · [Research questions](research/research-questions.md) · [Synthetic benchmark report](results/evaluation_summary.md) · [Dataset and licence register](research/dataset-register.md)
+**Start here:** [Research summary](docs/RESEARCH_SUMMARY.md) · [Research questions](research/research-questions.md) · [Synthetic benchmark report](results/evaluation_summary.md) · [Dataset and licence register](research/dataset-register.md) · [PhD research extension proposal](research/phd-extension-caverlee.md)
 
 ## Research question and problem statement
 
