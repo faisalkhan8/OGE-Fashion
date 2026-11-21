@@ -82,12 +82,12 @@ The official CS page states that students in their first five years are guarante
 
 The applicant currently has a University of Sargodha Medium of Instruction certificate but no reported IELTS/TOEFL result.
 
-- Texas A&M Engineering states that international applicants normally provide TOEFL or IELTS; its listed exemption categories do not automatically include a Pakistani MOI certificate. The graduate school may have alternative-verification procedures, but eligibility must be confirmed in writing.
-- Vanderbilt says waiver review happens after application submission and fee payment. Its official graduate-school criteria must be checked before relying on a waiver.
-- UIC's current CS page requires an English competency test for applicants whose native language is not English.
-- USC's exact current CS PhD English policy and any MOI-based exemption must be confirmed from the Graduate Admission rules before applying.
+- Texas A&M Engineering states that international applicants normally provide TOEFL or IELTS. The CSE FAQ's published alternative-verification examples are limited to a US Master's or a four-year Bachelor's at a US-accredited university; a Pakistani MOI is not an automatic exemption. Treat a test as required unless Texas A&M Graduate Admissions confirms otherwise in writing.
+- Vanderbilt's official waiver policy limits exemption to a degree from Vanderbilt or a Bachelor's completed entirely in the US or in a specified Anglophone country (UK, Ireland, Australia, New Zealand, Canada except Quebec). A Pakistani English-medium Bachelor's and MOI do not meet this waiver rule.
+- UIC's current CS page requires an English competency test for applicants whose native language is not English; its stated minimums include TOEFL iBT 80 (with subscores), IELTS 6.5 (all bands at least 6.0), or PTE Academic 54 (with subscores). No Pakistan-MOI exemption is stated on the CS page.
+- USC's current graduate policy explicitly says English-medium study in a non-Anglophone country does not qualify for a waiver. Pakistan-based University of Sargodha MOI therefore does not waive the USC English-test requirement. USC accepts TOEFL, IELTS Academic, Cambridge C1 Advanced, or PTE Academic; for PhD applicants the listed thresholds to waive the arrival ISE exam are TOEFL iBT 100 (old scale) / 5 (new scale), IELTS 7, Cambridge C1 185, or PTE 68, with stated subscores. Confirm the current score interpretation in the portal.
 
-**Action:** request written eligibility decisions from graduate admissions offices before paying non-refundable application fees. If no exemption is available, book an accepted English test immediately and ask each programme whether a pending score is accepted for initial review. Do not claim an exemption unless the university confirms it.
+**Action:** Based on the current official policies reviewed, do not plan on MOI-only admission at Texas A&M, USC, Vanderbilt, or UIC. Arrange an accepted English test immediately if pursuing these Fall 2027 applications. Ask each programme whether a pending score is accepted for initial review, and confirm that the exact test version and score scale are accepted. Do not claim an exemption unless the university confirms it.
 
 ## Research project work required before outreach
 
