@@ -11,7 +11,7 @@ This is an application-planning document, not a prediction of admission. No appl
 |---|---|---|---|---|
 | 1 | Northwestern University — PhD in Technology and Social Behavior | 1 Dec 2026 | TSB lists official transcript confirming a four-year undergraduate degree taught in English as one route; submit transcript + MOI. TA speaking test is a separate condition. | 2–3 |
 | 2 | Stanford University — CS PhD | 8 Dec 2026 | Degree-based exemption only if all instruction was in English; or 24+ consecutive months full-time professional/educational experience conducted in English. Confirm the actual conditions. | 3 |
-| 3 | Cornell University — CS PhD | Target 15 Dec 2026; verify the Fall 2027 portal | Standing exemption expressly includes Pakistan, subject to equivalent Bachelor's, English as language of instruction and physical presence in Pakistan for most enrolment. | 3 required |
+| 3 | Cornell University — CS PhD | 15 Dec 2026; verify the Fall 2027 portal | Standing exemption expressly includes Pakistan, subject to equivalent Bachelor's, English as language of instruction and physical presence in Pakistan for most enrolment. | 2 required; 3–4 allowed |
 | Secondary | Texas A&M CSE, USC CS, Vanderbilt CS, UIC CS | Dates vary; verify live portals | Published standard policies require a test or do not provide a clear Pakistani MOI exemption. | Check programme |
 
 The programme-by-programme evidence and research fit are documented in:
@@ -53,7 +53,7 @@ Official pages:
 
 - Target deadline: **15 December 2026**; the current department webpage still displays a Fall 2026 cycle deadline, so check the live Fall 2027 portal.
 - The CS PhD accepts applicants with a Bachelor's degree directly to the PhD.
-- The current departmental page requires three recommendation letters.
+- The current departmental page requires **two recommendation letters; three or four are allowed**.
 - Statement of Purpose: concise, identify research interests and relevant faculty.
 - Personal Statement: maximum 1,000 words.
 - Cornell's standing exemption includes Pakistan for applicants with an international-equivalent Bachelor's from a Pakistani university where English is the language of instruction. The applicant must have been physically present in Pakistan for most of enrolment; MOI must appear on transcript or be verifiable on the university website.
@@ -67,7 +67,7 @@ Official pages:
 
 ## Recommender strategy
 
-Three letters should be requested immediately:
+Ask at least three potential referees immediately so each university's requirements can be met; Cornell requires two and accepts up to four, while Stanford requires exactly three.
 - ideally two University of Sargodha faculty members who can assess your academic ability, capstone work and research potential;
 - one further academic referee or professional supervisor who can provide specific evidence of technical judgement, independent work and collaboration.
 
