@@ -14,6 +14,10 @@ on:
       - "tests/test_explanation_verifier.py"
       - "oge_fashion/explanation_verifier.py"
       - "examples/evidence_verification_demo.py"
+      - "scripts/profile_hm_dataset.py"
+      - "tests/test_profile_hm_dataset.py"
+      - "docs/hm-dataset-profiler.md"
+      - "applications/english-proficiency-evidence.md"
       - "docs/evidence-grounded-explanation-verifier.md"
       - "experiments/**"
       - "requirements-research.txt"
@@ -68,6 +72,8 @@ jobs:
         run: python -m unittest discover -s tests -p 'test_explanation_verifier.py' -v
       - name: Run illustrative evidence verifier demo
         run: python examples/evidence_verification_demo.py
+      - name: Test H&M aggregate dataset profiler
+        run: python -m unittest discover -s tests -p 'test_profile_hm_dataset.py' -v
       - name: Verify generated benchmark outputs
         run: |
           python - <<'PY'
