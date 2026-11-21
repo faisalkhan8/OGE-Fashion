@@ -26,10 +26,11 @@ This is a proposal, not a completed method or proven novel contribution. The exi
 
 ### 2. Professor Thorsten Joachims — Cornell University, Computer Science and Information Science
 
-**Why the connection is substantive:** His Cornell profile describes machine learning from human interaction, recommendation, information access, generative AI, counterfactual/causal inference, policy learning, learning to rank and implicit feedback. This aligns with the intended evaluation of user preferences, recommendation ranking and explanation grounding.
+**Why the connection is substantive:** His Cornell profile describes machine learning from human interaction, recommendation, generative AI, counterfactual/causal inference, policy learning, learning to rank and implicit feedback. Particularly relevant is Gao, Zhou, Dai and Joachims (CIKM 2025), *End-to-end Training for Recommendation with Language-based User Profiles* (LangPTune). The paper studies training language-based user profiles against a recommendation objective, and assesses profile interpretability. OGE-Fashion could explore a complementary question: whether explicit ontology/interaction evidence can constrain or audit language-based profile claims and recommendation explanations. This is a specific research connection, not a claim that the project already implements LangPTune or that its proposed contribution is novel.
 
 - Faculty profile: https://infosci.cornell.edu/people/thorsten-joachims
 - Research website: https://www.cs.cornell.edu/people/tj/
+- Relevant 2025 paper: https://arxiv.org/abs/2410.18870
 - Cornell CS PhD application: https://www.cs.cornell.edu/phd-computer-science/apply
 
 **What to read before applying:** Recent work on learning to rank, implicit feedback, counterfactual evaluation and human interaction. Select a specific problem that the current OGE-Fashion methodology can realistically study.
